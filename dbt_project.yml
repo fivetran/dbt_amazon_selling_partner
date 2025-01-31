@@ -1,0 +1,60 @@
+config-version: 2
+name: 'amazon_selling_partner'
+version: '0.1.0'
+require-dbt-version: [">=1.3.0", "<2.0.0"]
+
+models:
+  amazon_selling_partner:
+    +schema: amazon_selling_partner
+    +materialized: table
+    intermediate:
+      +materialized: ephemeral
+    staging:
+      +materialized: view
+      +schema: stg_amazon_selling_partner
+
+
+vars:
+    orders: "{{ source('amazon_selling_partner','orders') }}"
+    order_line: "{{ source('amazon_selling_partner','order_line') }}"
+    order_item_promotion_id: "{{ source('amazon_selling_partner','order_item_promotion_id') }}"
+    payment_method_detail_item: "{{ source('amazon_selling_partner','payment_method_detail_item') }}"
+    item_product_type: "{{ source('amazon_selling_partner','item_product_type') }}"
+    item_dimension: "{{ source('amazon_selling_partner','item_dimension') }}"
+    item_image: "{{ source('amazon_selling_partner','item_image') }}"
+    item_summary: "{{ source('amazon_selling_partner','item_summary') }}"
+    item_display_group_sales_rank: "{{ source('amazon_selling_partner','item_display_group_sales_rank') }}"
+    item_classification_sales_rank: "{{ source('amazon_selling_partner','item_classification_sales_rank') }}"
+    item_identifier: "{{ source('amazon_selling_partner','item_identifier') }}"
+    financial_charge_component: "{{ source('amazon_selling_partner','financial_charge_component') }}"
+    financial_fee_component: "{{ source('amazon_selling_partner','financial_fee_component') }}"
+    item_relationship: "{{ source('amazon_selling_partner','item_relationship') }}"
+    fba_inventory_summary: "{{ source('amazon_selling_partner','fba_inventory_summary') }}"
+    fba_inventory_researching_quantity_entry: "{{ source('amazon_selling_partner','fba_inventory_researching_quantity_entry') }}"
+    financial_service_fee_event: "{{ source('amazon_selling_partner','financial_service_fee_event') }}"
+    catalog: "{{ source('amazon_selling_partner','catalog') }}"
+
+
+    # tables:
+    #   - name: catalog
+    #   - name: fba_inventory_summary
+    #   - name: financial_fee_component
+    #   - name: item_dimension
+    #   - name: financial_charge_component
+    #   - name: item_display_group_sales_rank
+    #   - name: item_classification_sales_rank
+    #   - name: item_identifier
+    #   - name: financial_service_fee_event
+    #   - name: item_product_type
+    #   - name: item_relationship
+    #   - name: item_summary
+    #   - name: item_variation_theme
+    #   - name: item_image
+    #   - name: order_item
+    #   - name: order_item_promotion_id
+    #   - name: orders
+    #   - name: payment_method_detail_item
+    #   - name: vendor_retail_procurement_order
+    #   - name: vendor_retail_procurement_order_item
+    #   - name: vendor_retail_procurement_order_item_status
+    #   - name: vendor_retail_procurement_order_status
