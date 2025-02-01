@@ -248,10 +248,10 @@ sources:
             description: '{{ doc("shipping_price_currency_code") }}'
           - name: shipping_tax_amount
             description: '{{ doc("shipping_tax_amount") }}'
-          - name: shipping_taxcurrency_code
-            description: '{{ doc("shipping_taxcurrency_code") }}'
-          - name: store_chain_storeid
-            description: '{{ doc("store_chain_storeid") }}'
+          - name: shipping_tax_currency_code
+            description: '{{ doc("shipping_tax_currency_code") }}'
+          - name: store_chain_store_id
+            description: '{{ doc("store_chain_store_id") }}'
           - name: tax_collection_model
             description: '{{ doc("tax_collection_model") }}'
           - name: tax_collection_responsible_party

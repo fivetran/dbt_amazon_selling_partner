@@ -208,8 +208,8 @@ Only returned for Amazon Easy Ship orders. {% enddocs %}
 {% docs shipping_price_amount %} The item's shipping price. {% enddocs %}
 {% docs shipping_price_currency_code %}  The three-digit currency code that the `shipping_price_amount` is listed in. In ISO 4217 format. {% enddocs %}
 {% docs shipping_tax_amount %} The tax on the shipping price.	 {% enddocs %}
-{% docs shipping_taxcurrency_code %} The three-digit currency code that the `shipping_tax_amount` is listed in. In ISO 4217 format.  {% enddocs %}
-{% docs store_chain_storeid %} The store chain store identifier. Linked to a specific store in a store chain.	 {% enddocs %}
+{% docs shipping_tax_currency_code %} The three-digit currency code that the `shipping_tax_amount` is listed in. In ISO 4217 format.  {% enddocs %}
+{% docs store_chain_store_id %} The store chain store identifier. Linked to a specific store in a store chain.	 {% enddocs %}
 {% docs tax_collection_model %} The tax collection model applied to the item. Possible value(s) can be found [here](https://developer-docs.amazon.com/sp-api/docs/orders-api-v0-reference#model). {% enddocs %}
 {% docs tax_collection_responsible_party %} The party responsible for withholding the taxes and remitting them to the taxing authority. Possible value(s) can be found [here](https://developer-docs.amazon.com/sp-api/docs/orders-api-v0-reference#responsibleparty). {% enddocs %}
 {% docs title %} The item's title. {% enddocs %}

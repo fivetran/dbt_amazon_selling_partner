@@ -358,8 +358,8 @@ models:
       - name: shipping_tax_amount
         description: '{{ doc("shipping_tax_amount") }}'
 
-      - name: shipping_taxcurrency_code
-        description: '{{ doc("shipping_taxcurrency_code") }}'
+      - name: shipping_tax_currency_code
+        description: '{{ doc("shipping_tax_currency_code") }}'
 
       - name: store_chain_storeId
         description: '{{ doc("store_chain_storeId") }}'

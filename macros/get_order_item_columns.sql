@@ -41,8 +41,8 @@
     {"name": "shipping_price_amount", "datatype": dbt.type_float()},
     {"name": "shipping_price_currency_code", "datatype": dbt.type_string()},
     {"name": "shipping_tax_amount", "datatype": dbt.type_float()},
-    {"name": "shipping_taxcurrency_code", "datatype": dbt.type_string()},
-    {"name": "store_chain_storeid", "datatype": dbt.type_string()},
+    {"name": "shipping_tax_currency_code", "datatype": dbt.type_string()},
+    {"name": "store_chain_store_id", "datatype": dbt.type_string()},
     {"name": "tax_collection_model", "datatype": dbt.type_string()},
     {"name": "tax_collection_responsible_party", "datatype": dbt.type_string()},
     {"name": "title", "datatype": dbt.type_string()}
