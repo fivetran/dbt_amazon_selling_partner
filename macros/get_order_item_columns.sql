@@ -17,7 +17,7 @@
     {"name": "item_price_amount", "datatype": dbt.type_float()},
     {"name": "item_price_currency_code", "datatype": dbt.type_string()},
     {"name": "item_tax_amount", "datatype": dbt.type_float()},
-    {"name": "item_tax_currencycode", "datatype": dbt.type_string()},
+    {"name": "item_tax_currency_code", "datatype": dbt.type_string()},
     {"name": "order_item_id", "datatype": dbt.type_string()},
     {"name": "points_granted_monetary_amount", "datatype": dbt.type_float()},
     {"name": "points_granted_monetary_currency_code", "datatype": dbt.type_string()},

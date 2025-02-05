@@ -1,8 +1,9 @@
+{% set base_table = ref('stg_amazon_selling_partner__payment_method_detail_item_base') if var('amazon_selling_partner_sources',[]) != [] else source('amazon_selling_partner', 'payment_method_detail_item') %}
 
 with base as (
 
     select * 
-    from {{ ref('stg_amazon_selling_partner__payment_method_detail_item_base') }}
+    from {{ base_table }}
 ),
 
 fields as (
@@ -10,7 +11,7 @@ fields as (
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_amazon_selling_partner__payment_method_detail_item_base')),
+                source_columns=adapter.get_columns_in_relation(base_table),
                 staging_columns=get_payment_method_detail_item_columns()
             )
         }}

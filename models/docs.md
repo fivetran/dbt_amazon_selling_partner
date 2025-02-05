@@ -1,5 +1,4 @@
-{% docs orders %} <insert description here> {% enddocs %}
-{% docs stg_amazon_selling_partner__orders %} <insert description here> {% enddocs %}
+{% docs orders %} Orders placed in Amazon. {% enddocs %}
 {% docs amazon_order_id %} An Amazon-defined order identifier, in 3-7-7 format. {% enddocs %}
 
 {% docs automated_shipping_setting_automated_carrier %} Auto-generated carrier for SSA orders. {% enddocs %}
@@ -180,7 +179,7 @@ Either `IOSS` (Import one stop shop. The item being purchased is not held in the
 {% enddocs %}
 {% docs item_price_currency_code %} The three-digit currency code that the `item_price_amount` is listed in. In ISO 4217 format. {% enddocs %}
 {% docs item_tax_amount %} The tax on the item price. {% enddocs %}
-{% docs item_tax_currencycode %} The three-digit currency code that the `item_tax_amount` is listed in. In ISO 4217 format.{% enddocs %}
+{% docs item_tax_currency_code %} The three-digit currency code that the `item_tax_amount` is listed in. In ISO 4217 format.{% enddocs %}
 {% docs order_item_id %} An Amazon-defined item identifier for the associated item.	 {% enddocs %}
 {% docs points_granted_monetary_amount %} The monetary value of the Amazon Points granted. {% enddocs %}
 {% docs points_granted_monetary_currency_code %} The three-digit currency code that the `points_granted_monetary_amount` is listed in. In ISO 4217 format. {% enddocs %}
@@ -248,7 +247,7 @@ A sub-payment method for a COD order. Possible values: COD (Cash on delivery), G
 {% docs payment_method_detail_item %} A list of payment methods for the order. {% enddocs %}
 
 {% docs image_height %} Height of the image in pixels. {% enddocs %}
-{% docs image_link %} Link, or URL, for the image.	{% enddocs %}
+{% docs image_link %} Link, or URL, for the image. {% enddocs %}
 {% docs image_variant %} Variant of the image. Possible values can be found [here](https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2022-04-01-reference#variant). {% enddocs %}
-{% docs image_width %} Width of the image in pixels.	 {% enddocs %}
+{% docs image_width %} Width of the image in pixels. {% enddocs %}
 {% docs item_image %} Images for an item in the Amazon catalog. {% enddocs %}

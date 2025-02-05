@@ -10,6 +10,7 @@ order_item as (
     from {{ ref('stg_amazon_selling_partner__order_item') }}
 ),
 
+{# Open Q: Should we bring item in here?  #}
 item as (
 
     select *
@@ -20,16 +21,64 @@ joined as (
 
     select 
         order_item.*,
-        item.*,
-        order.order_status,
-        order.purchase_date
-        order.marketplace_id
-        
+        {# Open Q: What other order/header level fields would be useful to have here? #}
+        orders.purchase_date as order_purchase_date,
+        orders.order_total_amount, 
+        orders.order_status,
+        orders.order_total_currency_code,
+        orders.marketplace_id,
+
+        {# Open Q: Which item columns (if any) should we bring in here? #}
+        item.item_name,
+        item.display_name,
+        item.brand,
+        item.color,
+        item.size,
+        item.style,
+        item.product_type,
+        item.package_quantity,
+        item.manufacturer,
+        item.contributors,
+        item.item_classification,
+        item.classification_id,
+        item.classification_link,
+        item.classification_sales_rank,
+        item.website_display_group,
+        item.website_display_group_name,
+        item.website_display_group_link,
+        item.website_display_group_sales_rank,
+        item.is_memorabilia,
+        item.release_date,
+        item.is_adult_product,
+        item.is_autographed,
+        item.is_trade_in_eligible,
+        item.model_number,
+        item.part_number,
+        item.ean,
+        item.gtin,
+        item.isbn,
+        item.jan,
+        item.minsan,
+        item.upc,
+        item.count_images,
+        item.count_swatch_images,
+        item.package_height_unit,
+        item.package_height_value,
+        item.package_length_unit,
+        item.package_length_value,
+        item.package_weight_unit,
+        item.package_weight_value,
+        item.package_width_unit,
+        item.package_width_value
+
     from order_item 
     left join item 
         on order_item.asin = item.asin 
         and order_item.source_relation = item.source_relation
-    left join order 
-        on order_item.amazon_order_id = order.amazon_order_id
-        and order_item.source_relation = order.source_relation
+    left join orders 
+        on order_item.amazon_order_id = orders.amazon_order_id
+        and order_item.source_relation = orders.source_relation
 )
+
+select *
+from joined

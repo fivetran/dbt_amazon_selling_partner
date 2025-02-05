@@ -1,8 +1,9 @@
+{% set base_table = ref('stg_amazon_selling_partner__orders_base') if var('amazon_selling_partner_sources',[]) != [] else source('amazon_selling_partner', 'orders') %}
 
 with base as (
 
     select * 
-    from {{ ref('stg_amazon_selling_partner__orders_base') }}
+    from {{ base_table }}
 ),
 
 fields as (
@@ -10,7 +11,7 @@ fields as (
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_amazon_selling_partner__orders_base')),
+                source_columns=adapter.get_columns_in_relation(base_table),
                 staging_columns=get_orders_columns()
             )
         }}
@@ -29,39 +30,32 @@ final as (
         marketplace_id,
         replaced_order_id,
         seller_order_id,
+        buyer_info_purchase_order_number,
 
-        {# buyer_info_buyer_county, #}
+        {# Open Q: I don't think email or name is sent by Amazon due to PII limitations - should we exclude? #}
         buyer_info_buyer_email,
         buyer_info_buyer_name,
-        buyer_info_purchase_order_number,
-        {# buyer_invoice_preference,
-        buyer_tax_info_ buyer_business_address,
-        buyer_tax_info_buyer_legal_company_name,
-        buyer_tax_info_buyer_tax_office,
-        buyer_tax_info_buyer_tax_registration_id, #}
-        {# cba_displayable_shipping_label, #}
+
+        purchase_date,
+        sales_channel,
+        order_channel,
+        order_type,
+        order_status,
+        payment_method,
+        order_total_amount,
+        order_total_currency_code,
+        promise_response_due_date,
+        last_update_date,
+        latest_delivery_date,
+        latest_ship_date,
+        number_of_items_shipped,
+        number_of_items_unshipped,
         earliest_delivery_date,
         earliest_ship_date,
         easy_ship_shipment_status,
         electronic_invoice_status,
         fulfillment_channel,
         fulfillment_supply_source_id,
-
-        last_update_date,
-        latest_delivery_date,
-        latest_ship_date,
-        number_of_items_shipped,
-        number_of_items_unshipped,
-        order_channel,
-        order_status,
-        order_total_amount,
-        order_total_currency_code,
-        order_type,
-        payment_method,
-        promise_response_due_date,
-        purchase_date,
-        sales_channel,
-        {# seller_display_name, #}
         has_regulated_items,
         is_access_point_order,
         is_business_order,
@@ -73,7 +67,6 @@ final as (
         is_prime,
         is_replacement_order,
         is_sold_by_ab,
-        
         ship_service_level,
         shipment_service_level_category,
         automated_shipping_setting_automated_carrier,
@@ -92,6 +85,8 @@ final as (
         default_ship_from_location_phone,
         default_ship_from_location_postal_code,
         default_ship_from_location_state_or_region,
+        
+        -- Not sure if the following is considered PII (and therefore excluded) by Aamzon
         shipping_address_address_line_1,
         shipping_address_address_line_2,
         shipping_address_address_line_3,
@@ -105,6 +100,15 @@ final as (
         shipping_address_phone,
         shipping_address_postal_code,
         shipping_address_state_or_region
+
+        {# buyer_info_buyer_county, #}
+        {# buyer_invoice_preference,
+        buyer_tax_info_ buyer_business_address,
+        buyer_tax_info_buyer_legal_company_name,
+        buyer_tax_info_buyer_tax_office,
+        buyer_tax_info_buyer_tax_registration_id, #}
+        {# cba_displayable_shipping_label, #}
+        {# seller_display_name, #}
 
     from fields
 )

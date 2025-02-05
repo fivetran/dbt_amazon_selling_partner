@@ -12,7 +12,7 @@ item_product_type as (
 item_image as (
 
     select *
-    from {{ ref('stg_amazon_selling_partner__item_summary') }}
+    from {{ ref('stg_amazon_selling_partner__item_image') }}
 ),
 
 item_images as (
@@ -26,7 +26,7 @@ item_images as (
 
     from item_image 
     group by 1,2,3
-)
+),
 
 item_display_group_sales_rank as (
 
@@ -65,14 +65,14 @@ item_identifiers as (
     select 
         asin,
         source_relation,
-        marketplace_id,
+        marketplace_id
         {# iterate over identifier types (from https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2022-04-01-reference#identifierstype) that aren't already logged elsewhere (ASIN and SKU) #}
-        {% for identifer_type in ['EAN', 'GTIN', 'ISBN', 'JAN', 'MINSAN', 'UPC'] %}
-            , max(case when identifer_type = '{{ identifier_type }}' then identifer end) as {{ identifier_type | lower }}
+        {% for identifier_type in ['EAN', 'GTIN', 'ISBN', 'JAN', 'MINSAN', 'UPC'] %}
+            , max(case when identifier_type = '{{ identifier_type }}' then identifier end) as {{ identifier_type | lower }}
         {% endfor %}
     from item_identifier
     group by 1,2,3
-)
+),
 
 joined as (
 
@@ -110,13 +110,13 @@ joined as (
         -- other IDs
         item_summary.model_number,
         item_summary.part_number,
+        parent_item.parent_asin, -- a single asin should only have one parent
         item_identifiers.ean,
         item_identifiers.gtin, 
         item_identifiers.isbn, 
         item_identifiers.jan,
         item_identifiers.minsan, 
         item_identifiers.upc,
-        parent_item.parent_asin -- a single asin should only have one parent
         
         item_images.count_images,
         item_images.count_swatch_images,
@@ -144,11 +144,11 @@ joined as (
         and item_summary.source_relation = item_display_group_sales_rank.source_relation
     left join item_classification_sales_rank
         on item_summary.asin = item_classification_sales_rank.asin 
-        and item_summary.item_classification = item_classification_sales_rank.classification_id
+        and item_summary.classification_id = item_classification_sales_rank.classification_id
         and item_summary.source_relation = item_classification_sales_rank.source_relation
     left join item_relationship as parent_item
-        on item_summary.asin = item_relationship.child_asin
-        and item_summary.source_relation = item_relationship.source_relation
+        on item_summary.asin = parent_item.child_asin
+        and item_summary.source_relation = parent_item.source_relation
     left join item_identifiers
         on item_summary.asin = item_identifiers.asin 
         and item_summary.marketplace_id = item_identifiers.marketplace_id

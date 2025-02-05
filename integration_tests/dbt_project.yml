@@ -28,3 +28,10 @@ vars:
     amazon_selling_partner_fba_inventory_researching_quantity_entry_identifier: "fba_inventory_researching_quantity_entry_data"
     amazon_selling_partner_financial_service_fee_event_identifier: "financial_service_fee_event_data"
     amazon_selling_partner_catalog_identifier: "catalog_data"
+
+
+seeds:
+  amazon_selling_partner_integration_tests:
+    item_identifier:
+      +column_types:
+        identifier_type: "{{ 'string' if target.type in ('bigquery', 'spark', 'databricks') else 'varchar' }}"

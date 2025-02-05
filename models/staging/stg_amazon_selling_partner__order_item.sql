@@ -1,8 +1,9 @@
+{% set base_table = ref('stg_amazon_selling_partner__order_item_base') if var('amazon_selling_partner_sources',[]) != [] else source('amazon_selling_partner', 'order_item') %}
 
 with base as (
 
     select * 
-    from {{ ref('stg_amazon_selling_partner__order_item_base') }}
+    from {{ base_table }}
 ),
 
 fields as (
@@ -10,7 +11,7 @@ fields as (
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_amazon_selling_partner__order_item_base')),
+                source_columns=adapter.get_columns_in_relation(base_table),
                 staging_columns=get_order_item_columns()
             )
         }}
@@ -39,7 +40,7 @@ final as (
         item_price_amount,
         item_price_currency_code,
         item_tax_amount,
-        item_tax_currencycode,
+        item_tax_currency_code,
         shipping_discount_amount,
         shipping_discount_currency_code,
         shipping_discount_tax_amount,
