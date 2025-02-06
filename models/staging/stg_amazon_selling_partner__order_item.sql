@@ -1,3 +1,5 @@
+{{ config(enabled=var('amazon_selling_partner__using_orders_module', true)) }}
+
 {% set base_table = ref('stg_amazon_selling_partner__order_item_base') if var('amazon_selling_partner_sources',[]) != [] else source('amazon_selling_partner', 'order_item') %}
 
 with base as (
@@ -32,8 +34,8 @@ final as (
         seller_sku,
         title,
         product_info_detail_number_of_items,
-        scheduled_delivery_start_date,
-        scheduled_delivery_end_date,
+        cast({{ dbt.date_trunc('day', 'scheduled_delivery_start_date') }} as date) as scheduled_delivery_start_date,
+        cast({{ dbt.date_trunc('day', 'scheduled_delivery_end_date') }} as date) as scheduled_delivery_end_date,
         quantity_ordered,
         quantity_shipped,
 
@@ -59,7 +61,6 @@ final as (
         condition_subtype_id,
         buyer_requested_cancel_buyer_cancel_reason as buyer_requested_cancel_reason,
         buyer_requested_cancel_is_buyer_requested_cancel as is_buyer_requested_cancel,
-
         deemed_reseller_category,
         ioss_number,
         is_gift,
@@ -69,6 +70,7 @@ final as (
         tax_collection_model, -- always MarketplaceFacilitator in US
         tax_collection_responsible_party -- always Amazon Web Services in US
 
+        {# columns i'm excluding -- remove later #}
         {# item_approval_context_approval_status,
         item_approval_context_approval_type, #}
 

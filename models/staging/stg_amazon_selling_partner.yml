@@ -250,12 +250,6 @@
 #       - name: ioss_number
 #         description: '{{ doc("ioss_number") }}'
 
-#       - name: item_approval_context_approval_status
-#         description: '{{ doc("item_approval_context_approval_status") }}'
-
-#       - name: item_approval_context_approval_type
-#         description: '{{ doc("item_approval_context_approval_type") }}'
-
 #       - name: item_price_amount
 #         description: '{{ doc("item_price_amount") }}'
 
@@ -267,18 +261,6 @@
 
 #       - name: item_tax_currencycode
 #         description: '{{ doc("item_tax_currencycode") }}'
-
-#       - name: points_granted_monetary_amount
-#         description: '{{ doc("points_granted_monetary_amount") }}'
-
-#       - name: points_granted_monetary_currency_code
-#         description: '{{ doc("points_granted_monetary_currency_code") }}'
-
-#       - name: points_granted_points_number
-#         description: '{{ doc("points_granted_points_number") }}'
-
-#       - name: price_designation
-#         description: '{{ doc("price_designation") }}'
 
 #       - name: product_info_detail_number_of_items
 #         description: '{{ doc("product_info_detail_number_of_items") }}'

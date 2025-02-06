@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: amazon_selling_partner__orders
+  - name: amazon_selling_partner__order_items
+  - name: amazon_selling_partner__item_inventory
+  - name: amazon_selling_partner__daily_activity

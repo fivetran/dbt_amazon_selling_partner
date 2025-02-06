@@ -1,3 +1,5 @@
+{{ config(enabled=var('amazon_selling_partner__using_catalog_module', true)) }}
+
 {% set base_table = ref('stg_amazon_selling_partner__item_summary_base') if var('amazon_selling_partner_sources',[]) != [] else source('amazon_selling_partner', 'item_summary') %}
 
 with base as (
@@ -43,7 +45,7 @@ final as (
         model_number,
         package_quantity,
         part_number,
-        release_date,
+        cast({{ dbt.date_trunc('day', 'release_date') }} as date) as release_date,
         size,
         style,
         trade_in_eligible as is_trade_in_eligible,

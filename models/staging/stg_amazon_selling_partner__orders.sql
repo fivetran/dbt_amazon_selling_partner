@@ -1,3 +1,5 @@
+{{ config(enabled=var('amazon_selling_partner__using_orders_module', true)) }}
+
 {% set base_table = ref('stg_amazon_selling_partner__orders_base') if var('amazon_selling_partner_sources',[]) != [] else source('amazon_selling_partner', 'orders') %}
 
 with base as (
@@ -36,7 +38,7 @@ final as (
         buyer_info_buyer_email,
         buyer_info_buyer_name,
 
-        purchase_date,
+        cast({{ dbt.date_trunc('day', 'purchase_date') }} as date) as purchase_date,
         sales_channel,
         order_channel,
         order_type,
@@ -44,14 +46,14 @@ final as (
         payment_method,
         order_total_amount,
         order_total_currency_code,
-        promise_response_due_date,
-        last_update_date,
-        latest_delivery_date,
-        latest_ship_date,
+        cast({{ dbt.date_trunc('day', 'promise_response_due_date') }} as date) as promise_response_due_date,
+        cast({{ dbt.date_trunc('day', 'last_update_date') }} as date) as last_update_date,
+        cast({{ dbt.date_trunc('day', 'latest_delivery_date') }} as date) as latest_delivery_date,
+        cast({{ dbt.date_trunc('day', 'latest_ship_date') }} as date) as latest_ship_date,
         number_of_items_shipped,
         number_of_items_unshipped,
-        earliest_delivery_date,
-        earliest_ship_date,
+        cast({{ dbt.date_trunc('day', 'earliest_delivery_date') }} as date) as earliest_delivery_date,
+        cast({{ dbt.date_trunc('day', 'earliest_ship_date') }} as date) as earliest_ship_date,
         easy_ship_shipment_status,
         electronic_invoice_status,
         fulfillment_channel,
@@ -101,6 +103,7 @@ final as (
         shipping_address_postal_code,
         shipping_address_state_or_region
 
+        {# columns i'm excluding -- remove later #}
         {# buyer_info_buyer_county, #}
         {# buyer_invoice_preference,
         buyer_tax_info_ buyer_business_address,

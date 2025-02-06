@@ -33,7 +33,6 @@ final as (
         product_name,
         condition,
         last_updated_time,
-
         total_quantity,
         total_researching_quantity,
         total_reserved_quantity,
@@ -45,14 +44,12 @@ final as (
         inblound_shipped_quantity,
         inbound_receiving_quantity,
         inbound_working_quantity,
-        
         warehouse_damaged_quantity,
         carrier_damaged_quantity,
         customer_damaged_quantity,
         defective_quantity,
         distributor_damaged_quantity,
         expired_quantity,
-        
         granularity_id,
         granularity_type
 

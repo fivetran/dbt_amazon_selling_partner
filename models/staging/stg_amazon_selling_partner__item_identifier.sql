@@ -1,3 +1,5 @@
+{{ config(enabled=var('amazon_selling_partner__using_catalog_module', true)) }}
+
 {% set base_table = ref('stg_amazon_selling_partner__item_identifier_base') if var('amazon_selling_partner_sources',[]) != [] else source('amazon_selling_partner', 'item_identifier') %}
 
 with base as (

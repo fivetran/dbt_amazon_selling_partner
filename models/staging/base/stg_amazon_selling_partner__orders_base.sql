@@ -1,4 +1,4 @@
-{{ config(enabled=var('amazon_selling_partner_sources',[]) != []) }}
+{{ config(enabled=var('amazon_selling_partner_sources',[]) != [] and var('amazon_selling_partner__using_orders_module', true)) }}
 -- This model is only necessary when unioning multiple sources and will therefore be disabled when that is not the case
 
 {{
