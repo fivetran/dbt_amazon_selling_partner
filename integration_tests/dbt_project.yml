@@ -10,24 +10,7 @@ dispatch:
 
 vars:
   amazon_selling_partner:
-    amazon_selling_partner_orders_identifier: "orders_data"
-    amazon_selling_partner_order_item_identifier: "order_item_data"
-    amazon_selling_partner_order_item_promotion_id_identifier: "order_item_promotion_id_data"
-    amazon_selling_partner_payment_method_detail_item_identifier: "payment_method_detail_item_data"
-    amazon_selling_partner_item_product_type_identifier: "item_product_type_data"
-    amazon_selling_partner_item_dimension_identifier: "item_dimension_data"
-    amazon_selling_partner_item_image_identifier: "item_image_data"
-    amazon_selling_partner_item_summary_identifier: "item_summary_data"
-    amazon_selling_partner_item_display_group_sales_rank_identifier: "item_display_group_sales_rank_data"
-    amazon_selling_partner_item_classification_sales_rank_identifier: "item_classification_sales_rank_data"
-    amazon_selling_partner_item_identifier_identifier: "item_identifier_data"
-    amazon_selling_partner_financial_charge_component_identifier: "financial_charge_component_data"
-    amazon_selling_partner_financial_fee_component_identifier: "financial_fee_component_data"
-    amazon_selling_partner_item_relationship_identifier: "item_relationship_data"
-    amazon_selling_partner_fba_inventory_summary_identifier: "fba_inventory_summary_data"
-    amazon_selling_partner_fba_inventory_researching_quantity_entry_identifier: "fba_inventory_researching_quantity_entry_data"
-    amazon_selling_partner_financial_service_fee_event_identifier: "financial_service_fee_event_data"
-    amazon_selling_partner_catalog_identifier: "catalog_data"
+    amazon_selling_partner_schema: amazon_selling_partner_integration_tests
 
 
 seeds:
