@@ -28,7 +28,9 @@ aggregate_orders_on_purchase as (
         purchase_date, 
         count(distinct amazon_order_id) as count_orders,
         count(distinct (amazon_order_id || '-' || order_item_id)) as count_order_items,
+        count(distinct replaced_order_id) as count_replaced_orders
         {# sum up amounts, but what to do with currencies here? #}
+        {# look at order_status, order_type, and some of the booleans like is_prime #}
         
     from order_item 
 ),
