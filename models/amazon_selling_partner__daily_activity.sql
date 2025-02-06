@@ -1,4 +1,4 @@
-{{ config(enabled=false) }}
+{{ config(enabled=false) }} -- for now
 
 {# I think for this model I need to add some more source tables, namely financial shipment event ones #}
 
@@ -30,7 +30,7 @@ aggregate_orders_on_purchase as (
         count(distinct (amazon_order_id || '-' || order_item_id)) as count_order_items,
         count(distinct replaced_order_id) as count_replaced_orders
         {# sum up amounts, but what to do with currencies here? #}
-        {# look at order_status, order_type, and some of the booleans like is_prime #}
+        {# look at order_status, order_type, and some of the booleans like is_prime, is_premium_order, etc #}
         
     from order_item 
 ),
@@ -38,7 +38,7 @@ aggregate_orders_on_purchase as (
 aggregate_orders_on_delivery as (
 
     latest_delivery_date,
-    {# metrics around items_ #}
+    {# metrics around items_ #} 
 ),
 
 aggregate_orders_on_shipping
