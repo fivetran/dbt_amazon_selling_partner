@@ -26,34 +26,6 @@ vars:
     item_display_group_sales_rank: "{{ source('amazon_selling_partner','item_display_group_sales_rank') }}"
     item_classification_sales_rank: "{{ source('amazon_selling_partner','item_classification_sales_rank') }}"
     item_identifier: "{{ source('amazon_selling_partner','item_identifier') }}"
-    financial_charge_component: "{{ source('amazon_selling_partner','financial_charge_component') }}"
-    financial_fee_component: "{{ source('amazon_selling_partner','financial_fee_component') }}"
     item_relationship: "{{ source('amazon_selling_partner','item_relationship') }}"
     fba_inventory_summary: "{{ source('amazon_selling_partner','fba_inventory_summary') }}"
     fba_inventory_researching_quantity_entry: "{{ source('amazon_selling_partner','fba_inventory_researching_quantity_entry') }}"
-    financial_service_fee_event: "{{ source('amazon_selling_partner','financial_service_fee_event') }}"
-
-
-    # tables:
-    #   - name: catalog
-    #   - name: fba_inventory_summary
-    #   - name: financial_fee_component
-    #   - name: item_dimension
-    #   - name: financial_charge_component
-    #   - name: item_display_group_sales_rank
-    #   - name: item_classification_sales_rank
-    #   - name: item_identifier
-    #   - name: financial_service_fee_event
-    #   - name: item_product_type
-    #   - name: item_relationship
-    #   - name: item_summary
-    #   - name: item_variation_theme
-    #   - name: item_image
-    #   - name: order_item
-    #   - name: order_item_promotion_id
-    #   - name: orders
-    #   - name: payment_method_detail_item
-    #   - name: vendor_retail_procurement_order
-    #   - name: vendor_retail_procurement_order_item
-    #   - name: vendor_retail_procurement_order_item_status
-    #   - name: vendor_retail_procurement_order_status

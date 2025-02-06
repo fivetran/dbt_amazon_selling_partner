@@ -44,8 +44,20 @@ item_relationship as (
 
     select *
     from {{ ref('stg_amazon_selling_partner__item_relationship') }} 
+),
 
-    where type = 'VARIATION' -- ignore item <> package container relationships
+parent_variation_relationship as (
+
+    select *
+    from item_relationship
+    where type = 'VARIATION'
+),
+
+package_hierarchy_relationship as (
+
+    select *
+    from item_relationship
+    where type = 'PACKAGE_HIERARCHY'
 ),
 
 item_dimension as (
@@ -110,7 +122,8 @@ joined as (
         -- other IDs
         item_summary.model_number,
         item_summary.part_number,
-        parent_item.parent_asin, -- a single asin should only have one parent
+        parent_variation_relationship.parent_asin as parent_variation_asin,
+        package_hierarchy_relationship.parent_asin as parent_package_container_asin,
         item_identifiers.ean,
         item_identifiers.gtin, 
         item_identifiers.isbn, 
@@ -146,9 +159,12 @@ joined as (
         on item_summary.asin = item_classification_sales_rank.asin 
         and item_summary.classification_id = item_classification_sales_rank.classification_id
         and item_summary.source_relation = item_classification_sales_rank.source_relation
-    left join item_relationship as parent_item
-        on item_summary.asin = parent_item.child_asin
-        and item_summary.source_relation = parent_item.source_relation
+    left join parent_variation_relationship
+        on item_summary.asin = parent_variation_relationship.child_asin
+        and item_summary.source_relation = parent_variation_relationship.source_relation
+    left join package_hierarchy_relationship
+        on item_summary.asin = package_hierarchy_relationship.child_asin
+        and item_summary.source_relation = package_hierarchy_relationship.source_relation
     left join item_identifiers
         on item_summary.asin = item_identifiers.asin 
         and item_summary.marketplace_id = item_identifiers.marketplace_id

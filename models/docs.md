@@ -152,9 +152,7 @@ Note:
 1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
 2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields. {% enddocs %}
 
-
 {% docs order_item %} A single order item. {% enddocs %}
-{% docs stg_amazon_selling_partner__order_item %} A single order item. {% enddocs %}
 {% docs asin %} The item's Amazon Standard Identification Number (ASIN). {% enddocs %}
 {% docs buyer_requested_cancel_buyer_cancel_reason %} The reason that the buyer requested cancellation.	{% enddocs %}
 {% docs buyer_requested_cancel_is_buyer_requested_cancel %} Boolean indicating whether the buyer has requested cancellation. {% enddocs %}
@@ -175,18 +173,15 @@ Either `IOSS` (Import one stop shop. The item being purchased is not held in the
 - QR code SN: Submit the URL that the QR code generates.
 {% enddocs %}
 
-{% docs item_price_amount %} The selling price of the order item. Note that an order item is an item and a quantity. This means that the value of ItemPrice is equal to the selling price of the item multiplied by the quantity ordered. ItemPrice excludes ShippingPrice and GiftWrapPrice.	
-{% enddocs %}
+{% docs item_price_amount %} The selling price of the order item. Note that an order item is an item and a quantity. This means that the value of ItemPrice is equal to the selling price of the item multiplied by the quantity ordered. ItemPrice excludes ShippingPrice and GiftWrapPrice.	{% enddocs %}
 {% docs item_price_currency_code %} The three-digit currency code that the `item_price_amount` is listed in. In ISO 4217 format. {% enddocs %}
 {% docs item_tax_amount %} The tax on the item price. {% enddocs %}
-{% docs item_tax_currency_code %} The three-digit currency code that the `item_tax_amount` is listed in. In ISO 4217 format.{% enddocs %}
+{% docs item_tax_currency_code %} The three-digit currency code that the `item_tax_amount` is listed in. In ISO 4217 format. {% enddocs %}
 {% docs order_item_id %} An Amazon-defined item identifier for the associated item.	 {% enddocs %}
 {% docs points_granted_monetary_amount %} The monetary value of the Amazon Points granted. {% enddocs %}
 {% docs points_granted_monetary_currency_code %} The three-digit currency code that the `points_granted_monetary_amount` is listed in. In ISO 4217 format. {% enddocs %}
 {% docs points_granted_points_number %} The number of Amazon Points granted with the purchase of an item.	 {% enddocs %}
-{% docs price_designation %} Indicates that the selling price is a special price that is only available for Amazon Business orders. For more information about the Amazon Business Seller Program, refer to the Amazon Business [website](https://business.amazon.com/?ref_=b2b_mcs_L0_mlpr).
-
-Possible value(s): BusinessPrice {% enddocs %}
+{% docs price_designation %} Indicates that the selling price is a special price that is only available for Amazon Business orders. For more information about the Amazon Business Seller Program, refer to the Amazon Business [website](https://business.amazon.com/?ref_=b2b_mcs_L0_mlpr). Possible value(s): BusinessPrice {% enddocs %}
 {% docs product_info_detail_number_of_items %} The total number of items that are included in the ASIN. {% enddocs %}
 {% docs promotion_discount_amount %} The total of all promotional discounts in the offer.	{% enddocs %}
 {% docs promotion_discount_currency_code %} The three-digit currency code that the `promotion_discount_amount` is listed in. In ISO 4217 format. {% enddocs %}
@@ -197,9 +192,7 @@ Possible value(s): BusinessPrice {% enddocs %}
 {% docs scheduled_delivery_end_date %} The end date of the scheduled delivery window in the time zone for the order destination. In ISO 8601 date time format. {% enddocs %}
 {% docs scheduled_delivery_start_date %} The start date of the scheduled delivery window in the time zone for the order destination. In ISO 8601 date time format.	{% enddocs %}
 {% docs seller_sku %} The item's seller stock keeping unit (SKU).	 {% enddocs %}
-{% docs serial_number_required %} When true, the product type for this item has a serial number.
-
-Only returned for Amazon Easy Ship orders. {% enddocs %}
+{% docs serial_number_required %} When true, the product type for this item has a serial number. Only returned for Amazon Easy Ship orders. {% enddocs %}
 {% docs shipping_discount_amount %} The discount on the shipping price. {% enddocs %}
 {% docs shipping_discount_currency_code %} The three-digit currency code that the `shipping_discount_amount` is listed in. In ISO 4217 format.  {% enddocs %}
 {% docs shipping_discount_tax_amount %} The tax on the discount on the shipping price.	 {% enddocs %}
@@ -211,9 +204,10 @@ Only returned for Amazon Easy Ship orders. {% enddocs %}
 {% docs store_chain_store_id %} The store chain store identifier. Linked to a specific store in a store chain.	 {% enddocs %}
 {% docs tax_collection_model %} The tax collection model applied to the item. Possible value(s) can be found [here](https://developer-docs.amazon.com/sp-api/docs/orders-api-v0-reference#model). {% enddocs %}
 {% docs tax_collection_responsible_party %} The party responsible for withholding the taxes and remitting them to the taxing authority. Possible value(s) can be found [here](https://developer-docs.amazon.com/sp-api/docs/orders-api-v0-reference#responsibleparty). {% enddocs %}
-{% docs title %} The item's title. {% enddocs %}
-{% docs promotion_id %} Promotion identifier provided by the seller when the promotion was created. {% enddocs %}
+{% docs order_item_title %} The item's title. {% enddocs %}
 
+{% docs promotion_id %} Promotion identifier provided by the seller when the promotion was created. {% enddocs %}
+{% docs order_item_promotion_id %} Table associating order items and any promotions used on them. {% enddocs %}
 {% docs product_type %} Name of the product type associated with the Amazon catalog item. {% enddocs %}
 {% docs item_product_type %} Product types associated with the Amazon catalog item. {% enddocs %}
 
@@ -251,3 +245,62 @@ A sub-payment method for a COD order. Possible values: COD (Cash on delivery), G
 {% docs image_variant %} Variant of the image. Possible values can be found [here](https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2022-04-01-reference#variant). {% enddocs %}
 {% docs image_width %} Width of the image in pixels. {% enddocs %}
 {% docs item_image %} Images for an item in the Amazon catalog. {% enddocs %}
+
+{% docs item_display_group_sales_rank %} Sales rank of an Amazon catalog item by website display group. {% enddocs %}
+{% docs sales_rank_link %} Corresponding Amazon retail website link, or URL, for the sales rank. {% enddocs %}
+{% docs rank %} Sales rank value.	{% enddocs %}
+{% docs item_classification_sales_rank %} Sales rank of an Amazon catalog item by classification. {% enddocs %}
+{% docs sales_rank_title %} Title, or name, of the sales rank. {% enddocs %}
+
+{% docs item_identifier %} Identifier associated with the item in the Amazon catalog, such as a UPC or EAN identifier. {% enddocs %}
+{% docs identifier %} Type of identifier, such as UPC, EAN, or ISBN. {% enddocs %}
+{% docs identifier_type %} Type of product identifiers to search the Amazon catalog for. Possible values can be found [here](https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2022-04-01-reference#identifierstype) {% enddocs %}
+
+{% docs item_dimension %} Dimensions of an Amazon catalog item or item in its packaging. {% enddocs %}
+{% docs dimension_unit %} Measurement unit of the dimension value. {% enddocs %}
+{% docs item_height_value %} Height of an item. {% enddocs %}
+{% docs item_length_value %} Length of an item. {% enddocs %}
+{% docs item_weight_value %} Weight of an item. {% enddocs %}
+{% docs item_width_value %} Width of an item. {% enddocs %}
+{% docs package_height_value %} Height of an item package. {% enddocs %}
+{% docs package_length_value %} Length of an item package. {% enddocs %}
+{% docs package_weight_value %} Weight of an item package. {% enddocs %}
+{% docs package_width_value %} Width of an item package. {% enddocs %}
+
+{% docs item_relationship %} Relationship details for an Amazon catalog item. {% enddocs %}
+{% docs child_asin %} Identifiers (ASIN) of the related item that is a child of this item. {% enddocs %}
+{% docs parent_asin %} Identifiers (ASIN) of the related item that is a parent of this item. {% enddocs %}
+{% docs relationship_type %}
+Type of relationship. [Possible values](https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2022-04-01-reference#type) are `VARIATION` (the Amazon catalog item in the request is a variation parent or variation child of the related item(s) indicated by ASIN) or `PACKAGE_HIERARCHY` (the Amazon catalog item in the request is a package container or is contained by the related item(s) indicated by ASIN).
+{% enddocs %}
+
+{% docs fba_inventory_summary %} Inventory summary for a specific item. {% enddocs %}
+{% docs inventory_summary_id %} Fivetran-generated Primary Key for inventory summaries. {% enddocs %}
+
+{% docs granularity_id %} The granularity ID for the specified granularity type. When granularityType is Marketplace, specify the marketplaceId. {% enddocs %}
+{% docs granularity_type %} The granularity type for the inventory aggregation level.	 {% enddocs %}
+{% docs carrier_damaged_quantity %} The number of units in carrier damaged disposition.	 {% enddocs %}
+{% docs condition %} The condition of the item as described by the seller (for example, New Item). {% enddocs %}
+{% docs customer_damaged_quantity %} The number of units in customer damaged disposition. {% enddocs %}
+{% docs defective_quantity %} The number of units in defective disposition.	 {% enddocs %}
+{% docs distributor_damaged_quantity %} The number of units in distributor damaged disposition.	 {% enddocs %}
+{% docs expired_quantity %} The number of units in expired disposition.	 {% enddocs %}
+{% docs fc_processing_quantity %} The number of units that have been sidelined at the fulfillment center for additional processing. {% enddocs %}
+{% docs fn_sku %} Amazon's fulfillment network SKU identifier. {% enddocs %}
+{% docs fullfillable_quantity %} The item quantity that can be picked, packed, and shipped.	 {% enddocs %}
+{% docs inblound_shipped_quantity %} The number of units in an inbound shipment that you have notified Amazon about and have provided a tracking number. {% enddocs %}
+{% docs inbound_receiving_quantity %} The number of units that have not yet been received at an Amazon fulfillment center for processing, but are part of an inbound shipment with some units that have already been received and processed.	 {% enddocs %}
+{% docs inbound_working_quantity %} The number of units in an inbound shipment for which you have notified Amazon.	 {% enddocs %}
+{% docs last_updated_time %} The date and time that any quantity was last updated.	 {% enddocs %}
+{% docs pending_customer_order_quantity %} The number of units reserved for customer orders.	 {% enddocs %}
+{% docs pending_transshipment_quantity %} The number of units being transferred from one fulfillment center to another.	 {% enddocs %}
+{% docs product_name %} The localized language product title of the item within the specific marketplace.	 {% enddocs %}
+{% docs total_quantity %} The total number of units in an inbound shipment or in Amazon fulfillment centers. {% enddocs %}
+{% docs total_researching_quantity %} The total number of units in Amazon's fulfillment network that are currently being picked, packed, and shipped; or are sidelined for measurement, sampling, or other internal processes. {% enddocs %}
+{% docs total_reserved_quantity %} The total number of units in Amazon's fulfillment network that are currently being picked, packed, and shipped; or are sidelined for measurement, sampling, or other internal processes. {% enddocs %}
+{% docs total_unfulfillable_quantity %}  The total number of units in Amazon's fulfillment network in unsellable condition.	{% enddocs %}
+{% docs warehouse_damaged_quantity %} The number of units in warehouse damaged disposition. {% enddocs %}
+
+{% docs fba_inventory_researching_quantity_entry %} The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers. {% enddocs %}
+{% docs name %} The duration of the research. [Possible values](https://developer-docs.amazon.com/sp-api/docs/fbainventory-api-v1-reference#name) are `researchingQuantityInShortTerm` (Short term for 1-10 days), `researchingQuantityInMidTerm` (Mid term for 11-20 days), and `researchingQuantityInLongTerm` (Long term for 21 days or longer) {% enddocs %}
+{% docs quantity %} The number of units. {% enddocs %}

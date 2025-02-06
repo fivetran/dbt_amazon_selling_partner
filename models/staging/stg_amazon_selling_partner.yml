@@ -212,7 +212,7 @@
 #         description: '{{ doc("shipping_address_state_or_region") }}'
 
 #   - name: stg_amazon_selling_partner__order_item
-#     description: '{{ doc("stg_amazon_selling_partner__order_item") }}'
+#     description: '{{ doc("order_item") }}'
 #     columns:
 #       - name: order_item_id
 #         description: '{{ doc("order_item_id") }}'
@@ -583,53 +583,6 @@
 #       - name: _fivetran_synced
 #         description: '{{ doc("_fivetran_synced") }}'
 
-#   - name: stg_amazon_selling_partner__financial_charge_component
-#     description: '{{ doc("stg_amazon_selling_partner__financial_charge_component") }}'
-#     columns:
-#       - name: charge_kind
-#         description: '{{ doc("charge_kind") }}'
-
-#       - name: charge_type
-#         description: '{{ doc("charge_type") }}'
-
-#       - name: index
-#         description: '{{ doc("index") }}'
-
-#       - name: linked_to
-#         description: '{{ doc("linked_to") }}'
-
-#       - name: linked_to_id
-#         description: '{{ doc("linked_to_id") }}'
-
-#       - name: currency_amount
-#         description: '{{ doc("currency_amount") }}'
-
-#       - name: currency_code
-#         description: '{{ doc("currency_code") }}'
-
-#   - name: stg_amazon_selling_partner__financial_fee_component
-#     description: '{{ doc("stg_amazon_selling_partner__financial_fee_component") }}'
-#     columns:
-#       - name: index
-#         description: '{{ doc("index") }}'
-
-#       - name: fee_kind
-#         description: '{{ doc("fee_kind") }}'
-
-#       - name: fee_type
-#         description: '{{ doc("fee_type") }}'
-
-#       - name: linked_to
-#         description: '{{ doc("linked_to") }}'
-
-#       - name: linked_to_id
-#         description: '{{ doc("linked_to_id") }}'
-
-#       - name: currency_amount
-#         description: '{{ doc("currency_amount") }}'
-
-#       - name: currency_code
-#         description: '{{ doc("currency_code") }}'
 
 #   - name: stg_amazon_selling_partner__item_relationship
 #     description: '{{ doc("stg_amazon_selling_partner__item_relationship") }}'
@@ -738,30 +691,3 @@
 
 #       - name: quantity
 #         description: '{{ doc("quantity") }}'
-
-#   - name: stg_amazon_selling_partner__financial_service_fee_event
-#     description: '{{ doc("stg_amazon_selling_partner__financial_service_fee_event") }}'
-#     columns:
-#       - name: _fivetran_id
-#         description: '{{ doc("_fivetran_id") }}'
-
-#       - name: amazon_order_id
-#         description: '{{ doc("amazon_order_id") }}'
-
-#       - name: financial_event_group_id
-#         description: '{{ doc("financial_event_group_id") }}'
-
-#       - name: asin
-#         description: '{{ doc("asin") }}'
-
-#       - name: fee_description
-#         description: '{{ doc("fee_description") }}'
-
-#       - name: fee_reason
-#         description: '{{ doc("fee_reason") }}'
-
-#       - name: fn_sku
-#         description: '{{ doc("fn_sku") }}'
-
-#       - name: seller_sku
-#         description: '{{ doc("seller_sku") }}'
