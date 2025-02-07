@@ -339,13 +339,13 @@ sources:
             description: '{{ doc("asin") }}'
           - name: marketplace_id
             description: '{{ doc("marketplace_id") }}'
-          - name: image_link
+          - name: link
             description: '{{ doc("image_link") }}'
-          - name: image_variant
+          - name: variant
             description: '{{ doc("image_variant") }}'
-          - name: image_height
+          - name: height
             description: '{{ doc("image_height") }}'
-          - name: image_width
+          - name: width
             description: '{{ doc("image_width") }}'
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
