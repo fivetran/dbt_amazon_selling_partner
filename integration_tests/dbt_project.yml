@@ -18,3 +18,12 @@ seeds:
     item_identifier:
       +column_types:
         identifier_type: "{{ 'string' if target.type in ('bigquery', 'spark', 'databricks') else 'varchar' }}"
+    orders:
+      +column_types:
+        promise_response_due_date: "timestamp"
+        last_update_date: "timestamp"
+        purchase_date: "timestamp"
+        latest_delivery_date: "timestamp"
+        latest_ship_date: "timestamp"
+        earliest_delivery_date: "timestamp"
+        earliest_ship_date: "timestamp"
