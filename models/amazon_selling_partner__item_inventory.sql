@@ -14,7 +14,7 @@ fba_inventory_summary as (
 
 fba_inventory_researching_quantity_entry as (
     select * 
-    from {{ ref('stg_amazon_selling_partner__fba_inventory_researching_quantity_entry') }}
+    from {{ ref('stg_amazon_selling_partner__fba_inventory_researching') }}
 ),
 
 pivot_researching_quantity as (
