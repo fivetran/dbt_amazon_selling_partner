@@ -610,7 +610,7 @@ models:
       - name: warehouse_damaged_quantity
         description: '{{ doc("warehouse_damaged_quantity") }}'
 
-  - name: stg_amazon_selling_partner__fba_inventory_researching_quantity_entry
+  - name: stg_amazon_selling_partner__fba_inventory_researching
     description: '{{ doc("fba_inventory_researching_quantity_entry") }}'
     tests: 
       - dbt_utils.unique_combination_of_columns:

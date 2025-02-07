@@ -29,7 +29,7 @@ aggregate_order_items as (
     select 
         source_relation,
         amazon_order_id,
-        count(distinct order_item_id) as count_order_items,
+        count(order_item_id) as count_order_items,
         sum(coalesce(item_price_amount, 0)) as total_item_price_amount,
         {# Highly unlikely that a single order will use multiple currencies, but just to be safe  #}
         {{ fivetran_utils.string_agg('distinct item_price_currency_code', "', '") }} as item_price_currency_code,
