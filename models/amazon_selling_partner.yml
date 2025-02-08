@@ -2,6 +2,24 @@ version: 2
 
 models:
   - name: amazon_selling_partner__orders
+    tests: 
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - amazon_order_id
+
   - name: amazon_selling_partner__order_items
+    tests: 
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - amazon_order_id
+            - order_item_id
+
   - name: amazon_selling_partner__item_inventory
-  - name: amazon_selling_partner__daily_activity
+    tests: 
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - source_relation
+            - asin
+            - marketplace_id

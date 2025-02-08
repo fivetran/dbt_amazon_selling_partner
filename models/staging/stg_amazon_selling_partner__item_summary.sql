@@ -17,10 +17,9 @@ fields as (
                 staging_columns=get_item_summary_columns()
             )
         }}
-        {{ fivetran_utils.source_relation(
-            union_schema_variable='amazon_selling_partner_union_schemas', 
-            union_database_variable='amazon_selling_partner_union_databases') 
-        }}
+        
+        {{ amazon_selling_partner_apply_source_relation() }}
+        
     from base
 ),
 
