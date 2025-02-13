@@ -14,11 +14,12 @@
 
 ## What does this dbt package do?
 
-This package models Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-selling-partner). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/amazon-selling-partner#schemainformation), specifically the `ORDERS` and `CATALOG` Seller Central modules.
+This package models Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-selling-partner). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/amazon-selling-partner#schemainformation), **specifically the `ORDERS`, `CATALOG`, and `FBA` Seller Central modules.**
 
-The main focus of the package is to transform the core object tables into analytics-ready models, including:
-<!--section="amazon_selling_partner_model"-->
-  - Materializes [Amazon Selling Partner staging tables](https://fivetran.github.io/dbt_amazon_selling_partner/#!/overview/amazon_selling_partner_source/models/?g_v=1) which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/amazon-selling-partner/#schemainformation). These staging tables clean, test, and prepare your Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-selling-partner) for analysis by doing the following:
+> This package is currently not compatible with any [Vendor Central modules](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#vendormodules). If you would like to see Vendor Central compatibility (or the use of any other [Seller Central modules](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#sellermodules)), please open up a Feature Request.
+
+The main focus of the package is to transform core Seller Central object tables into analytics-ready models, including:
+  - Materializes [Amazon Selling Partner staging tables](https://fivetran.github.io/dbt_amazon_selling_partner/#!/overview/amazon_selling_partner_source/models/?g_v=1) which leverage data in the format described by the `ORDERS`, `CATALOG`, and `FBA` Seller Central modules from [this ERD](https://fivetran.com/docs/applications/amazon-selling-partner/#schemainformation). These staging tables clean, test, and prepare your Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-selling-partner) for analysis by doing the following:
   - Name columns for consistency across all packages and for easier analysis
       - Primary keys are renamed from `_fivetran_id` to `<table name>_id`.
       - Foreign key names explicitly map onto their related tables (ie `owner_id` -> `owner_user_id`).
@@ -35,7 +36,9 @@ The following table provides a detailed list of all models materialized within t
 
 | **model**                 | **description**                                                                                                    |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| [model_here]()  | Model description   |
+| [amazon_selling_partner__orders]()  | Model description   |
+| [amazon_selling_partner__order_items]()  | Model description   |
+| [amazon_selling_partner__item_inventory]()  | Model description   |
 <!--section-end-->
 
 ## How do I use the dbt package?

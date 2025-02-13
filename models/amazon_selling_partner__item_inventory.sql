@@ -6,6 +6,7 @@ with item as (
     from {{ ref('int_amazon_selling_partner__item') }}
 ),
 
+{% if var('amazon_selling_partner__using_fba_module', true) %}
 fba_inventory_summary as (
 
     select *
@@ -28,6 +29,7 @@ pivot_researching_quantity as (
     from fba_inventory_researching_quantity_entry
     group by 1,2
 ),
+{% endif %}
 
 joined as (
 
@@ -51,11 +53,11 @@ joined as (
         item.release_date,
         item.item_classification,
         item.classification_id,
-        item.classification_link,
+        item.classification_sales_rank_link,
         item.classification_sales_rank,
         item.website_display_group,
         item.website_display_group_name,
-        item.website_display_group_link,
+        item.website_display_group_sales_rank_link,
         item.website_display_group_sales_rank,
         item.is_memorabilia,
         item.is_adult_product,
@@ -67,8 +69,12 @@ joined as (
         item.part_number,
         item.parent_variation_asin,
         item.parent_package_container_asin,
-        coalesce(item.sku, fba_inventory_summary.seller_sku) as sku,
-        fba_inventory_summary.fn_sku,
+        {% if var('amazon_selling_partner__using_fba_module', true) %}
+            coalesce(item.sku, fba_inventory_summary.seller_sku) as sku,
+            fba_inventory_summary.fn_sku,
+        {% else %}
+            item.sku,
+        {% endif %}
         item.ean,
         item.gtin,
         item.isbn,
@@ -97,6 +103,7 @@ joined as (
         item.package_width_value,
 
         -- Inventory description
+        {% if var('amazon_selling_partner__using_fba_module', true) %}
         fba_inventory_summary.inventory_summary_id,
         fba_inventory_summary.last_updated_at as inventory_last_updated_at,
         fba_inventory_summary.total_quantity,
@@ -119,14 +126,17 @@ joined as (
         pivot_researching_quantity.short_term_research_quantity,
         pivot_researching_quantity.mid_term_research_quantity,
         pivot_researching_quantity.long_term_research_quantity
+        {% endif %}
 
-    from fba_inventory_summary
-    inner join item 
+    from item
+    {% if var('amazon_selling_partner__using_fba_module', true) %}
+    left join fba_inventory_summary 
         on fba_inventory_summary.asin = item.asin
         and fba_inventory_summary.source_relation = item.source_relation
     left join pivot_researching_quantity
         on fba_inventory_summary.inventory_summary_id = pivot_researching_quantity.inventory_summary_id
         and fba_inventory_summary.source_relation = pivot_researching_quantity.source_relation
+    {% endif %}
 
 )
 

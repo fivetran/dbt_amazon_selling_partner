@@ -68,15 +68,6 @@ final as (
         store_chain_store_id,
         tax_collection_model, -- always MarketplaceFacilitator in US
         tax_collection_responsible_party -- always Amazon Web Services in US
-
-        {# columns i'm excluding -- remove later #}
-        {# item_approval_context_approval_status,
-        item_approval_context_approval_type, #}
-
-        {# points_granted_monetary_amount,
-        points_granted_monetary_currency_code,
-        points_granted_points_number, #}
-        {# price_designation, #}
         
     from fields
 )

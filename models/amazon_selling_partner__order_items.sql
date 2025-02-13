@@ -42,16 +42,13 @@ joined as (
 
     select 
         order_item.*,
-        {# Open Q: What other order/header level fields would be useful to have here? #}
         orders.purchase_date as order_purchase_date,
         orders.order_total_amount, 
         orders.order_status,
         orders.order_total_currency_code,
         orders.marketplace_id,
-
         aggregate_promotions.count_promotions_used,
 
-        {# Open Q: Which item columns (if any) should we bring in here? #}
         {% if var('amazon_selling_partner__using_catalog_module', true) %}
         item.item_name,
         item.display_name,
@@ -61,7 +58,7 @@ joined as (
         item.style,
         item.product_type,
         item.package_quantity,
-        item.item_classification,
+        item.item_classification
         {% endif %}
 
     from order_item 

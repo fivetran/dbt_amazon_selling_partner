@@ -19,9 +19,8 @@ dbt deps
 dbt seed --target "$db" --full-refresh
 dbt run --target "$db" --full-refresh
 dbt test --target "$db"
-# dbt run --target "$db"
-# dbt test --target "$db"
-# dbt run --vars '{variable_to_test: false}' --full-refresh --target "$db"
-# dbt test --target "$db"
-
+dbt run --vars '{amazon_selling_partner__using_orders_module: false, amazon_selling_partner__using_fba_module: false}' --full-refresh --target "$db"
+dbt test --target "$db"
+dbt run --vars '{amazon_selling_partner__using_catalog_module: false}' --full-refresh --target "$db"
+dbt test --target "$db"
 dbt run-operation fivetran_utils.drop_schemas_automation --target "$db"

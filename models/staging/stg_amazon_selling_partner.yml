@@ -9,7 +9,7 @@ models:
             - source_relation
             - amazon_order_id
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: amazon_order_id
         description: '{{ doc("amazon_order_id") }}'
@@ -19,26 +19,8 @@ models:
         description: '{{ doc("automated_shipping_setting_automated_ship_method") }}'
       - name: automated_shipping_setting_has_automated_shipping_settings
         description: '{{ doc("automated_shipping_setting_has_automated_shipping_settings") }}'
-      - name: buyer_info_buyer_email
-        description: '{{ doc("buyer_info_buyer_email") }}'
-      - name: buyer_info_buyer_county
-        description: '{{ doc("buyer_info_buyer_county") }}'
-      - name: buyer_info_buyer_name
-        description: '{{ doc("buyer_info_buyer_name") }}'
       - name: buyer_info_purchase_order_number
         description: '{{ doc("buyer_info_purchase_order_number") }}'
-      - name: buyer_invoice_preference
-        description: '{{ doc("buyer_invoice_preference") }}'
-      - name: buyer_tax_info_buyer_business_address
-        description: '{{ doc("buyer_tax_info_buyer_business_address") }}'
-      - name: buyer_tax_info_buyer_legal_company_name
-        description: '{{ doc("buyer_tax_info_buyer_legal_company_name") }}'
-      - name: buyer_tax_info_buyer_tax_office
-        description: '{{ doc("buyer_tax_info_buyer_tax_office") }}'
-      - name: buyer_tax_info_buyer_tax_registration_id
-        description: '{{ doc("buyer_tax_info_buyer_tax_registration_id") }}'
-      - name: cba_displayable_shipping_label
-        description: '{{ doc("cba_displayable_shipping_label") }}'
       - name: earliest_delivery_date
         description: '{{ doc("earliest_delivery_date") }}'
       - name: earliest_ship_date
@@ -105,8 +87,6 @@ models:
         description: '{{ doc("replaced_order_id") }}'
       - name: sales_channel
         description: '{{ doc("sales_channel") }}'
-      - name: seller_display_name
-        description: '{{ doc("seller_display_name") }}'
       - name: seller_order_id
         description: '{{ doc("seller_order_id") }}'
       - name: ship_service_level
@@ -139,12 +119,6 @@ models:
         description: '{{ doc("default_ship_from_location_postal_code") }}'
       - name: default_ship_from_location_state_or_region
         description: '{{ doc("default_ship_from_location_state_or_region") }}'
-      - name: shipping_address_address_line_1
-        description: '{{ doc("shipping_address_address_line_1") }}'
-      - name: shipping_address_address_line_2
-        description: '{{ doc("shipping_address_address_line_2") }}'
-      - name: shipping_address_address_line_3
-        description: '{{ doc("shipping_address_address_line_3") }}'
       - name: shipping_address_address_type
         description: '{{ doc("shipping_address_address_type") }}'
       - name: shipping_address_city
@@ -157,10 +131,6 @@ models:
         description: '{{ doc("shipping_address_district") }}'
       - name: shipping_address_municipality
         description: '{{ doc("shipping_address_municipality") }}'
-      - name: shipping_address_name
-        description: '{{ doc("shipping_address_name") }}'
-      - name: shipping_address_phone
-        description: '{{ doc("shipping_address_phone") }}'
       - name: shipping_address_postal_code
         description: '{{ doc("shipping_address_postal_code") }}'
       - name: shipping_address_state_or_region
@@ -175,7 +145,7 @@ models:
             - amazon_order_id
             - order_item_id
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: order_item_id
         description: '{{ doc("order_item_id") }}'
@@ -187,9 +157,9 @@ models:
         description: '{{ doc("is_transparency") }}'
       - name: asin
         description: '{{ doc("asin") }}'
-      - name: buyer_requested_cancel_is_buyer_requested_cancel
+      - name: is_buyer_requested_cancel
         description: '{{ doc("buyer_requested_cancel_is_buyer_requested_cancel") }}'
-      - name: buyer_requested_cancel_buyer_cancel_reason
+      - name: buyer_requested_cancel_reason
         description: '{{ doc("buyer_requested_cancel_buyer_cancel_reason") }}'
       - name: condition_id
         description: '{{ doc("condition_id") }}'
@@ -209,14 +179,6 @@ models:
         description: '{{ doc("item_tax_amount") }}'
       - name: item_tax_currency_code
         description: '{{ doc("item_tax_currency_code") }}'
-      - name: points_granted_monetary_amount
-        description: '{{ doc("points_granted_monetary_amount") }}'
-      - name: points_granted_monetary_currency_code
-        description: '{{ doc("points_granted_monetary_currency_code") }}'
-      - name: points_granted_points_number
-        description: '{{ doc("points_granted_points_number") }}'
-      - name: price_designation
-        description: '{{ doc("price_designation") }}'
       - name: product_info_detail_number_of_items
         description: '{{ doc("product_info_detail_number_of_items") }}'
       - name: promotion_discount_amount
@@ -237,7 +199,7 @@ models:
         description: '{{ doc("scheduled_delivery_start_date") }}'
       - name: seller_sku
         description: '{{ doc("seller_sku") }}'
-      - name: serial_number_required
+      - name: is_serial_number_required
         description: '{{ doc("serial_number_required") }}'
       - name: shipping_discount_amount
         description: '{{ doc("shipping_discount_amount") }}'
@@ -274,7 +236,7 @@ models:
             - promotion_id
             - order_item_id
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: promotion_id
         description: '{{ doc("promotion_id") }}'
@@ -292,7 +254,7 @@ models:
             - amazon_order_id
             - method
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: amazon_order_id
         description: '{{ doc("amazon_order_id") }}'
@@ -308,7 +270,7 @@ models:
             - asin
             - marketplace_id
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: asin
         description: '{{ doc("asin") }}'
@@ -328,7 +290,7 @@ models:
             - asin
             - marketplace_id
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: asin
         description: '{{ doc("asin") }}'
@@ -379,7 +341,7 @@ models:
             - marketplace_id
             - variant
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: asin
         description: '{{ doc("asin") }}'
@@ -405,7 +367,7 @@ models:
             - asin
             - marketplace_id
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: asin
         description: '{{ doc("asin") }}'
@@ -463,7 +425,7 @@ models:
             - asin
             - website_display_group
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: asin
         description: '{{ doc("asin") }}'
@@ -487,7 +449,7 @@ models:
             - asin
             - classification_id
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: asin
         description: '{{ doc("asin") }}'
@@ -512,7 +474,7 @@ models:
             - identifier_type 
             - marketplace_id
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: asin
         description: '{{ doc("asin") }}'
@@ -536,7 +498,7 @@ models:
             - child_asin 
             - type
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: child_asin
         description: '{{ doc("child_asin") }}'
@@ -555,7 +517,7 @@ models:
             - source_relation
             - inventory_summary_id
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: inventory_summary_id
         description: '{{ doc("inventory_summary_id") }}'
@@ -619,7 +581,7 @@ models:
             - inventory_summary_id
             - name
     columns:
-      - name: _source_relation
+      - name: source_relation
         description: '{{ doc("source_relation") }}'
       - name: inventory_summary_id
         description: '{{ doc("inventory_summary_id") }}'

@@ -173,9 +173,12 @@ Either `IOSS` (Import one stop shop. The item being purchased is not held in the
 - QR code SN: Submit the URL that the QR code generates.
 {% enddocs %}
 
+{% docs total_item_price_amount %} The total selling price of the order's line items. Note that an individual order item is an item and a quantity. This means that the value of ItemPrice is equal to the selling price of the item multiplied by the quantity ordered. ItemPrice excludes ShippingPrice and GiftWrapPrice. {% enddocs %}
+
 {% docs item_price_amount %} The selling price of the order item. Note that an order item is an item and a quantity. This means that the value of ItemPrice is equal to the selling price of the item multiplied by the quantity ordered. ItemPrice excludes ShippingPrice and GiftWrapPrice.	{% enddocs %}
 {% docs item_price_currency_code %} The three-digit currency code that the `item_price_amount` is listed in. In ISO 4217 format. {% enddocs %}
 {% docs item_tax_amount %} The tax on the item price. {% enddocs %}
+{% docs total_item_tax_amount %} The total tax on the order items' price. {% enddocs %}
 {% docs item_tax_currency_code %} The three-digit currency code that the `item_tax_amount` is listed in. In ISO 4217 format. {% enddocs %}
 {% docs order_item_id %} An Amazon-defined item identifier for the associated item.	 {% enddocs %}
 {% docs points_granted_monetary_amount %} The monetary value of the Amazon Points granted. {% enddocs %}
@@ -184,8 +187,10 @@ Either `IOSS` (Import one stop shop. The item being purchased is not held in the
 {% docs price_designation %} Indicates that the selling price is a special price that is only available for Amazon Business orders. For more information about the Amazon Business Seller Program, refer to the Amazon Business [website](https://business.amazon.com/?ref_=b2b_mcs_L0_mlpr). Possible value(s): BusinessPrice {% enddocs %}
 {% docs product_info_detail_number_of_items %} The total number of items that are included in the ASIN. {% enddocs %}
 {% docs promotion_discount_amount %} The total of all promotional discounts in the offer.	{% enddocs %}
+{% docs total_promotion_discount_amount %} The total of all promotional discounts in the offers associated with the order.	{% enddocs %}
 {% docs promotion_discount_currency_code %} The three-digit currency code that the `promotion_discount_amount` is listed in. In ISO 4217 format. {% enddocs %}
 {% docs promotion_discount_tax_amount %} The tax on the total of all promotional discounts in the offer.	{% enddocs %}
+{% docs total_promotion_discount_tax_amount %} The total tax on all promotional discounts in the offers associated with the order.	{% enddocs %}
 {% docs promotion_discount_tax_currency_code %} The three-digit currency code that the `promotion_discount_tax_amount` is listed in. In ISO 4217 format.  {% enddocs %}
 {% docs quantity_ordered %} The number of items in the order. {% enddocs %}
 {% docs quantity_shipped %} The number of items shipped.	{% enddocs %}
@@ -194,12 +199,16 @@ Either `IOSS` (Import one stop shop. The item being purchased is not held in the
 {% docs seller_sku %} The item's seller stock keeping unit (SKU).	 {% enddocs %}
 {% docs serial_number_required %} When true, the product type for this item has a serial number. Only returned for Amazon Easy Ship orders. {% enddocs %}
 {% docs shipping_discount_amount %} The discount on the shipping price. {% enddocs %}
+{% docs total_shipping_discount_amount %} The total discount on the order's shipping prices. {% enddocs %}
 {% docs shipping_discount_currency_code %} The three-digit currency code that the `shipping_discount_amount` is listed in. In ISO 4217 format.  {% enddocs %}
 {% docs shipping_discount_tax_amount %} The tax on the discount on the shipping price.	 {% enddocs %}
+{% docs total_shipping_discount_tax_amount %} The total tax on the discount on the order's shipping prices.	 {% enddocs %}
 {% docs shipping_discount_tax_currency_code %} The three-digit currency code that the `shipping_discount_tax_amount` is listed in. In ISO 4217 format. {% enddocs %}
 {% docs shipping_price_amount %} The item's shipping price. {% enddocs %}
+{% docs total_shipping_price_amount %} The total order's shipping price. {% enddocs %}
 {% docs shipping_price_currency_code %}  The three-digit currency code that the `shipping_price_amount` is listed in. In ISO 4217 format. {% enddocs %}
 {% docs shipping_tax_amount %} The tax on the shipping price.	 {% enddocs %}
+{% docs total_shipping_tax_amount %} The total tax on the order's shipping price.	 {% enddocs %}
 {% docs shipping_tax_currency_code %} The three-digit currency code that the `shipping_tax_amount` is listed in. In ISO 4217 format.  {% enddocs %}
 {% docs store_chain_store_id %} The store chain store identifier. Linked to a specific store in a store chain.	 {% enddocs %}
 {% docs tax_collection_model %} The tax collection model applied to the item. Possible value(s) can be found [here](https://developer-docs.amazon.com/sp-api/docs/orders-api-v0-reference#model). {% enddocs %}
@@ -236,7 +245,10 @@ Either `IOSS` (Import one stop shop. The item being purchased is not held in the
 {% docs website_display_group_name %} Display name of the website display group associated with an Amazon catalog item.	 {% enddocs %}
 
 {% docs method %}
-A sub-payment method for a COD order. Possible values: COD (Cash on delivery), GC (Gift card), PointsAccount (Amazon Points), or Invoice.
+A sub-payment method for a COD order. Possible values: COD (Cash on delivery), GC (Gift card), CVS (Convenience Store), PointsAccount (Amazon Points), Invoice, or Other.
+{% enddocs %}
+{% docs methods %}
+Comma-separated list of payment methods used for an order. Possible individual values: COD (Cash on delivery), GC (Gift card), CVS (Convenience Store), PointsAccount (Amazon Points), Invoice, or Other.
 {% enddocs %}
 {% docs payment_method_detail_item %} A list of payment methods for the order. {% enddocs %}
 
@@ -301,6 +313,23 @@ Type of relationship. [Possible values](https://developer-docs.amazon.com/sp-api
 {% docs total_unfulfillable_quantity %}  The total number of units in Amazon's fulfillment network in unsellable condition.	{% enddocs %}
 {% docs warehouse_damaged_quantity %} The number of units in warehouse damaged disposition. {% enddocs %}
 
-{% docs fba_inventory_researching_quantity_entry %} The misplaced or warehouse damaged inventory that is actively being confirmed at our fulfillment centers. {% enddocs %}
+{% docs fba_inventory_researching_quantity_entry %} The misplaced or warehouse damaged inventory that is actively being confirmed at Amazon fulfillment centers. {% enddocs %}
 {% docs name %} The duration of the research. [Possible values](https://developer-docs.amazon.com/sp-api/docs/fbainventory-api-v1-reference#name) are `researchingQuantityInShortTerm` (Short term for 1-10 days), `researchingQuantityInMidTerm` (Mid term for 11-20 days), and `researchingQuantityInLongTerm` (Long term for 21 days or longer) {% enddocs %}
 {% docs quantity %} The number of units. {% enddocs %}
+{% docs count_promotions_used %} The count of distinct promotions used. {% enddocs %}
+
+{% docs parent_variation_asin %} Identifier (ASIN) of the item's variation parent. {% enddocs %}
+{% docs parent_package_container_asin %} Identifier (ASIN) of the item's package container parent. {% enddocs %}
+{% docs sku %} Stock Keeping Unit, a seller-specified identifier for an Amazon listed item. {% enddocs %}
+{% docs ean %} European Article Number of the catalog item. {% enddocs %}
+{% docs gtin %} Global Trade Item Number of the catalog item. {% enddocs %}
+{% docs isbn %} International Standard Book Number of the catalog item. {% enddocs %}
+{% docs jan %} Japanese Article Number of the catalog item. {% enddocs %}
+{% docs minsan %} Minsan Code of the catalog item. {% enddocs %}
+{% docs upc %} Universal Product Code of the catalog item. {% enddocs %}
+{% docs count_images %} Count of images for an item in the Amazon catalog for the indicated Amazon marketplace. {% enddocs %}
+{% docs count_swatch_images %} Count of Swatch images for this item. {% enddocs %}
+{% docs long_term_research_quantity %} The quantity of misplaced or warehouse damaged inventory that is actively being confirmed at Amazon fulfillment center and researched for a duration of 21 days or longer. {% enddocs %}
+{% docs mid_term_research_quantity %} The quantity of misplaced or warehouse damaged inventory that is actively being confirmed at Amazon fulfillment center and researched for a duration of 11-20 days. {% enddocs %}
+{% docs short_term_research_quantity %} The quantity of misplaced or warehouse damaged inventory that is actively being confirmed at Amazon fulfillment center and researched for a duration of 1-10 days. {% enddocs %}
+{% docs count_order_items %} Count of order items associated with the order. {% enddocs %}

@@ -24,7 +24,7 @@ item_images as (
         asin,
         marketplace_id,
         count(*) as count_images,
-        sum(case when lower(variant) = 'swatch' then 1 else 0 end) as count_swatch_images
+        sum(case when variant = 'SWATCH' then 1 else 0 end) as count_swatch_images
 
     from item_image 
     group by 1,2,3
@@ -52,14 +52,14 @@ parent_variation_relationship as (
 
     select *
     from item_relationship
-    where lower(type) = 'variation'
+    where type = 'VARIATION'
 ),
 
 package_hierarchy_relationship as (
 
     select *
     from item_relationship
-    where lower(type) = 'package_hierarchy'
+    where type = 'PACKAGE_HIERARCHY'
 ),
 
 item_dimension as (
@@ -81,8 +81,8 @@ item_identifiers as (
         source_relation,
         marketplace_id
         {# iterate over identifier types (from https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2022-04-01-reference#identifierstype) that aren't already logged elsewhere (ASIN) #}
-        {% for identifier_type in ['sku', 'ean', 'gtin', 'isbn', 'jan', 'minsan', 'upc'] %}
-            , cast(max(case when lower(identifier_type) = '{{ identifier_type }}' then identifier end) as {{ dbt.type_string() }}) as {{ identifier_type }}
+        {% for identifier_type in ['SKU', 'EAN', 'GTIN', 'ISBN', 'JAN', 'MINSAN', 'UPC'] %}
+            , cast(max(case when identifier_type = '{{ identifier_type }}' then identifier end) as {{ dbt.type_string() }}) as {{ identifier_type | lower }}
         {% endfor %}
     from item_identifier
     group by 1,2,3
@@ -106,11 +106,11 @@ joined as (
         item_product_type.product_type,
         item_summary.item_classification,
         item_summary.classification_id,
-        item_classification_sales_rank.link as classification_link,
+        item_classification_sales_rank.link as classification_sales_rank_link,
         item_classification_sales_rank.rank as classification_sales_rank,
         item_summary.website_display_group,
         item_summary.website_display_group_name,
-        item_display_group_sales_rank.link as website_display_group_link,
+        item_display_group_sales_rank.link as website_display_group_sales_rank_link,
         item_display_group_sales_rank.rank as website_display_group_sales_rank,
         item_summary.release_date,
         item_summary.is_memorabilia,

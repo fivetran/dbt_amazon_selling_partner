@@ -32,7 +32,6 @@ final as (
         replaced_order_id,
         seller_order_id,
         buyer_info_purchase_order_number,
-
         cast({{ dbt.date_trunc('day', 'purchase_date') }} as date) as purchase_date,
         sales_channel,
         order_channel,
