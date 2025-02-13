@@ -13,7 +13,6 @@ order_item as (
 ),
 
 {% if var('amazon_selling_partner__using_catalog_module', true) %}
-{# Open Q: Should we bring item in here?  #}
 item as (
 
     select *
@@ -62,39 +61,7 @@ joined as (
         item.style,
         item.product_type,
         item.package_quantity,
-        item.manufacturer,
-        item.contributors,
         item.item_classification,
-        item.classification_id,
-        item.classification_link,
-        item.classification_sales_rank,
-        item.website_display_group,
-        item.website_display_group_name,
-        item.website_display_group_link,
-        item.website_display_group_sales_rank,
-        item.is_memorabilia,
-        item.release_date,
-        item.is_adult_product,
-        item.is_autographed,
-        item.is_trade_in_eligible,
-        item.model_number,
-        item.part_number,
-        item.ean,
-        item.gtin,
-        item.isbn,
-        item.jan,
-        item.minsan,
-        item.upc,
-        item.count_images,
-        item.count_swatch_images,
-        item.package_height_unit,
-        item.package_height_value,
-        item.package_length_unit,
-        item.package_length_value,
-        item.package_weight_unit,
-        item.package_weight_value,
-        item.package_width_unit,
-        item.package_width_value
         {% endif %}
 
     from order_item 

@@ -589,7 +589,7 @@ models:
         description: '{{ doc("inbound_receiving_quantity") }}'
       - name: inbound_working_quantity
         description: '{{ doc("inbound_working_quantity") }}'
-      - name: last_updated_time
+      - name: last_updated_at
         description: '{{ doc("last_updated_time") }}'
       - name: pending_customer_order_quantity
         description: '{{ doc("pending_customer_order_quantity") }}'

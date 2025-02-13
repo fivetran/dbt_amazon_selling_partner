@@ -1,3 +1,5 @@
+{{ config(enabled=var('amazon_selling_partner__using_catalog_module', true)) }}
+
 with item_summary as (
     select *
     from {{ ref('stg_amazon_selling_partner__item_summary') }}
@@ -22,7 +24,7 @@ item_images as (
         asin,
         marketplace_id,
         count(*) as count_images,
-        sum(case when variant = 'SWATCH' then 1 else 0 end) as count_swatch_images
+        sum(case when lower(variant) = 'swatch' then 1 else 0 end) as count_swatch_images
 
     from item_image 
     group by 1,2,3
@@ -50,14 +52,14 @@ parent_variation_relationship as (
 
     select *
     from item_relationship
-    where type = 'VARIATION'
+    where lower(type) = 'variation'
 ),
 
 package_hierarchy_relationship as (
 
     select *
     from item_relationship
-    where type = 'PACKAGE_HIERARCHY'
+    where lower(type) = 'package_hierarchy'
 ),
 
 item_dimension as (
@@ -78,9 +80,9 @@ item_identifiers as (
         asin,
         source_relation,
         marketplace_id
-        {# iterate over identifier types (from https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2022-04-01-reference#identifierstype) that aren't already logged elsewhere (ASIN and SKU) #}
-        {% for identifier_type in ['EAN', 'GTIN', 'ISBN', 'JAN', 'MINSAN', 'UPC'] %}
-            , max(case when identifier_type = '{{ identifier_type }}' then identifier end) as {{ identifier_type | lower }}
+        {# iterate over identifier types (from https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2022-04-01-reference#identifierstype) that aren't already logged elsewhere (ASIN) #}
+        {% for identifier_type in ['sku', 'ean', 'gtin', 'isbn', 'jan', 'minsan', 'upc'] %}
+            , cast(max(case when lower(identifier_type) = '{{ identifier_type }}' then identifier end) as {{ dbt.type_string() }}) as {{ identifier_type }}
         {% endfor %}
     from item_identifier
     group by 1,2,3
@@ -89,12 +91,9 @@ item_identifiers as (
 joined as (
 
     select 
-
         item_summary.source_relation,
         item_summary.marketplace_id,
         item_summary.asin,
-        
-        -- Item description
         item_summary.item_name,
         item_summary.display_name,
         item_summary.brand,
@@ -113,17 +112,17 @@ joined as (
         item_summary.website_display_group_name,
         item_display_group_sales_rank.link as website_display_group_link,
         item_display_group_sales_rank.rank as website_display_group_sales_rank,
-        item_summary.is_memorabilia,
         item_summary.release_date,
+        item_summary.is_memorabilia,
         item_summary.is_adult_product,
         item_summary.is_autographed,
         item_summary.is_trade_in_eligible,
 
-        -- other IDs
         item_summary.model_number,
         item_summary.part_number,
         parent_variation_relationship.parent_asin as parent_variation_asin,
         package_hierarchy_relationship.parent_asin as parent_package_container_asin,
+        item_identifiers.sku,
         item_identifiers.ean,
         item_identifiers.gtin, 
         item_identifiers.isbn, 
@@ -133,6 +132,14 @@ joined as (
         
         item_images.count_images,
         item_images.count_swatch_images,
+        item_dimension.item_height_unit,
+        item_dimension.item_height_value,
+        item_dimension.item_length_unit,
+        item_dimension.item_length_value,
+        item_dimension.item_weight_unit,
+        item_dimension.item_weight_value,
+        item_dimension.item_width_unit,
+        item_dimension.item_width_value,
         item_dimension.package_height_unit,
         item_dimension.package_height_value,
         item_dimension.package_length_unit,

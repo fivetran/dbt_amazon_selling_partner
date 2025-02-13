@@ -1,3 +1,5 @@
+{{ config(enabled=var('amazon_selling_partner__using_fba_module', true)) }}
+
 {% set base_table = ref('stg_amazon_selling_partner__fba_inventory_summary_base') if var('amazon_selling_partner_sources',[]) != [] else source('amazon_selling_partner', 'fba_inventory_summary') %}
 
 with base as (
@@ -31,7 +33,7 @@ final as (
         seller_sku,
         product_name,
         condition,
-        last_updated_time,
+        last_updated_time as last_updated_at,
         total_quantity,
         total_researching_quantity,
         total_reserved_quantity,

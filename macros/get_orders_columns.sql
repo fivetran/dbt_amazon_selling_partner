@@ -1,4 +1,3 @@
-Found 19 sources, 734 macros
 {% macro get_orders_columns() %}
 
 {% set columns = [

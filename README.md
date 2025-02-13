@@ -1,4 +1,6 @@
-<p align="center">
+# Amazon Selling Partner dbt Package ([Docs](https://fivetran.github.io/dbt_amazon_selling_partner/))
+
+<p align="left">
     <a alt="License"
         href="https://github.com/fivetran/dbt_amazon_selling_partner/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
@@ -10,17 +12,15 @@
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
 
-# Amazon Selling Partner dbt Package ([Docs](https://fivetran.github.io/dbt_amazon_selling_partner/))
-
 ## What does this dbt package do?
 
-This package models Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon_selling_partner). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/amazon_selling_partner#schemainformation).
+This package models Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-selling-partner). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/amazon-selling-partner#schemainformation), specifically the `ORDERS` and `CATALOG` Seller Central modules.
 
 The main focus of the package is to transform the core object tables into analytics-ready models, including:
 <!--section="amazon_selling_partner_model"-->
-  - Materializes [Amazon Selling Partner staging tables](https://fivetran.github.io/dbt_amazon_selling_partner/#!/overview/amazon_selling_partner_source/models/?g_v=1) which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/amazon_selling_partner/#schemainformation). These staging tables clean, test, and prepare your Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon_selling_partner_source) for analysis by doing the following:
+  - Materializes [Amazon Selling Partner staging tables](https://fivetran.github.io/dbt_amazon_selling_partner/#!/overview/amazon_selling_partner_source/models/?g_v=1) which leverage data in the format described by [this ERD](https://fivetran.com/docs/applications/amazon-selling-partner/#schemainformation). These staging tables clean, test, and prepare your Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-selling-partner) for analysis by doing the following:
   - Name columns for consistency across all packages and for easier analysis
-      - Primary keys are renamed from `id` to `<table name>_id`. 
+      - Primary keys are renamed from `_fivetran_id` to `<table name>_id`.
       - Foreign key names explicitly map onto their related tables (ie `owner_id` -> `owner_user_id`).
       - Datetime fields are renamed to `<event happened>_at`.
   - Adds column-level testing where applicable. For example, all primary keys are tested for uniqueness and non-null values.

@@ -31,7 +31,6 @@ aggregate_order_items as (
         amazon_order_id,
         count(order_item_id) as count_order_items,
         sum(coalesce(item_price_amount, 0)) as total_item_price_amount,
-        {# Highly unlikely that a single order will use multiple currencies, but just to be safe  #}
         {{ fivetran_utils.string_agg('distinct item_price_currency_code', "', '") }} as item_price_currency_code,
         sum(coalesce(item_tax_amount, 0)) as total_item_tax_amount,
         {{ fivetran_utils.string_agg('distinct item_tax_currency_code', "', '") }} as item_tax_currency_code,

@@ -33,10 +33,6 @@ final as (
         seller_order_id,
         buyer_info_purchase_order_number,
 
-        {# Open Q: I don't think email or name is sent by Amazon due to PII limitations - should we exclude? #}
-        buyer_info_buyer_email,
-        buyer_info_buyer_name,
-
         cast({{ dbt.date_trunc('day', 'purchase_date') }} as date) as purchase_date,
         sales_channel,
         order_channel,
@@ -87,30 +83,15 @@ final as (
         default_ship_from_location_postal_code,
         default_ship_from_location_state_or_region,
         
-        -- Not sure if the following is considered PII (and therefore excluded) by Aamzon
-        shipping_address_address_line_1,
-        shipping_address_address_line_2,
-        shipping_address_address_line_3,
+        {# Shipping address lines 1-3 are restricted by Amazon due to being PII #}
         shipping_address_address_type,
         shipping_address_city,
         shipping_address_country_code,
         shipping_address_county,
         shipping_address_district,
         shipping_address_municipality,
-        shipping_address_name,
-        shipping_address_phone,
         shipping_address_postal_code,
         shipping_address_state_or_region
-
-        {# columns i'm excluding -- remove later #}
-        {# buyer_info_buyer_county, #}
-        {# buyer_invoice_preference,
-        buyer_tax_info_ buyer_business_address,
-        buyer_tax_info_buyer_legal_company_name,
-        buyer_tax_info_buyer_tax_office,
-        buyer_tax_info_buyer_tax_registration_id, #}
-        {# cba_displayable_shipping_label, #}
-        {# seller_display_name, #}
 
     from fields
 )

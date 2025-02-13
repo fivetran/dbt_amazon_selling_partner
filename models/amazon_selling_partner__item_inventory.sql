@@ -32,18 +32,73 @@ pivot_researching_quantity as (
 joined as (
 
     select 
-        -- Open Q: should we include all item columns? I lean towards yes as this is kinda an item_enhacned model
-        item.*, 
-
-        -- Open Q: should we include all fba_inventory_summary columns?
-        fba_inventory_summary.inventory_summary_id,
-        fba_inventory_summary.fn_sku,
-        fba_inventory_summary.seller_sku,
+        -- Item description
+        item.source_relation,
+        item.marketplace_id,
+        item.asin,
+        item.item_name,
+        item.display_name,
         fba_inventory_summary.product_name,
+        item.brand,
+        item.color,
+        item.size,
+        item.style,
+        item.package_quantity,
+        item.manufacturer,
+        item.contributors,
+        item.product_type,
         fba_inventory_summary.condition,
-        fba_inventory_summary.granularity_id,
-        fba_inventory_summary.granularity_type,
-        fba_inventory_summary.last_updated_time,
+        item.release_date,
+        item.item_classification,
+        item.classification_id,
+        item.classification_link,
+        item.classification_sales_rank,
+        item.website_display_group,
+        item.website_display_group_name,
+        item.website_display_group_link,
+        item.website_display_group_sales_rank,
+        item.is_memorabilia,
+        item.is_adult_product,
+        item.is_autographed,
+        item.is_trade_in_eligible,
+
+        -- IDs
+        item.model_number,
+        item.part_number,
+        item.parent_variation_asin,
+        item.parent_package_container_asin,
+        coalesce(item.sku, fba_inventory_summary.seller_sku) as sku,
+        fba_inventory_summary.fn_sku,
+        item.ean,
+        item.gtin,
+        item.isbn,
+        item.jan,
+        item.minsan,
+        item.upc,
+
+        -- Item listing metadata 
+        item.count_images,
+        item.count_swatch_images,
+        item.item_height_unit,
+        item.item_height_value,
+        item.item_length_unit,
+        item.item_length_value,
+        item.item_weight_unit,
+        item.item_weight_value,
+        item.item_width_unit,
+        item.item_width_value,
+        item.package_height_unit,
+        item.package_height_value,
+        item.package_length_unit,
+        item.package_length_value,
+        item.package_weight_unit,
+        item.package_weight_value,
+        item.package_width_unit,
+        item.package_width_value,
+
+        -- Inventory description
+        fba_inventory_summary.inventory_summary_id,
+        fba_inventory_summary.last_updated_at as inventory_last_updated_at,
         fba_inventory_summary.total_quantity,
         fba_inventory_summary.total_researching_quantity,
         fba_inventory_summary.total_reserved_quantity,
@@ -61,13 +116,12 @@ joined as (
         fba_inventory_summary.defective_quantity,
         fba_inventory_summary.distributor_damaged_quantity,
         fba_inventory_summary.expired_quantity,
-
         pivot_researching_quantity.short_term_research_quantity,
         pivot_researching_quantity.mid_term_research_quantity,
         pivot_researching_quantity.long_term_research_quantity
 
     from fba_inventory_summary
-    join item 
+    inner join item 
         on fba_inventory_summary.asin = item.asin
         and fba_inventory_summary.source_relation = item.source_relation
     left join pivot_researching_quantity

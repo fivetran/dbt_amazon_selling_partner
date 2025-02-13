@@ -8,6 +8,8 @@ sources:
       - name: orders
         identifier: '{{ var("amazon_selling_partner_orders_identifier", "orders") }}'
         description: '{{ doc("orders") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_orders_module', true) }}"
         columns:
           - name: amazon_order_id
             description: '{{ doc("amazon_order_id") }}'
@@ -167,6 +169,8 @@ sources:
       - name: order_item
         identifier: '{{ var("amazon_selling_partner_order_item_identifier", "order_item") }}'
         description: '{{ doc("order_item") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_orders_module', true) }}"
         columns:
           - name: order_item_id
             description: '{{ doc("order_item_id") }}'
@@ -258,6 +262,8 @@ sources:
       - name: order_item_promotion_id
         identifier: '{{ var("amazon_selling_partner_order_item_promotion_id_identifier", "order_item_promotion_id") }}'
         description: '{{ doc("order_item_promotion_id") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_orders_module', true) }}"
         columns:
           - name: promotion_id
             description: '{{ doc("promotion_id") }}'
@@ -269,6 +275,8 @@ sources:
       - name: payment_method_detail_item
         identifier: '{{ var("amazon_selling_partner_payment_method_detail_item_identifier", "payment_method_detail_item") }}'
         description: '{{ doc("payment_method_detail_item") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_orders_module', true) }}"
         columns:
           - name: amazon_order_id
             description: '{{ doc("amazon_order_id") }}'
@@ -278,6 +286,8 @@ sources:
       - name: item_product_type
         identifier: '{{ var("amazon_selling_partner_item_product_type_identifier", "item_product_type") }}'
         description: '{{ doc("item_product_type") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_catalog_module', true) }}"
         columns:
           - name: asin
             description: '{{ doc("asin") }}'
@@ -291,6 +301,8 @@ sources:
       - name: item_dimension
         identifier: '{{ var("amazon_selling_partner_item_dimension_identifier", "item_dimension") }}'
         description: '{{ doc("item_dimension") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_catalog_module', true) }}"
         columns:
           - name: asin
             description: '{{ doc("asin") }}'
@@ -334,6 +346,8 @@ sources:
       - name: item_image
         identifier: '{{ var("amazon_selling_partner_item_image_identifier", "item_image") }}'
         description: '{{ doc("item_image") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_catalog_module', true) }}"
         columns:
           - name: asin
             description: '{{ doc("asin") }}'
@@ -353,6 +367,8 @@ sources:
       - name: item_summary
         identifier: '{{ var("amazon_selling_partner_item_summary_identifier", "item_summary") }}'
         description: '{{ doc("item_summary") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_catalog_module', true) }}"
         columns:
           - name: asin
             description: '{{ doc("asin") }}'
@@ -404,6 +420,8 @@ sources:
       - name: item_display_group_sales_rank
         identifier: '{{ var("amazon_selling_partner_item_display_group_sales_rank_identifier", "item_display_group_sales_rank") }}'
         description: '{{ doc("item_display_group_sales_rank") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_catalog_module', true) }}"
         columns:
           - name: asin
             description: '{{ doc("asin") }}'
@@ -421,6 +439,8 @@ sources:
       - name: item_classification_sales_rank
         identifier: '{{ var("amazon_selling_partner_item_classification_sales_rank_identifier", "item_classification_sales_rank") }}'
         description: '{{ doc("item_classification_sales_rank") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_catalog_module', true) }}"
         columns:
           - name: asin
             description: '{{ doc("asin") }}'
@@ -438,6 +458,8 @@ sources:
       - name: item_identifier
         identifier: '{{ var("amazon_selling_partner_item_identifier_identifier", "item_identifier") }}'
         description: '{{ doc("item_identifier") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_catalog_module', true) }}"
         columns:
           - name: asin
             description: '{{ doc("asin") }}'
@@ -453,6 +475,8 @@ sources:
       - name: item_relationship
         identifier: '{{ var("amazon_selling_partner_item_relationship_identifier", "item_relationship") }}'
         description: '{{ doc("item_relationship") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_catalog_module', true) }}"
         columns:
           - name: child_asin
             description: '{{ doc("child_asin") }}'
@@ -466,6 +490,8 @@ sources:
       - name: fba_inventory_summary
         identifier: '{{ var("amazon_selling_partner_fba_inventory_summary_identifier", "fba_inventory_summary") }}'
         description: '{{ doc("fba_inventory_summary") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_fba_module', true) }}"
         columns:
           - name: _fivetran_id
             description: '{{ doc("inventory_summary_id") }}'
@@ -523,6 +549,8 @@ sources:
       - name: fba_inventory_researching_quantity_entry
         identifier: '{{ var("amazon_selling_partner_fba_inventory_researching_quantity_entry_identifier", "fba_inventory_researching_quantity_entry") }}'
         description: '{{ doc("fba_inventory_researching_quantity_entry") }}'
+        config:
+          enabled: "{{ var('amazon_selling_partner__using_fba_module', true) }}"
         columns:
           - name: inventory_summary_id
             description: '{{ doc("inventory_summary_id") }}'

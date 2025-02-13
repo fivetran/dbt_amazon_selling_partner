@@ -30,7 +30,7 @@ final as (
         _fivetran_synced,
         asin,
         marketplace_id,
-        item_height_unit, -- should we include both? package data seems to be more complete in general 
+        item_height_unit,
         item_height_value,
         item_length_unit,
         item_length_value,
