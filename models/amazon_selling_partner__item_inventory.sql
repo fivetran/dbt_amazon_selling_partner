@@ -40,7 +40,7 @@ joined as (
         item.asin,
         item.item_name,
         item.display_name,
-        fba_inventory_summary.product_name,
+        {% if var('amazon_selling_partner__using_fba_module', true) -%} fba_inventory_summary.product_name, {%- endif %}
         item.brand,
         item.color,
         item.size,
@@ -49,7 +49,7 @@ joined as (
         item.manufacturer,
         item.contributors,
         item.product_type,
-        fba_inventory_summary.condition,
+        {% if var('amazon_selling_partner__using_fba_module', true) -%} fba_inventory_summary.condition, {%- endif %}
         item.release_date,
         item.item_classification,
         item.classification_id,

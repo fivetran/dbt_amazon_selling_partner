@@ -2,7 +2,7 @@ name: 'amazon_selling_partner_integration_tests'
 version: '0.1.0'
 config-version: 2
 
-profile: 'jamie_dbt_dev'
+profile: 'integration_tests'
 
 dispatch:
   - macro_namespace: dbt_utils
