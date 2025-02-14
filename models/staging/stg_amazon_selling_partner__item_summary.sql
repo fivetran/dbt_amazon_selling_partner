@@ -42,7 +42,7 @@ final as (
         model_number,
         package_quantity,
         part_number,
-        cast({{ dbt.date_trunc('day', 'release_date') }} as date) as release_date,
+        release_date,
         size,
         style,
         trade_in_eligible as is_trade_in_eligible,
