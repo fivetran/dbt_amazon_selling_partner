@@ -52,7 +52,7 @@ joined as (
         aggregate_promotions.count_promotions_used
 
         {% if var('amazon_selling_partner__using_catalog_module', true) %}
-        , item.item_name
+        , item.item_name,
         item.display_name,
         item.brand,
         item.color,
