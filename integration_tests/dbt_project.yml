@@ -10,7 +10,7 @@ dispatch:
 
 vars:
   amazon_selling_partner:
-    amazon_selling_partner_schema: zz_dbt_jamie # amazon_selling_partner_integration_tests
+    amazon_selling_partner_schema: amazon_selling_partner_integration_tests
 
 models:
   +schema: "amazon_selling_partner_{{ var('directed_schema','dev') }}"
