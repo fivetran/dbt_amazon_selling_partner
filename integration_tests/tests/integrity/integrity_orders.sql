@@ -8,7 +8,7 @@ with source as (
     select 
         count(*) as row_count,
         count(distinct amazon_order_id) as count_distinct_orders,
-        sum(coalesce(order_total_amount, 0)) as order_total_amount,
+        round(sum(coalesce(order_total_amount, 0)), 2) as order_total_amount,
         sum(coalesce(number_of_items_shipped, 0)) as number_of_items_shipped,
         sum(coalesce(number_of_items_unshipped, 0)) as number_of_items_unshipped
     from {{ target.schema }}_amazon_selling_partner_dev.stg_amazon_selling_partner__orders
@@ -19,7 +19,7 @@ model as (
     select 
         count(*) as row_count,
         count(distinct amazon_order_id) as count_distinct_orders,
-        sum(coalesce(order_total_amount, 0)) as order_total_amount,
+        round(sum(coalesce(order_total_amount, 0)), 2) as order_total_amount,
         sum(coalesce(number_of_items_shipped, 0)) as number_of_items_shipped,
         sum(coalesce(number_of_items_unshipped, 0)) as number_of_items_unshipped
     from {{ target.schema }}_amazon_selling_partner_dev.amazon_selling_partner__orders

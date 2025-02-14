@@ -14,9 +14,9 @@ inventory_source as (
     select *
     from {{ target.schema }}_amazon_selling_partner_dev.stg_amazon_selling_partner__fba_inventory_summary
 ),
-å
+
 source as (
-    
+
     select 
         count(*) as row_count,
         count(distinct item_source.asin) as count_distinct_asin,
@@ -37,17 +37,17 @@ source as (
         sum(coalesce(defective_quantity, 0)) as defective_quantity,
         sum(coalesce(distributor_damaged_quantity, 0)) as distributor_damaged_quantity,
         sum(coalesce(expired_quantity, 0)) as expired_quantity
-    item_source 
+    from item_source 
     left join inventory_source 
         on item_source.asin = inventory_source.asin 
         and item_source.source_relation = inventory_source.source_relation
-)
+),
 
 model as (
 
     select 
         count(*) as row_count,
-        count(distinct item_source.asin) as count_distinct_asin,
+        count(distinct asin) as count_distinct_asin,
         sum(coalesce(total_quantity, 0)) as total_quantity,
         sum(coalesce(total_researching_quantity, 0)) as total_researching_quantity,
         sum(coalesce(total_reserved_quantity, 0)) as total_reserved_quantity,
@@ -66,7 +66,7 @@ model as (
         sum(coalesce(distributor_damaged_quantity, 0)) as distributor_damaged_quantity,
         sum(coalesce(expired_quantity, 0)) as expired_quantity
 
-    from {{ target.schema }}_amazon_selling_partner_dev.amazon_selling_partner__order_items
+    from {{ target.schema }}_amazon_selling_partner_dev.amazon_selling_partner__item_inventory
 )
 
 select 
@@ -112,22 +112,22 @@ select
 from model 
 join source on true
 where 
-    model.row_count != source.row_count
-    model.count_distinct_asin != source.count_distinct_asin
-    model.total_quantity != source.total_quantity
-    model.total_researching_quantity != source.total_researching_quantity
-    model.total_reserved_quantity != source.total_reserved_quantity
-    model.fullfillable_quantity != source.fullfillable_quantity
-    model.total_unfulfillable_quantity != source.total_unfulfillable_quantity
-    model.pending_customer_order_quantity != source.pending_customer_order_quantity
-    model.pending_transshipment_quantity != source.pending_transshipment_quantity
-    model.fc_processing_quantity != source.fc_processing_quantity
-    model.inblound_shipped_quantity != source.inblound_shipped_quantity
-    model.inbound_receiving_quantity != source.inbound_receiving_quantity
-    model.inbound_working_quantity != source.inbound_working_quantity
-    model.warehouse_damaged_quantity != source.warehouse_damaged_quantity
-    model.carrier_damaged_quantity != source.carrier_damaged_quantity
-    model.customer_damaged_quantity != source.customer_damaged_quantity
-    model.defective_quantity != source.defective_quantity
-    model.distributor_damaged_quantity != source.distributor_damaged_quantity
+    model.row_count != source.row_count or
+    model.count_distinct_asin != source.count_distinct_asin or
+    model.total_quantity != source.total_quantity or
+    model.total_researching_quantity != source.total_researching_quantity or
+    model.total_reserved_quantity != source.total_reserved_quantity or
+    model.fullfillable_quantity != source.fullfillable_quantity or
+    model.total_unfulfillable_quantity != source.total_unfulfillable_quantity or
+    model.pending_customer_order_quantity != source.pending_customer_order_quantity or
+    model.pending_transshipment_quantity != source.pending_transshipment_quantity or
+    model.fc_processing_quantity != source.fc_processing_quantity or
+    model.inblound_shipped_quantity != source.inblound_shipped_quantity or
+    model.inbound_receiving_quantity != source.inbound_receiving_quantity or
+    model.inbound_working_quantity != source.inbound_working_quantity or
+    model.warehouse_damaged_quantity != source.warehouse_damaged_quantity or
+    model.carrier_damaged_quantity != source.carrier_damaged_quantity or
+    model.customer_damaged_quantity != source.customer_damaged_quantity or
+    model.defective_quantity != source.defective_quantity or
+    model.distributor_damaged_quantity != source.distributor_damaged_quantity or
     model.expired_quantity != source.expired_quantity
