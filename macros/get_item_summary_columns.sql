@@ -1,7 +1,7 @@
 {% macro get_item_summary_columns() %}
 
 {% set columns = [
-    {"name": "_fivetran_synced", "datatype": "datetime"},
+    {"name": "_fivetran_synced", "datatype": dbt.type_timestamp()},
     {"name": "adult_product", "datatype": dbt.type_boolean()},
     {"name": "asin", "datatype": dbt.type_string()},
     {"name": "autographed", "datatype": dbt.type_boolean()},

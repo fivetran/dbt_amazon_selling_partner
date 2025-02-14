@@ -17,7 +17,7 @@
     {"name": "inblound_shipped_quantity", "datatype": dbt.type_int()},
     {"name": "inbound_receiving_quantity", "datatype": dbt.type_int()},
     {"name": "inbound_working_quantity", "datatype": dbt.type_int()},
-    {"name": "last_updated_time", "datatype": "datetime"},
+    {"name": "last_updated_time", "datatype": dbt.type_timestamp()},
     {"name": "pending_customer_order_quantity", "datatype": dbt.type_int()},
     {"name": "pending_transshipment_quantity", "datatype": dbt.type_int()},
     {"name": "product_name", "datatype": dbt.type_string()},
