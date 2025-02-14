@@ -14,19 +14,19 @@
 
 ## What does this dbt package do?
 
-This package models Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-selling-partner). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/amazon-selling-partner#schemainformation), **specifically the `ORDERS`, `CATALOG`, and `FBA` Seller Central modules.**
+This package models Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-selling-partner). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/amazon-selling-partner#schemainformation), specifically the **ORDERS**, **CATALOG**, and **FBA** Seller Central modules.
 
-> This package is currently not compatible with any [Vendor Central modules](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#vendormodules). If you would like to see Vendor Central compatibility (or the use of any other [Seller Central modules](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#sellermodules)), please open up a Feature Request.
+> This package is currently not compatible with any [Vendor Central modules](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#vendormodules). If you would like to see Vendor Central compatibility (or the use of any other [Seller Central modules](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#sellermodules)), please open up a [Feature Request](https://github.com/fivetran/dbt_amazon_selling_partner/issues/new?template=feature-request.yml).
 
 The main focus of the package is to transform core Seller Central object tables into analytics-ready models, including:
-  - Materializes [Amazon Selling Partner staging tables](https://fivetran.github.io/dbt_amazon_selling_partner/#!/overview/amazon_selling_partner_source/models/?g_v=1) which leverage data in the format described by the `ORDERS`, `CATALOG`, and `FBA` Seller Central modules from [this ERD](https://fivetran.com/docs/applications/amazon-selling-partner/#schemainformation). These staging tables clean, test, and prepare your Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-selling-partner) for analysis by doing the following:
-  - Name columns for consistency across all packages and for easier analysis
+  - Materializes [Amazon Selling Partner staging tables](https://fivetran.github.io/dbt_amazon_selling_partner/#!/overview/amazon_selling_partner_source/models/?g_v=1) which leverage data in the format described by the **ORDERS**, **CATALOG**, and **FBA** Seller Central modules from [this ERD](https://fivetran.com/docs/applications/amazon-selling-partner/#schemainformation). These staging tables clean, test, and prepare your Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-selling-partner) for analysis by doing the following:
+  - Names columns for consistency across all packages and for easier analysis
       - Primary keys are renamed from `_fivetran_id` to `<table name>_id`.
       - Foreign key names explicitly map onto their related tables (ie `owner_id` -> `owner_user_id`).
       - Datetime fields are renamed to `<event happened>_at`.
   - Adds column-level testing where applicable. For example, all primary keys are tested for uniqueness and non-null values.
   - Generates a comprehensive data dictionary of your Amazon Selling Partner data through the [dbt docs site](https://fivetran.github.io/dbt_amazon_selling_partner/).
-  - [Insert additional custom details here.]
+  - Enables you to better analyze your Amazon Seller data by enriching the orders, order items, and listed items with catalog information and sales and current inventory aggregates.
 
 > This package does not apply freshness tests to source data due to the variability of survey cadences.
 
@@ -36,9 +36,12 @@ The following table provides a detailed list of all models materialized within t
 
 | **model**                 | **description**                                                                                                    |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| [amazon_selling_partner__orders]()  | Model description   |
-| [amazon_selling_partner__order_items]()  | Model description   |
-| [amazon_selling_partner__item_inventory]()  | Model description   |
+| [amazon_selling_partner__orders](https://fivetran.github.io/dbt_amazon_selling_partner/#!/model/model.amazon_selling_partner.amazon_selling_partner__orders)  | Table of orders placed in Amazon, enhanced with payment method information and order item aggregates.    |
+| [amazon_selling_partner__order_items](https://fivetran.github.io/dbt_amazon_selling_partner/#!/model/model.amazon_selling_partner.amazon_selling_partner__order_items)  | Table of single line items of Amazon orders, enhanced with order and catalog item information.   |
+| [amazon_selling_partner__item_inventory](https://fivetran.github.io/dbt_amazon_selling_partner/#!/model/model.amazon_selling_partner.amazon_selling_partner__item_inventory)  | Table containing current inventory levels pertaining to individual Amazon catalog items, enhanced with all product descriptors and identifiers, listing metadata, item dimensions, and sales ranks.   |
+
+### Materialized Models
+Each Quickstart transformation job run materializes 31 models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
 <!--section-end-->
 
 ## How do I use the dbt package?
@@ -77,55 +80,109 @@ vars:
     amazon_selling_partner_database: your_database_name
     amazon_selling_partner_schema: your_schema_name
 ```
-#### Union multiple connectors
-If you have multiple Amazon Selling Partner connectors in Fivetran and want to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set either the `amazon_selling_partner_union_schemas` OR `amazon_selling_partner_union_databases` variables (cannot do both) in your root `dbt_project.yml` file:
+
+#### Option B: Union multiple connections
+If you have multiple Amazon Selling Partner connections in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. For each source table, the package will union all of the data together and pass the unioned table into the transformations. The `source_relation` column in each model indicates the origin of each record.
+
+To use this functionality, you will need to set the `amazon_selling_partner_sources` variable in your root `dbt_project.yml` file:
 
 ```yml
 # dbt_project.yml
 
 vars:
-    amazon_selling_partner_union_schemas: ['amazon_selling_partner_usa','amazon_selling_partner_canada'] # use this if the data is in different schemas/datasets of the same database/project
-    amazon_selling_partner_union_databases: ['amazon_selling_partner_usa','amazon_selling_partner_canada'] # use this if the data is in different databases/projects but uses the same schema name
+  amazon_selling_partner_sources:
+    - database: connection_1_destination_name # Likely Required. Default value = target.database
+      schema: connection_1_schema_name # Likely Required. Default value = 'amazon_selling_partner'
+      name: connection_1_source_name # Required only if following the step in the following subsection
+
+    - database: connection_2_destination_name
+      schema: connection_2_schema_name
+      name: connection_2_source_name
 ```
 
-The native `source.yml` connection set up in the package will not function when the union schema/database feature is utilized. Although the data will be correctly combined, you will not observe the sources linked to the package models in the Directed Acyclic Graph (DAG). This happens because the package includes only one defined `source.yml`.
+> **Note:** If you choose to make use of this unioning functionality, you will incur an additional 14 staging models materialized as `views`, suffixed with `_tmp`. These extra models are necessary for the proper compilation of our connection-unioning macros.
 
-To connect your multiple schema/database sources to the package models, follow the steps outlined in the [Union Data Defined Sources Configuration](https://github.com/fivetran/dbt_fivetran_utils/tree/releases/v0.4.latest#union_data-source) section of the Fivetran Utils documentation for the union_data macro. This will ensure a proper configuration and correct visualization of connections in the DAG.
+##### Recommended: Incorporate unioned sources into DAG
+> *If you are running the package through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt#transformationsfordbtcore), the below step is necessary in order to synchronize model runs with your amazon_selling_partner connections. Alternatively, you may choose to run the package through Fivetran [Quickstart](https://fivetran.com/docs/transformations/quickstart), which would create separate sets of models for each amazon_selling_partner source rather than one set of unioned models.*
 
+<details><summary>Expand for details</summary>
+<br>
 
-### Step 4: Enable/Disable Variables
-[If necessary, use this step to detail enable/disable variables. See below as an example. If this is not necessary you can delete this section.]
+By default, this package defines one single-connection source, called `amazon_selling_partner`, which will be disabled if you are unioning multiple connections. This means that your DAG will not include your amazon_selling_partner sources, though the package will run successfully.
 
-By default, this package does not bring in data from the Amazon Selling Partner example source tables. However, if you want the package to bring in these sources and the downstream models, add the following configuration to your `dbt_project.yml`:
+To properly incorporate all of your amazon_selling_partner connections into your project's DAG:
+1. Define each of your sources in a `.yml` file in your project. Utilize the following template for the `source`-level configurations, and, **most importantly**, copy and paste the table and column-level definitions from the package's `src_amazon_selling_partner.yml` [file](https://github.com/fivetran/dbt_amazon_selling_partner/blob/main/models/staging/src_amazon_selling_partner.yml).
+
+```yml
+# a .yml file in your root project
+version: 2
+
+sources:
+  - name: <name> # ex: Should match name in amazon_selling_partner_sources
+    schema: <schema_name>
+    database: <database_name>
+    loader: fivetran
+    loaded_at_field: _fivetran_synced
+      
+    freshness: # feel free to adjust to your liking
+      warn_after: {count: 72, period: hour}
+      error_after: {count: 168, period: hour}
+
+    tables: # copy and paste from amazon_selling_partner/models/staging/src_amazon_selling_partner.yml - see https://support.atlassian.com/bitbucket-cloud/docs/yaml-anchors/ for how to use &/* anchors to only do so once
+```
+
+2. Set the `has_defined_sources` variable (scoped to the `amazon_selling_partner` package) to `True`, like such:
+```yml
+# dbt_project.yml
+vars:
+  amazon_selling_partner:
+    has_defined_sources: true
+```
+
+</details>
+
+### Step 4: Enable/Disable models for unused modules
+
+By default, this package transforms tables from the **ORDERS**, **CATALOG**, and **FBA** [Seller Central modules](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#sellermodules) described in this [ERD](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#schemainformation). The package currently uses the following tables from each modules:
+
+**ORDERS** module:
+- `orders`
+- `order_item`
+- `payment_method_detail_item`
+- `order_item_promotion_id`
+
+**CATALOG** module:
+- `item_summary`
+- `item_relationship`
+- `item_product_type`
+- `item_identifier`
+- `item_display_group_sales_rank`
+- `item_classification_sales_rank`
+- `item_dimension`
+- `item_image`
+
+**FBA** module
+- `fba_inventory_summary`
+- `fba_inventory_researching_quantity_entry`
+
+If you do not have a module enabled in your Amazon Selling Partner connection(s), you may still run the package successfully by configuring the appropriate `amazon_selling_partner__using_<module_name>_module` variable. To do so, add the following configuration to your `dbt_project.yml`:
 
 ```yml
 vars:
-    amazon_selling_partner__using_core_contacts: True # default = False
-    amazon_selling_partner__using_core_mailing_lists: True # default = False
+    amazon_selling_partner__using_orders_module: False # default = True. Disables materialization of the amazon_selling_partner__orders and amazon_selling_partner__order_items models
+    amazon_selling_partner__using_catalog_module: False # default = True. Disables materialization of the amazon_selling_partner__item_inventory model and removes item columns from amazon_selling_partner__order_items
+    amazon_selling_partner__using_fba_module: False # default = True. Removes inventory columns from the amazon_selling_partner__item_inventory model
 ```
+
+#### Quickstart
+For users running the package through Fivetran's [Quickstart](https://fivetran.com/docs/transformations/quickstart) Data Models, these variables are dynamically assigned based on the presence of core tables in each module:
+- `amazon_selling_partner__using_orders_module` is disabled if the `orders` or `order_item` source tables are missing. 
+- `amazon_selling_partner__using_catalog_module` is disabled if the `item_summary` source table is missing.
+- `amazon_selling_partner__using_fba_module` is disabled if the `fba_inventory_summary` source table is missing.
+
+If a non-core table is missing, the package will create an empty staging model with all the proper columns and data types so as to not disrupt downstream transformations.
 
 ### (Optional) Step 5: Additional configurations
-
-[If necessary, use this step to detail passthrough variables. See below as an example. If this is not necessary you can delete this section.]
-#### Passing Through Additional Fields
-This package includes all source columns defined in the macros folder. You can add more columns using our pass-through column variables. These variables allow for the pass-through fields to be aliased (`alias`) and casted (`transform_sql`) if desired, but not required. Datatype casting is configured via a sql snippet within the `transform_sql` key. You may add the desired sql while omitting the `as field_name` at the end and your custom pass-though fields will be casted accordingly. Use the below format for declaring the respective pass-through variables:
-
-```yml
-# dbt_project.yml
-
-vars:
-  amazon_selling_partner__X_through_columns:
-    - name: "that_field"
-      alias: "renamed_to_this_field"
-      transform_sql: "cast(renamed_to_this_field as string)"
-  amazon_selling_partner__Y_pass_through_columns:
-    - name: "this_field"
-  amazon_selling_partner__Z_contact_pass_through_columns:
-    - name: "old_name"
-      alias: "new_name"
-```
-
-> Create an [issue](https://github.com/fivetran/dbt_amazon_selling_partner/issues) if you'd like to see passthrough column support for other tables in the Qualtrics schema.
 
 #### Changing the Build Schema
 By default this package will build the Amazon Selling Partner staging models within a schema titled (<target_schema> + `_stg_amazon_selling_partner`) and the Amazon Selling Partner final models within a schema titled (<target_schema> + `_amazon_selling_partner`) in your target database. If this is not where you want your modeled qualtrics data to be written to, add the following configuration to your `dbt_project.yml` file:
@@ -153,14 +210,12 @@ vars:
 ```
 </details>
 
-
 ### (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
 <details><summary>Expand for details</summary>
 <br>
     
 Fivetran offers the ability for you to orchestrate your dbt project through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt). Learn how to set up your project for orchestration through Fivetran in our [Transformations for dbt Core setup guides](https://fivetran.com/docs/transformations/dbt#setupguide).
 </details>
-
 
 ## Does this package have dependencies?
 This dbt package is dependent on the following dbt packages. These dependencies are installed by default within this package. For more information on the following packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
@@ -174,6 +229,7 @@ packages:
     - package: dbt-labs/dbt_utils
       version: [">=1.0.0", "<2.0.0"]
 ```
+
 ## How is this package maintained and can I contribute?
 ### Package Maintenance
 The Fivetran team maintaining this package _only_ maintains the latest version of the package. We highly recommend you stay consistent with the [latest version](https://hub.getdbt.com/fivetran/amazon_selling_partner/latest/) of the package and refer to the [CHANGELOG](https://github.com/fivetran/dbt_amazon_selling_partner/blob/main/CHANGELOG.md) and release notes for more information on changes across versions.
@@ -186,4 +242,3 @@ We highly encourage and welcome contributions to this package. Check out [this d
 ## Are there any resources available?
 - If you have questions or want to reach out for help, refer to the [GitHub Issue](https://github.com/fivetran/dbt_amazon_selling_partner/issues/new/choose) section to find the right avenue of support for you.
 - If you want to provide feedback to the dbt package team at Fivetran or want to request a new dbt package, fill out our [Feedback Form](https://www.surveymonkey.com/r/DQ7K7WW).
-- Have questions or want to be part of the community discourse? Create a post in the [Fivetran community](https://community.fivetran.com/t5/user-group-for-dbt/gh-p/dbt-user-group) and our team along with the community can join in on the discussion.

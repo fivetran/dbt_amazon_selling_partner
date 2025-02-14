@@ -4,6 +4,11 @@ sources:
   - name: amazon_selling_partner
     database: '{% if target.type not in ("spark") %}{{ var("amazon_selling_partner_database", target.database) }}{% endif %}'
     schema: '{{ var("amazon_selling_partner_schema", "amazon_selling_partner") }}'
+    loader: fivetran
+
+    config:
+      enabled: "{{ var('amazon_selling_partner_sources', []) == [] }}"
+
     tables:
       - name: orders
         identifier: '{{ var("amazon_selling_partner_orders_identifier", "orders") }}'

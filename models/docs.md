@@ -63,8 +63,8 @@ b. Phone is suppressed for the shipped MFN (fulfilled by seller) order when the 
 {% docs latest_ship_date %} The end of the time period within which you have committed to ship the order. In ISO 8601 date time format. Only returned for seller-fulfilled orders. Note: LatestShipDate might not be returned for orders placed before February 1, 2013. {% enddocs %}
 {% docs marketplace_id %} The unobfuscated marketplace identifier. Different marketplace values can be found [here](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids). {% enddocs %}
 
-{% docs number_of_items_shipped %} The number of items shipped.	 {% enddocs %}
-{% docs number_of_items_unshipped %} The number of items unshipped.	 {% enddocs %}
+{% docs number_of_items_shipped %} The number of items shipped for the order.	 {% enddocs %}
+{% docs number_of_items_unshipped %} The number of items unshipped for the order.	 {% enddocs %}
 {% docs order_channel %} The order channel for the first item in the order.	 {% enddocs %}
 {% docs order_status %} The current order status. Possible values can be found [here](https://developer-docs.amazon.com/sp-api/docs/orders-api-v0-reference#orderstatus). {% enddocs %}
 {% docs order_total_amount %} The total charge for this order. {% enddocs %}

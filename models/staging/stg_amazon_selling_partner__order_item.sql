@@ -1,11 +1,9 @@
 {{ config(enabled=var('amazon_selling_partner__using_orders_module', true)) }}
 
-{% set base_table = ref('stg_amazon_selling_partner__order_item_base') if var('amazon_selling_partner_sources',[]) != [] else source('amazon_selling_partner', 'order_item') %}
-
 with base as (
 
     select * 
-    from {{ base_table }}
+    from {{ ref('stg_amazon_selling_partner__order_item_base') }}
 ),
 
 fields as (
@@ -13,7 +11,7 @@ fields as (
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(base_table),
+                source_columns=adapter.get_columns_in_relation(ref('stg_amazon_selling_partner__order_item_base')),
                 staging_columns=get_order_item_columns()
             )
         }}
@@ -37,7 +35,6 @@ final as (
         cast({{ dbt.date_trunc('day', 'scheduled_delivery_end_date') }} as date) as scheduled_delivery_end_date,
         quantity_ordered,
         quantity_shipped,
-
         item_price_amount,
         item_price_currency_code,
         item_tax_amount,
@@ -54,7 +51,6 @@ final as (
         promotion_discount_currency_code,
         promotion_discount_tax_amount,
         promotion_discount_tax_currency_code,
-
         condition_id,
         condition_note,
         condition_subtype_id,

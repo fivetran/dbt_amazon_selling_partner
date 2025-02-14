@@ -47,6 +47,8 @@ joined as (
         orders.order_status,
         orders.order_total_currency_code,
         orders.marketplace_id,
+        orders.number_of_items_shipped as order_total_number_of_items_shipped,
+        orders.number_of_items_unshipped as order_total_number_of_items_unshipped,
         aggregate_promotions.count_promotions_used,
 
         {% if var('amazon_selling_partner__using_catalog_module', true) %}

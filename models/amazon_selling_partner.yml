@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: amazon_selling_partner__orders
-    description: Table consolidating information regarding individual orders placed in Amazon. 
+    description: Table of orders placed in Amazon, enhanced with payment method information and order item aggregates.
     tests: 
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -175,7 +175,7 @@ models:
         description: "{{ doc('count_promotions_used') }}"
 
   - name: amazon_selling_partner__order_items
-    description: Table consolidating information regarding single line items of orders placed in Amazon.
+    description: Table of single line items of Amazon orders, enhanced with order and catalog item information.
     tests: 
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -237,8 +237,6 @@ models:
         description: '{{ doc("scheduled_delivery_start_date") }}'
       - name: seller_sku
         description: '{{ doc("seller_sku") }}'
-      - name: serial_number_required
-        description: '{{ doc("serial_number_required") }}'
       - name: shipping_discount_amount
         description: '{{ doc("shipping_discount_amount") }}'
       - name: shipping_discount_currency_code
@@ -295,9 +293,13 @@ models:
         description: "{{ doc('item_classification') }}"
       - name: is_serial_number_required
         description: '{{ doc("serial_number_required") }}'
+      - name: order_total_number_of_items_shipped
+        description: "{{ doc('number_of_items_shipped') }}"
+      - name: order_total_number_of_items_unshipped
+        description: "{{ doc('number_of_items_unshipped') }}"
 
   - name: amazon_selling_partner__item_inventory
-    description: Table reflecting consolidating current inventory levels and other metadata regarding items in your Amazon catalog.
+    description: Table containing current inventory levels pertaining to individual Amazon catalog items, enhanced with all product descriptors and identifiers, listing metadata, item dimensions, and sales ranks.
     tests: 
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:

@@ -1,11 +1,9 @@
 {{ config(enabled=var('amazon_selling_partner__using_orders_module', true)) }}
 
-{% set base_table = ref('stg_amazon_selling_partner__orders_base') if var('amazon_selling_partner_sources',[]) != [] else source('amazon_selling_partner', 'orders') %}
-
 with base as (
 
     select * 
-    from {{ base_table }}
+    from {{ ref('stg_amazon_selling_partner__orders_base') }}
 ),
 
 fields as (
@@ -13,7 +11,7 @@ fields as (
     select
         {{
             fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(base_table),
+                source_columns=adapter.get_columns_in_relation(ref('stg_amazon_selling_partner__orders_base')),
                 staging_columns=get_orders_columns()
             )
         }}
