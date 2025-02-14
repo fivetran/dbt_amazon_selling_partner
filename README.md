@@ -49,7 +49,7 @@ Each Quickstart transformation job run materializes 31 models if all components 
 ### Step 1: Prerequisites
 To use this dbt package, you must have the following:
 
-- At least one Fivetran Amazon Selling Partner connector syncing data into your destination.
+- At least one Fivetran Amazon Selling Partner connection syncing data into your destination.
 - A **BigQuery**, **Snowflake**, **Redshift**, **Databricks**, or **PostgreSQL** destination.
 
 #### Databricks dispatch configuration
@@ -70,7 +70,7 @@ packages:
 ```
 
 ### Step 3: Define database and schema variables
-#### Single connector
+#### Single connection
 By default, this package runs using your destination and the `amazon_selling_partner` schema. If this is not where your Amazon Selling Partner data is (for example, if your Amazon Selling Partner schema is named `amazon_selling_partner_fivetran`), add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
@@ -100,17 +100,15 @@ vars:
       name: connection_2_source_name
 ```
 
-> **Note:** If you choose to make use of this unioning functionality, you will incur an additional 14 staging models materialized as `views`, suffixed with `_tmp`. These extra models are necessary for the proper compilation of our connection-unioning macros.
-
 ##### Recommended: Incorporate unioned sources into DAG
-> *If you are running the package through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt#transformationsfordbtcore), the below step is necessary in order to synchronize model runs with your amazon_selling_partner connections. Alternatively, you may choose to run the package through Fivetran [Quickstart](https://fivetran.com/docs/transformations/quickstart), which would create separate sets of models for each amazon_selling_partner source rather than one set of unioned models.*
+> *If you are running the package through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt#transformationsfordbtcore), the below step is necessary in order to synchronize model runs with your Amazon Selling Partner connections. Alternatively, you may choose to run the package through Fivetran [Quickstart](https://fivetran.com/docs/transformations/quickstart), which would create separate sets of models for each Amazon Selling Partner source rather than one set of unioned models.*
 
 <details><summary>Expand for details</summary>
 <br>
 
-By default, this package defines one single-connection source, called `amazon_selling_partner`, which will be disabled if you are unioning multiple connections. This means that your DAG will not include your amazon_selling_partner sources, though the package will run successfully.
+By default, this package defines one single-connection source, called `amazon_selling_partner`, which will be disabled if you are unioning multiple connections. This means that your DAG will not include your Amazon Selling Partner sources, though the package will run successfully.
 
-To properly incorporate all of your amazon_selling_partner connections into your project's DAG:
+To properly incorporate all of your Amazon Selling Partner connections into your project's DAG:
 1. Define each of your sources in a `.yml` file in your project. Utilize the following template for the `source`-level configurations, and, **most importantly**, copy and paste the table and column-level definitions from the package's `src_amazon_selling_partner.yml` [file](https://github.com/fivetran/dbt_amazon_selling_partner/blob/main/models/staging/src_amazon_selling_partner.yml).
 
 ```yml
@@ -143,7 +141,7 @@ vars:
 
 ### Step 4: Enable/Disable models for unused modules
 
-By default, this package transforms tables from the **ORDERS**, **CATALOG**, and **FBA** [Seller Central modules](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#sellermodules) described in this [ERD](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#schemainformation). The package currently uses the following tables from each modules:
+By default, this package transforms tables from the **ORDERS**, **CATALOG**, and **FBA** [Seller Central modules](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#sellermodules) described in this [ERD](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#schemainformation). The package currently uses the following tables from each module:
 
 **ORDERS** module:
 - `orders`
@@ -175,12 +173,12 @@ vars:
 ```
 
 #### Quickstart
-For users running the package through Fivetran's [Quickstart](https://fivetran.com/docs/transformations/quickstart) Data Models, these variables are dynamically assigned based on the presence of core tables in each module:
+For users running the package through Fivetran [Quickstart](https://fivetran.com/docs/transformations/quickstart), these variables are dynamically assigned based on the presence of core tables in each module:
 - `amazon_selling_partner__using_orders_module` is disabled if the `orders` or `order_item` source tables are missing. 
 - `amazon_selling_partner__using_catalog_module` is disabled if the `item_summary` source table is missing.
 - `amazon_selling_partner__using_fba_module` is disabled if the `fba_inventory_summary` source table is missing.
 
-If a non-core table is missing, the package will create an empty staging model with all the proper columns and data types so as to not disrupt downstream transformations.
+> If a non-core table is missing, the package will create an empty staging model with all the proper columns and data types so as to not disrupt downstream transformations.
 
 ### (Optional) Step 5: Additional configurations
 
@@ -197,7 +195,7 @@ models:
         +schema: my_new_schema_name # leave blank for just the target_schema
 ```
 
-#### Change the source table references
+#### Change the source table references (available for single-connection runs only)
 If an individual source table has a different name than the package expects, add the table name as it appears in your destination to the respective variable:
 
 > IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_amazon_selling_partner/blob/main/dbt_project.yml) variable declarations to see the expected names.

@@ -100,11 +100,11 @@ joined as (
         item.package_weight_unit,
         item.package_weight_value,
         item.package_width_unit,
-        item.package_width_value,
+        item.package_width_value
 
         -- Inventory description
         {% if var('amazon_selling_partner__using_fba_module', true) %}
-        fba_inventory_summary.inventory_summary_id,
+        , fba_inventory_summary.inventory_summary_id
         fba_inventory_summary.last_updated_at as inventory_last_updated_at,
         fba_inventory_summary.total_quantity,
         fba_inventory_summary.total_researching_quantity,
