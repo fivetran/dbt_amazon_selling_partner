@@ -23,4 +23,4 @@ dbt run --vars '{amazon_selling_partner__using_orders_module: false, amazon_sell
 dbt test --target "$db"
 dbt run --vars '{amazon_selling_partner__using_catalog_module: false}' --full-refresh --target "$db"
 dbt test --target "$db"
-# dbt run-operation fivetran_utils.drop_schemas_automation --target "$db"
+dbt run-operation fivetran_utils.drop_schemas_automation --target "$db"
