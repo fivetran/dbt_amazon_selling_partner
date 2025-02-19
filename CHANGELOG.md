@@ -16,3 +16,14 @@ The main focus of the package is to transform core Seller Central object tables 
   - Adds column-level testing where applicable. For example, all primary keys are tested for uniqueness and non-null values.
   - Generates a comprehensive data dictionary of your Amazon Selling Partner data through the [dbt docs site](https://fivetran.github.io/dbt_amazon_selling_partner/).
   - Enables you to better analyze your Amazon Seller data by enriching the orders, order items, and listed items with catalog information and sales and current inventory aggregates.
+
+> This package does not apply freshness tests to source data due to the variability of survey cadences.
+
+The following table provides a detailed list of all models materialized within this package by default. 
+> TIP: See more details about these models in the package's [dbt docs site](https://fivetran.github.io/dbt_amazon_selling_partner/#!/overview/amazon_selling_partner).
+
+| **model**                 | **description**                                                                                                    |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| [amazon_selling_partner__orders](https://fivetran.github.io/dbt_amazon_selling_partner/#!/model/model.amazon_selling_partner.amazon_selling_partner__orders)  | Table of orders placed in Amazon, enhanced with payment method information and order item aggregates.    |
+| [amazon_selling_partner__order_items](https://fivetran.github.io/dbt_amazon_selling_partner/#!/model/model.amazon_selling_partner.amazon_selling_partner__order_items)  | Table of single line items of Amazon orders, enhanced with order and catalog item information.   |
+| [amazon_selling_partner__item_inventory](https://fivetran.github.io/dbt_amazon_selling_partner/#!/model/model.amazon_selling_partner.amazon_selling_partner__item_inventory)  | Table containing current inventory levels pertaining to individual Amazon catalog items, enhanced with all product descriptors and identifiers, listing metadata, item dimensions, and sales ranks.   |
