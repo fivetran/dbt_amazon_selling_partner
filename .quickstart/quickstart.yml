@@ -11,9 +11,3 @@ table_variables:
     - item_summary
   amazon_selling_partner__using_fba_module:
     - fba_inventory_summary
-
-destination_configurations:
-  databricks:
-    dispatch:
-      - macro_namespace: dbt_utils
-        search_order: [ 'spark_utils', 'dbt_utils' ]
