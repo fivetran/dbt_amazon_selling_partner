@@ -10,6 +10,7 @@ dispatch:
 
 vars:
   amazon_selling_partner:
+    has_defined_sources: true
     # amazon_selling_partner_schema: asp_integration_tests
 
     amazon_selling_partner_sources:
@@ -17,8 +18,6 @@ vars:
         schema: asp_integration_tests
       - name: source_1
         schema: asp_integration_tests_1
-
-      # has_defined_sources: true
 
 models:
   +schema: "amazon_selling_partner_{{ var('directed_schema','dev') }}"
