@@ -1,5 +1,5 @@
 name: 'amazon_selling_partner_integration_tests'
-version: '0.1.0'
+version: '0.1.1'
 config-version: 2
 
 profile: 'integration_tests'
@@ -36,6 +36,15 @@ seeds:
     order_item:
       +tags: 
         - "orders"
+      +column_types:
+        item_price_amount: "{{ 'string' if target.type in ('bigquery', 'spark', 'databricks') else 'varchar' }}"
+        item_tax_amount: "{{ 'string' if target.type in ('bigquery', 'spark', 'databricks') else 'varchar' }}"
+        shipping_discount_amount: "{{ 'string' if target.type in ('bigquery', 'spark', 'databricks') else 'varchar' }}"
+        shipping_discount_tax_amount: "{{ 'string' if target.type in ('bigquery', 'spark', 'databricks') else 'varchar' }}"
+        shipping_price_amount: "{{ 'string' if target.type in ('bigquery', 'spark', 'databricks') else 'varchar' }}"
+        shipping_tax_amount: "{{ 'string' if target.type in ('bigquery', 'spark', 'databricks') else 'varchar' }}"
+        promotion_discount_amount: "{{ 'string' if target.type in ('bigquery', 'spark', 'databricks') else 'varchar' }}"
+        promotion_discount_tax_amount: "{{ 'string' if target.type in ('bigquery', 'spark', 'databricks') else 'varchar' }}"
     payment_method_detail_item:
       +tags: 
         - "orders"
