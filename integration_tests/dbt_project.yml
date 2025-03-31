@@ -10,6 +10,7 @@ dispatch:
 
 vars:
   amazon_selling_partner:
+    amazon_selling_partner_schema: asp_integration_tests
     # amazon_selling_partner_order_item_identifier: order_item_no_string
 
 models:
