@@ -33,6 +33,7 @@ seeds:
         latest_ship_date: "timestamp"
         earliest_delivery_date: "timestamp"
         earliest_ship_date: "timestamp"
+        order_total_amount: "{{ 'string' if target.type in ('bigquery', 'spark', 'databricks') else 'varchar' }}"
     order_item:
       +tags: 
         - "orders"

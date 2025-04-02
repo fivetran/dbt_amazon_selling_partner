@@ -46,7 +46,7 @@
     {"name": "number_of_items_unshipped", "datatype": dbt.type_int()},
     {"name": "order_channel", "datatype": dbt.type_string()},
     {"name": "order_status", "datatype": dbt.type_string()},
-    {"name": "order_total_amount", "datatype": dbt.type_float()},
+    {"name": "order_total_amount", "datatype": dbt.type_string()},
     {"name": "order_total_currency_code", "datatype": dbt.type_string()},
     {"name": "order_type", "datatype": dbt.type_string()},
     {"name": "payment_method", "datatype": dbt.type_string()},

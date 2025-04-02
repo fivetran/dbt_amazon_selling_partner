@@ -3,8 +3,9 @@
 [PR #3](https://github.com/fivetran/dbt_amazon_selling_partner/pull/3) includes the following updates:
 
 ## Bug Fixes
-- Handles `ORDER_ITEM` `*_amount` fields coming in as strings. Cleans them (removes non-numeric-compatible characters) and safely converts them to numeric fields to avoid downstream data type errors. The affected end models and fields are:
+- Handles `ORDER_ITEM` `*_amount` fields and `ORDERS.order_total_amount` coming in as strings. Cleans them (removes non-numeric-compatible characters) and safely converts them to numeric fields to avoid downstream data type errors. The affected end models and fields are:
   - In the `amazon_selling_partner__orders` end model:
+    - `order_total_amount`
     - `total_item_price_amount`
     - `total_item_tax_amount`
     - `total_shipping_discount_amount`
@@ -14,6 +15,7 @@
     - `total_promotion_discount_amount`
     - `total_promotion_discount_tax_amount`
   - In the `amazon_selling_partner__order_item` end model:
+    - `order_total_amount`
     - `item_price_amount`
     - `item_tax_amount`
     - `shipping_discount_amount`
