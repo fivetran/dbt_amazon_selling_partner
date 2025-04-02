@@ -23,6 +23,10 @@
     - `promotion_discount_amount`
     - `promotion_discount_tax_amount`
 
+## Under the Hood
+- Added the `convert_string_to_numeric` [macro](https://github.com/fivetran/dbt_amazon_selling_partner/tree/main/macros/convert_string_to_numeric.sql) to support the above bug fix.
+- Added consistency data validation tests for the `amazon_selling_partner__orders` and `amazon_selling_partner__order_items` end models.
+
 # dbt_amazon_selling_partner v0.1.0
 This is the initial release of the Amazon Selling Partner dbt package!
 
