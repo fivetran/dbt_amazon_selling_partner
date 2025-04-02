@@ -36,7 +36,7 @@ final as (
         order_type,
         order_status,
         payment_method,
-        order_total_amount,
+        {{ amazon_selling_partner.convert_string_to_numeric('order_total_amount') }} as order_total_amount,
         order_total_currency_code,
         promise_response_due_date,
         last_update_date,
