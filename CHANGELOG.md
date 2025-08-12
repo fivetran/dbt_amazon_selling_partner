@@ -1,3 +1,13 @@
+# dbt_amazon_selling_partner v0.2.0
+[PR #6](https://github.com/fivetran/dbt_amazon_selling_partner/pull/6) includes the following updates:
+
+### dbt Fusion Compatibility Updates
+- Updated package to maintain compatibility with dbt-core versions both before and after v1.10.6, which introduced a breaking change to multi-argument test syntax (e.g., `unique_combination_of_columns`).
+- Temporarily removed unsupported tests to avoid errors and ensure smoother upgrades across different dbt-core versions. These tests will be reintroduced once a safe migration path is available.
+  - Removed all `dbt_utils.unique_combination_of_columns` tests.
+  - Removed all accepted_values tests.
+  - Moved `loaded_at_field: _fivetran_synced` under the `config:` block in `src_amazon_selling_partner.yml`.
+
 # dbt_amazon_selling_partner v0.1.1
 
 [PR #3](https://github.com/fivetran/dbt_amazon_selling_partner/pull/3) includes the following updates:
