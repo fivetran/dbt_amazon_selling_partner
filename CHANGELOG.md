@@ -5,20 +5,11 @@
 - Updated package to maintain compatibility with dbt-core versions both before and after v1.10.6, which introduced a breaking change to multi-argument test syntax (e.g., `unique_combination_of_columns`).
 - Temporarily removed unsupported tests to avoid errors and ensure smoother upgrades across different dbt-core versions. These tests will be reintroduced once a safe migration path is available.
   - Removed all `dbt_utils.unique_combination_of_columns` tests.
-  - Removed all accepted_values tests.
   - Moved `loaded_at_field: _fivetran_synced` under the `config:` block in `src_amazon_selling_partner.yml`.
 
 ### Under the Hood 
-
 - Updated conditions in `.github/workflows/auto-release.yml`.
 - Added `.github/workflows/generate-docs.yml`.
-- Added `+docs: show: False` to `integration_tests/dbt_project.yml`.
-- Migrated `flags` (e.g., `send_anonymous_usage_stats`, `use_colors`) from `sample.profiles.yml` to `integration_tests/dbt_project.yml`.
-- Updated `maintainer_pull_request_template.md` with improved checklist.
-- Refreshed README tag block by standardizing Quickstart-compatible badge set. 
-- Updated Python image version to `3.10.13` in `pipeline.yml`.
-- Added `certifi==2025.1.31` to `requirements.txt` (if missing).
-- Updated `.gitignore` to exclude additional DBT, Python, and system artifacts. 
 
 # dbt_amazon_selling_partner v0.1.1
 
