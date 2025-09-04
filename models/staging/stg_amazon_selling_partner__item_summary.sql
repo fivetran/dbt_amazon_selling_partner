@@ -27,7 +27,7 @@ final as (
         source_relation, 
         _fivetran_synced,
         adult_product as is_adult_product,
-        asin,
+        cast(asin as {{ dbt.type_string() }}) as asin,
         autographed as is_autographed,
         brand,
         classification_id,

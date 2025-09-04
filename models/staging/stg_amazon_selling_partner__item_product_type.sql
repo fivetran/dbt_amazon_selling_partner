@@ -26,7 +26,7 @@ final as (
     select 
         source_relation, 
         _fivetran_synced,
-        asin,
+        cast(asin as {{ dbt.type_string() }}) as asin,
         marketplace_id,
         product_type
     from fields

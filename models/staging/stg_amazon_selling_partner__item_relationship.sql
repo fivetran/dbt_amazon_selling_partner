@@ -26,8 +26,8 @@ final as (
     select 
         source_relation, 
         _fivetran_synced,
-        child_asin,
-        parent_asin,
+        cast(child_asin as {{ dbt.type_string() }}) as child_asin,
+        cast(parent_asin as {{ dbt.type_string() }}) as parent_asin,
         upper(type) as type
     from fields
 )

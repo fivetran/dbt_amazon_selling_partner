@@ -27,7 +27,7 @@ final as (
         source_relation, 
         amazon_order_id,
         order_item_id,
-        asin,
+        cast(asin as {{ dbt.type_string() }}) as asin,
         seller_sku,
         title,
         product_info_detail_number_of_items,
