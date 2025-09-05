@@ -1,5 +1,5 @@
 # dbt_amazon_selling_partner v0.2.1
-[PR #7](https://github.com/fivetran/dbt_amazon_selling_partner/pull/7) includes the following updates:
+[PR #8](https://github.com/fivetran/dbt_amazon_selling_partner/pull/8) includes the following updates:
 
 ## Bug Fixes
 - Explicitly casts asin field as string to avoid downstream data type errors in cases where asin is entirely numeric (such as isbn numbers for books) come in as integers. Affected staging models are:
