@@ -1,3 +1,19 @@
+# dbt_amazon_selling_partner v0.2.1
+[PR #8](https://github.com/fivetran/dbt_amazon_selling_partner/pull/8) includes the following updates:
+
+## Bug Fixes
+- Explicitly casts `asin` field types as strings to avoid downstream data type errors in cases where `asin` values are entirely numeric (such as ISBN numbers for books) and are interpreted in as integers. The affected staging `stg_amazon_selling_partner__*` models are:
+  - `fba_inventory_summary`
+  - `item_classification_sales_rank`
+  - `item_dimension`
+  - `item_display_group_sales_rank`
+  - `item_identifier`
+  - `item_image`
+  - `item_product_type`
+  - `item_relationship` (`child_asin` and `parent_asin` fields)
+  - `item_summary`
+  - `order_item`
+
 # dbt_amazon_selling_partner v0.2.0
 [PR #6](https://github.com/fivetran/dbt_amazon_selling_partner/pull/6) includes the following updates:
 

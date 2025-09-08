@@ -26,7 +26,7 @@ final as (
     select 
         source_relation, 
         _fivetran_id as inventory_summary_id,
-        asin,
+        cast(asin as {{ dbt.type_string() }}) as asin,
         fn_sku,
         seller_sku,
         product_name,
