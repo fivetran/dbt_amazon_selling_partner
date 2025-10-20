@@ -9,7 +9,7 @@
 {% docs buyer_info_buyer_email %} The anonymized email address of the buyer. {% enddocs %}
 {% docs buyer_info_buyer_name %} The buyer name or the recipient name. {% enddocs %}
 {% docs buyer_info_purchase_order_number %} The purchase order (PO) number entered by the buyer at checkout. Only returned for orders where the buyer entered a PO number at checkout. {% enddocs %}
-{% docs buyer_invoice_preference %} The buyer's invoicing preference. Sellers can use this data to issue electronic invoices for orders in Turkey. Possible values = `INDIVUDAL` or `BUSINESS` {% enddocs %}
+{% docs buyer_invoice_preference %} The buyer's invoicing preference. Sellers can use this data to issue electronic invoices for orders in Turkey. Possible values = `INDIVIDUAL` or `BUSINESS` {% enddocs %}
 {% docs buyer_tax_info_buyer_business_address %} Business buyer's address.Only available in the TR marketplace. {% enddocs %}
 {% docs buyer_tax_info_buyer_legal_company_name %} Business buyer's company legal name.	Only available in the TR marketplace. {% enddocs %}
 {% docs buyer_tax_info_buyer_tax_office %} Business buyer's company tax office.	Only available in the TR marketplace. {% enddocs %}
@@ -18,7 +18,7 @@
 
 {% docs default_ship_from_location_address_line_1 %} Street address of the recommended location for the seller to ship the items from. It is calculated at checkout. The seller may or may not choose to ship from this location. {% enddocs %}
 {% docs default_ship_from_location_address_line_2 %} Additional street address information of the recommended location for the seller to ship the items from. It is calculated at checkout. The seller may or may not choose to ship from this location. {% enddocs %}
-{% docs default_ship_from_location_address_line_3 %} Additional street address informatio of the recommended location for the seller to ship the items from. It is calculated at checkout. The seller may or may not choose to ship from this location. {% enddocs %}
+{% docs default_ship_from_location_address_line_3 %} Additional street address information of the recommended location for the seller to ship the items from. It is calculated at checkout. The seller may or may not choose to ship from this location. {% enddocs %}
 {% docs default_ship_from_location_address_type %} Address type of the recommended location for the seller to ship the items from. It is calculated at checkout. The seller may or may not choose to ship from this location. {% enddocs %}
 {% docs default_ship_from_location_city %} City of the recommended location for the seller to ship the items from. It is calculated at checkout. The seller may or may not choose to ship from this location. {% enddocs %}
 {% docs default_ship_from_location_country_code %} Country code (two-character country code, in ISO 3166-1 alpha-2 format.) of the recommended location for the seller to ship the items from. It is calculated at checkout. The seller may or may not choose to ship from this location. {% enddocs %}
@@ -165,7 +165,7 @@ Possible values: New, Mint, Very Good, Good, Acceptable, Poor, Club, OEM, Warran
 Either `IOSS` (Import one stop shop. The item being purchased is not held in the EU for shipment) or `UOSS` (Union one stop shop. The item being purchased is held in the EU for shipment).
 {% enddocs %}
 {% docs ioss_number %} The IOSS number of the marketplace. Sellers shipping to the EU from outside the EU must provide this IOSS number to their carrier when Amazon has collected the VAT on the sale. {% enddocs %}
-{% docs is_gift %} Boolean that tndicates whether the item is a gift. {% enddocs %}
+{% docs is_gift %} Boolean that indicates whether the item is a gift. {% enddocs %}
 {% docs is_transparency %} When true, the ASIN is enrolled in Transparency. The Transparency serial number that you must submit is determined by:
 
 - 1D or 2D Barcode: This has a T logo. Submit either the 29-character alpha-numeric identifier beginning with AZ or ZA, or the 38-character Serialized Global Trade Item Number (SGTIN).
@@ -223,6 +223,7 @@ Either `IOSS` (Import one stop shop. The item being purchased is not held in the
 {% docs item_summary %} Summary details of an Amazon catalog item for the indicated Amazon marketplace. {% enddocs %}
 {% docs source_relation %} The `<database>`.`<schema>` this record came from. {% enddocs %}
 {% docs _fivetran_synced %} UTC timestamp of when the row was last successfully synced. {% enddocs %}
+{% docs _fivetran_deleted %} Boolean indicating whether the item relationship was deleted. Filtered out of the staging model. {% enddocs %}
 {% docs adult_product %} Identifies an Amazon catalog item is intended for an adult audience or is sexual in nature. {% enddocs %}
 {% docs autographed %} Identifies an Amazon catalog item is autographed by a player or celebrity.	 {% enddocs %}
 {% docs brand %} Name of the brand associated with an Amazon catalog item. {% enddocs %}
