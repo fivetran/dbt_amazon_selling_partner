@@ -2,7 +2,7 @@
 [PR #9](https://github.com/fivetran/dbt_amazon_selling_partner/pull/9) includes the following updates:
 
 ## Under the Hood
-- Added `_fivetran_deleted` filter to `stg_amazon_selling_partner__item_relationship` model to exclude soft-deleted records and improve data quality.
+- Added `_fivetran_deleted` filter to `stg_amazon_selling_partner__item_relationship` model to exclude soft-deleted records and improve data quality, corresponding with the same update being added to the [upstream connector.](https://fivetran.com/docs/connectors/applications/amazon-selling-partner/changelog#september2025)
 
 # dbt_amazon_selling_partner v0.2.1
 [PR #8](https://github.com/fivetran/dbt_amazon_selling_partner/pull/8) includes the following updates:

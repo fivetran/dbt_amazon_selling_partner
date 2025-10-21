@@ -30,7 +30,7 @@ final as (
         cast(parent_asin as {{ dbt.type_string() }}) as parent_asin,
         upper(type) as type
     from fields
-    where coalesce(_fivetran_deleted, false) = false
+    where not coalesce(_fivetran_deleted, false)
 )
 
 select *
