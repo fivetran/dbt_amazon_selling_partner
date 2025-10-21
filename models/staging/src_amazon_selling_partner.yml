@@ -492,6 +492,8 @@ sources:
             description: '{{ doc("relationship_type") }}'
           - name: _fivetran_synced
             description: '{{ doc("_fivetran_synced") }}'
+          - name: _fivetran_deleted
+            description: '{{ doc("_fivetran_deleted") }}'
 
       - name: fba_inventory_summary
         identifier: '{{ var("amazon_selling_partner_fba_inventory_summary_identifier", "fba_inventory_summary") }}'
