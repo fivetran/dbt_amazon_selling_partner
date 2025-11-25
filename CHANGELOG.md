@@ -1,3 +1,10 @@
+# dbt_amazon_selling_partner v0.3.0
+
+[PR #10](https://github.com/fivetran/dbt_amazon_selling_partner/pull/10) includes the following updates:
+
+## Features
+  - Increases the required dbt version upper limit to v3.0.0
+
 # dbt_amazon_selling_partner v0.2.2
 [PR #9](https://github.com/fivetran/dbt_amazon_selling_partner/pull/9) includes the following updates:
 
