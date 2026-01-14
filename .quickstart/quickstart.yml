@@ -11,3 +11,24 @@ table_variables:
     - item_summary
   amazon_selling_partner__using_fba_module:
     - fba_inventory_summary
+
+  _fivetran_quickstart_order_item_promotion_id:
+    - order_item_promotion_id
+  _fivetran_quickstart_payment_method_detail_item:
+    - payment_method_detail_item
+  _fivetran_quickstart_item_product_type:
+    - item_product_type
+  _fivetran_quickstart_item_dimension:
+    - item_dimension
+  _fivetran_quickstart_item_image:
+    - item_image
+  _fivetran_quickstart_item_display_group_sales_rank:
+    - item_display_group_sales_rank
+  _fivetran_quickstart_item_classification_sales_rank:
+    - item_classification_sales_rank
+  _fivetran_quickstart_item_identifier:
+    - item_identifier
+  _fivetran_quickstart_item_relationship:
+    - item_relationship
+  _fivetran_quickstart_fba_inventory_researching_quantity_entry:
+    - fba_inventory_researching_quantity_entry
