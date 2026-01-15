@@ -1,4 +1,5 @@
-# Amazon Selling Partner dbt Package ([Docs](https://fivetran.github.io/dbt_amazon_selling_partner/))
+<!--section="amazon-selling-partner_transformation_model"-->
+# Amazon Selling Partner dbt Package
 
 <p align="left">
     <a alt="License"
@@ -11,60 +12,73 @@
     <a alt="PRs">
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
     <a alt="Fivetran Quickstart Compatible"
-        href="https://fivetran.com/docs/transformations/dbt/quickstart">
+        href="https://fivetran.com/docs/transformations/data-models/quickstart-management#quickstartmanagement">
         <img src="https://img.shields.io/badge/Fivetran_Quickstart_Compatible%3F-yes-green.svg" /></a>
 </p>
 
-## What does this dbt package do?
+This dbt package transforms data from Fivetran's Amazon Selling Partner connector into analytics-ready tables.
 
-This package models Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-selling-partner). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/amazon-selling-partner#schemainformation), specifically the **ORDERS**, **CATALOG**, and **FBA** Seller Central modules.
+## Resources
+
+- Number of materialized models¹: 31
+- Connector documentation
+  - [Amazon Selling Partner connector documentation](https://fivetran.com/docs/connectors/applications/amazon-selling-partner)
+  - [Amazon Selling Partner ERD](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#schemainformation)
+- dbt package documentation
+  - [GitHub repository](https://github.com/fivetran/dbt_amazon_selling_partner)
+  - [dbt Docs](https://fivetran.github.io/dbt_amazon_selling_partner/#!/overview)
+  - [DAG](https://fivetran.github.io/dbt_amazon_selling_partner/#!/overview?g_v=1)
+  - [Changelog](https://github.com/fivetran/dbt_amazon_selling_partner/blob/main/CHANGELOG.md)
+
+## What does this dbt package do?
+This package enables you to transform core Seller Central object tables into analytics-ready models and enrich orders, order items, and listed items with catalog information. It creates enriched models with metrics focused on sales aggregates and current inventory levels.
 
 > This package is currently not compatible with any [Vendor Central modules](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#vendormodules). If you would like to see Vendor Central compatibility (or the use of any other [Seller Central modules](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#sellermodules)), please open up a [Feature Request](https://github.com/fivetran/dbt_amazon_selling_partner/issues/new?template=feature-request.yml).
 
-The main focus of the package is to transform core Seller Central object tables into analytics-ready models, including:
-  - Materializes [Amazon Selling Partner staging tables](https://fivetran.github.io/dbt_amazon_selling_partner/#!/overview/amazon_selling_partner_source/models/?g_v=1) which leverage data in the format described by the **ORDERS**, **CATALOG**, and **FBA** Seller Central modules from [this ERD](https://fivetran.com/docs/applications/amazon-selling-partner/#schemainformation). These staging tables clean, test, and prepare your Amazon Selling Partner data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-selling-partner) for analysis by doing the following:
-  - Names columns for consistency across all packages and for easier analysis
-      - Primary keys are renamed from `_fivetran_id` to `<table name>_id`.
-      - Foreign key names explicitly map onto their related tables (ie `owner_id` -> `owner_user_id`).
-      - Datetime fields are renamed to `<event happened>_at`.
-  - Adds column-level testing where applicable. For example, all primary keys are tested for uniqueness and non-null values.
-  - Generates a comprehensive data dictionary of your Amazon Selling Partner data through the [dbt docs site](https://fivetran.github.io/dbt_amazon_selling_partner/).
-  - Enables you to better analyze your Amazon Seller data by enriching the orders, order items, and listed items with catalog information and sales and current inventory aggregates.
+### Output schema
+Final output tables are generated in the following target schema:
 
-> This package does not apply freshness tests to source data due to the variability of survey cadences.
+```
+<your_database>.<connector/schema_name>_amazon_selling_partner
+```
 
-<!--section="amazon_selling_partner_transformation_model"-->
-The following table provides a detailed list of all models materialized within this package by default. 
-> TIP: See more details about these models in the package's [dbt docs site](https://fivetran.github.io/dbt_amazon_selling_partner/#!/overview/amazon_selling_partner).
+### Final output tables
 
-| **model**                 | **description**                                                                                                    |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| [amazon_selling_partner__orders](https://fivetran.github.io/dbt_amazon_selling_partner/#!/model/model.amazon_selling_partner.amazon_selling_partner__orders)  | Table of orders placed in Amazon, enhanced with payment method information and order item aggregates.    |
-| [amazon_selling_partner__order_items](https://fivetran.github.io/dbt_amazon_selling_partner/#!/model/model.amazon_selling_partner.amazon_selling_partner__order_items)  | Table of single line items of Amazon orders, enhanced with order and catalog item information.   |
-| [amazon_selling_partner__item_inventory](https://fivetran.github.io/dbt_amazon_selling_partner/#!/model/model.amazon_selling_partner.amazon_selling_partner__item_inventory)  | Table containing current inventory levels pertaining to individual Amazon catalog items, enhanced with all product descriptors and identifiers, listing metadata, item dimensions, and sales ranks.   |
+By default, this package materializes the following final tables:
 
-### Materialized Models
-Each Quickstart transformation job run materializes 31 models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
-<!--section-end-->
+| Table | Description |
+| :---- | :---- |
+| [amazon_selling_partner__orders](https://fivetran.github.io/dbt_amazon_selling_partner/#!/model/model.amazon_selling_partner.amazon_selling_partner__orders) | Tracks all orders placed on Amazon with payment methods, order totals, and item counts to analyze sales performance, order trends, and revenue patterns for your seller account. <br></br>**Example Analytics Questions:**<ul><li>What are daily or monthly sales trends by order volume and total revenue?</li><li>Which payment methods are customers using most frequently for their purchases?</li><li>How do order values and fulfillment channels vary across different marketplaces?</li></ul>|
+| [amazon_selling_partner__order_items](https://fivetran.github.io/dbt_amazon_selling_partner/#!/model/model.amazon_selling_partner.amazon_selling_partner__order_items) | Provides line-item details for every product sold on Amazon, enriched with catalog information including ASIN, SKU, pricing, and quantities to analyze product performance at the item level. <br></br>**Example Analytics Questions:**<ul><li>Which products (by ASIN or SKU) generate the highest sales volume and revenue?</li><li>How do item prices, quantities ordered, and quantities shipped vary across orders?</li><li>What is the average order item value and discount rate by product?</li></ul>|
+| [amazon_selling_partner__item_inventory](https://fivetran.github.io/dbt_amazon_selling_partner/#!/model/model.amazon_selling_partner.amazon_selling_partner__item_inventory) | Shows current inventory levels for all catalog items with product details, dimensions, and sales rankings to manage stock levels and optimize inventory across your Amazon catalog. <br></br>**Example Analytics Questions:**<ul><li>Which products have low inventory levels that need restocking soon?</li><li>How do current inventory levels correlate with sales rank trends?</li><li>What products consume the most warehouse space based on item dimensions?</li></ul>|
 
-## How do I use the dbt package?
+¹ Each Quickstart transformation job run materializes these models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
+---
 
-### Step 1: Prerequisites
+## Prerequisites
 To use this dbt package, you must have the following:
 
 - At least one Fivetran Amazon Selling Partner connection syncing data into your destination.
 - A **BigQuery**, **Snowflake**, **Redshift**, **Databricks**, or **PostgreSQL** destination.
 
-### Step 2: Install the package
+## How do I use the dbt package?
+You can either add this dbt package in the Fivetran dashboard or import it into your dbt project:
+
+- To add the package in the Fivetran dashboard, follow our [Quickstart guide](https://fivetran.com/docs/transformations/data-models/quickstart-management).
+- To add the package to your dbt project, follow the setup instructions in the dbt package's [README file](https://github.com/fivetran/dbt_amazon_selling_partner/blob/main/README.md#how-do-i-use-the-dbt-package) to use this package.
+
+<!--section-end-->
+
+### Install the package
 Include the following Amazon Selling Partner package version in your `packages.yml` file:
 > TIP: Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 ```yml
 packages:
   - package: fivetran/amazon_selling_partner
-    version: [">=0.3.0", "<0.4.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=0.4.0", "<0.5.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
-### Step 3: Define database and schema variables
+### Define database and schema variables
 #### Single connection
 By default, this package runs using your destination and the `amazon_selling_partner` schema. If this is not where your Amazon Selling Partner data is (for example, if your Amazon Selling Partner schema is named `amazon_selling_partner_fivetran`), add the following configuration to your root `dbt_project.yml` file:
 
@@ -134,7 +148,7 @@ vars:
 
 </details>
 
-### Step 4: Enable/Disable models for unused modules
+### Enable/Disable models for unused modules
 
 By default, this package transforms tables from the **ORDERS**, **CATALOG**, and **FBA** [Seller Central modules](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#sellermodules) described in this [ERD](https://fivetran.com/docs/connectors/applications/amazon-selling-partner#schemainformation). The package currently uses the following tables from each module:
 
@@ -175,7 +189,7 @@ For users running the package through Fivetran [Quickstart](https://fivetran.com
 
 > If a non-core table is missing, the package will create an empty staging model with all the proper columns and data types so as to not disrupt downstream transformations.
 
-### (Optional) Step 5: Additional configurations
+### (Optional) Additional configurations
 
 #### Changing the Build Schema
 By default this package will build the Amazon Selling Partner staging models within a schema titled (<target_schema> + `_stg_amazon_selling_partner`) and the Amazon Selling Partner final models within a schema titled (<target_schema> + `_amazon_selling_partner`) in your target database. If this is not where you want your modeled qualtrics data to be written to, add the following configuration to your `dbt_project.yml` file:
@@ -203,11 +217,11 @@ vars:
 ```
 </details>
 
-### (Optional) Step 6: Orchestrate your models with Fivetran Transformations for dbt Core™
+### (Optional) Orchestrate your models with Fivetran Transformations for dbt Core™
 <details><summary>Expand for details</summary>
 <br>
 
-Fivetran offers the ability for you to orchestrate your dbt project through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt). Learn how to set up your project for orchestration through Fivetran in our [Transformations for dbt Core setup guides](https://fivetran.com/docs/transformations/dbt#setupguide).
+Fivetran offers the ability for you to orchestrate your dbt project through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt#transformationsfordbtcore). Learn how to set up your project for orchestration through Fivetran in our [Transformations for dbt Core setup guides](https://fivetran.com/docs/transformations/dbt/setup-guide#transformationsfordbtcoresetupguide).
 </details>
 
 ## Does this package have dependencies?
@@ -223,14 +237,18 @@ packages:
       version: [">=1.0.0", "<2.0.0"]
 ```
 
+<!--section="amazon-selling-partner_maintenance"-->
 ## How is this package maintained and can I contribute?
+
 ### Package Maintenance
-The Fivetran team maintaining this package _only_ maintains the latest version of the package. We highly recommend you stay consistent with the [latest version](https://hub.getdbt.com/fivetran/amazon_selling_partner/latest/) of the package and refer to the [CHANGELOG](https://github.com/fivetran/dbt_amazon_selling_partner/blob/main/CHANGELOG.md) and release notes for more information on changes across versions.
+The Fivetran team maintaining this package only maintains the [latest version](https://hub.getdbt.com/fivetran/amazon_selling_partner/latest/) of the package. We highly recommend you stay consistent with the latest version of the package and refer to the [CHANGELOG](https://github.com/fivetran/dbt_amazon_selling_partner/blob/main/CHANGELOG.md) and release notes for more information on changes across versions.
 
 ### Contributions
 A small team of analytics engineers at Fivetran develops these dbt packages. However, the packages are made better by community contributions.
 
-We highly encourage and welcome contributions to this package. Check out [this dbt Discourse article](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) on the best workflow for contributing to a package.
+We highly encourage and welcome contributions to this package. Learn how to contribute to a package in dbt's [Contributing to an external dbt package article](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657).
+
+<!--section-end-->
 
 ## Are there any resources available?
 - If you have questions or want to reach out for help, refer to the [GitHub Issue](https://github.com/fivetran/dbt_amazon_selling_partner/issues/new/choose) section to find the right avenue of support for you.
