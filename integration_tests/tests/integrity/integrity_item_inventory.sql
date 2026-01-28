@@ -28,7 +28,7 @@ source as (
         sum(coalesce(pending_customer_order_quantity, 0)) as pending_customer_order_quantity,
         sum(coalesce(pending_transshipment_quantity, 0)) as pending_transshipment_quantity,
         sum(coalesce(fc_processing_quantity, 0)) as fc_processing_quantity,
-        sum(coalesce(inblound_shipped_quantity, 0)) as inblound_shipped_quantity,
+        sum(coalesce(inbound_shipped_quantity, 0)) as inbound_shipped_quantity,
         sum(coalesce(inbound_receiving_quantity, 0)) as inbound_receiving_quantity,
         sum(coalesce(inbound_working_quantity, 0)) as inbound_working_quantity,
         sum(coalesce(warehouse_damaged_quantity, 0)) as warehouse_damaged_quantity,
@@ -56,7 +56,7 @@ model as (
         sum(coalesce(pending_customer_order_quantity, 0)) as pending_customer_order_quantity,
         sum(coalesce(pending_transshipment_quantity, 0)) as pending_transshipment_quantity,
         sum(coalesce(fc_processing_quantity, 0)) as fc_processing_quantity,
-        sum(coalesce(inblound_shipped_quantity, 0)) as inblound_shipped_quantity,
+        sum(coalesce(inbound_shipped_quantity, 0)) as inbound_shipped_quantity,
         sum(coalesce(inbound_receiving_quantity, 0)) as inbound_receiving_quantity,
         sum(coalesce(inbound_working_quantity, 0)) as inbound_working_quantity,
         sum(coalesce(warehouse_damaged_quantity, 0)) as warehouse_damaged_quantity,
@@ -90,8 +90,8 @@ select
     source.pending_transshipment_quantity as source_pending_transshipment_quantity,
     model.fc_processing_quantity as model_fc_processing_quantity,
     source.fc_processing_quantity as source_fc_processing_quantity,
-    model.inblound_shipped_quantity as model_inblound_shipped_quantity,
-    source.inblound_shipped_quantity as source_inblound_shipped_quantity,
+    model.inbound_shipped_quantity as model_inbound_shipped_quantity,
+    source.inbound_shipped_quantity as source_inbound_shipped_quantity,
     model.inbound_receiving_quantity as model_inbound_receiving_quantity,
     source.inbound_receiving_quantity as source_inbound_receiving_quantity,
     model.inbound_working_quantity as model_inbound_working_quantity,
@@ -122,7 +122,7 @@ where
     model.pending_customer_order_quantity != source.pending_customer_order_quantity or
     model.pending_transshipment_quantity != source.pending_transshipment_quantity or
     model.fc_processing_quantity != source.fc_processing_quantity or
-    model.inblound_shipped_quantity != source.inblound_shipped_quantity or
+    model.inbound_shipped_quantity != source.inbound_shipped_quantity or
     model.inbound_receiving_quantity != source.inbound_receiving_quantity or
     model.inbound_working_quantity != source.inbound_working_quantity or
     model.warehouse_damaged_quantity != source.warehouse_damaged_quantity or

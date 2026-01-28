@@ -14,7 +14,7 @@
     {"name": "fullfillable_quantity", "datatype": dbt.type_int()},
     {"name": "granularity_id", "datatype": dbt.type_string()},
     {"name": "granularity_type", "datatype": dbt.type_string()},
-    {"name": "inblound_shipped_quantity", "datatype": dbt.type_int()},
+    {"name": "inbound_shipped_quantity", "datatype": dbt.type_int()},
     {"name": "inbound_receiving_quantity", "datatype": dbt.type_int()},
     {"name": "inbound_working_quantity", "datatype": dbt.type_int()},
     {"name": "last_updated_time", "datatype": dbt.type_timestamp()},

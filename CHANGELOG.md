@@ -1,3 +1,17 @@
+# dbt_amazon_selling_partner v0.4.1
+
+[PR #12](https://github.com/fivetran/dbt_amazon_selling_partner/pull/12) includes the following updates:
+
+## Schema/Data Change
+**1 total change • 1 possible breaking change**
+
+| Data Model(s) | Change type | Old | New | Notes |
+| ------------- | ----------- | ----| --- | ----- |
+| `amazon_selling_partner__item_inventory` | Column rename | `inblound_shipped_quantity` | `inbound_shipped_quantity` | The typo column `inblound_shipped_quantity` will be retained for 30 days for backwards compatibility, after which it will be officially sunset in favor of `inbound_shipped_quantity`. |
+
+## Under the Hood
+- Removes unnused seed files.
+
 # dbt_amazon_selling_partner v0.4.0
 
 [PR #11](https://github.com/fivetran/dbt_amazon_selling_partner/pull/11) includes the following updates:
