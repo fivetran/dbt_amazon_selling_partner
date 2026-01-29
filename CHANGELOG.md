@@ -15,6 +15,7 @@
 ## Under the Hood
 - Removes unused seed files.
 - Creates consistency validation test for `amazon_selling_partner__item_inventory`.
+- Adds `identifier` variables for seed files.
 
 # dbt_amazon_selling_partner v0.4.0
 
