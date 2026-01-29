@@ -1,5 +1,5 @@
 name: 'amazon_selling_partner_integration_tests'
-version: '0.4.0'
+version: '0.4.1'
 config-version: 2
 
 profile: 'integration_tests'
@@ -10,7 +10,7 @@ dispatch:
 
 vars:
   amazon_selling_partner:
-    amazon_selling_partner_schema: zz_dbt_jamie # asp_integration_tests
+    amazon_selling_partner_schema: asp_integration_tests
     amazon_selling_partner_orders_identifier: "orders"
     amazon_selling_partner_order_item_identifier: "order_item"
     amazon_selling_partner_order_item_promotion_id_identifier: "order_item_promotion_id"

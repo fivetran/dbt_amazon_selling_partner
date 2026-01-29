@@ -10,7 +10,7 @@
 | `amazon_selling_partner__item_inventory`<br>`stg_amazon_selling_partner__fba_inventory_summary` | Column rename | `inblound_shipped_quantity` | `inbound_shipped_quantity` | The typo column `inblound_shipped_quantity` will be retained until March 2026 for backwards compatibility, after which it will be officially sunset in favor of `inbound_shipped_quantity`. |
 
 ## Under the Hood
-- Removes unnused seed files.
+- Removes unused seed files.
 - Creates consistency validation test for `amazon_selling_partner__item_inventory`.
 
 # dbt_amazon_selling_partner v0.4.0
