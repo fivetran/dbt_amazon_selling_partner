@@ -525,10 +525,10 @@ sources:
             description: '{{ doc("fc_processing_quantity") }}'
           - name: fn_sku
             description: '{{ doc("fn_sku") }}'
-          - name: fullfillable_quantity
-            description: '{{ doc("fullfillable_quantity") }}'
-          - name: inblound_shipped_quantity
-            description: '{{ doc("inblound_shipped_quantity") }}'
+          - name: fulfillable_quantity
+            description: '{{ doc("fulfillable_quantity") }}'
+          - name: inbound_shipped_quantity
+            description: '{{ doc("inbound_shipped_quantity") }}'
           - name: inbound_receiving_quantity
             description: '{{ doc("inbound_receiving_quantity") }}'
           - name: inbound_working_quantity

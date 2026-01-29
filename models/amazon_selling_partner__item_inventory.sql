@@ -109,12 +109,14 @@ joined as (
         fba_inventory_summary.total_quantity,
         fba_inventory_summary.total_researching_quantity,
         fba_inventory_summary.total_reserved_quantity,
-        fba_inventory_summary.fullfillable_quantity,
+        fba_inventory_summary.fulfillable_quantity,
+        fba_inventory_summary.fullfillable_quantity, -- Typo kept for backward compatibility. Will be removed in March 2026
         fba_inventory_summary.total_unfulfillable_quantity,
         fba_inventory_summary.pending_customer_order_quantity,
         fba_inventory_summary.pending_transshipment_quantity,
         fba_inventory_summary.fc_processing_quantity,
-        fba_inventory_summary.inblound_shipped_quantity,
+        fba_inventory_summary.inblound_shipped_quantity, -- Typo kept for backward compatibility. Will be removed in March 2026
+        fba_inventory_summary.inbound_shipped_quantity,
         fba_inventory_summary.inbound_receiving_quantity,
         fba_inventory_summary.inbound_working_quantity,
         fba_inventory_summary.warehouse_damaged_quantity,

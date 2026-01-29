@@ -35,12 +35,14 @@ final as (
         total_quantity,
         total_researching_quantity,
         total_reserved_quantity,
-        fullfillable_quantity,
+        fulfillable_quantity,
+        fulfillable_quantity as fullfillable_quantity, -- Typo kept for backward compatibility. Will be removed in March 2026
         total_unfulfillable_quantity,
         pending_customer_order_quantity,
         pending_transshipment_quantity,
         fc_processing_quantity,
-        inblound_shipped_quantity,
+        inbound_shipped_quantity,
+        inbound_shipped_quantity as inblound_shipped_quantity, -- Typo kept for backward compatibility. Will be removed in March 2026
         inbound_receiving_quantity,
         inbound_working_quantity,
         warehouse_damaged_quantity,

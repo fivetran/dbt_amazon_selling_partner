@@ -1,5 +1,5 @@
 name: 'amazon_selling_partner_integration_tests'
-version: '0.4.0'
+version: '0.4.1'
 config-version: 2
 
 profile: 'integration_tests'
@@ -11,6 +11,20 @@ dispatch:
 vars:
   amazon_selling_partner:
     amazon_selling_partner_schema: asp_integration_tests
+    amazon_selling_partner_orders_identifier: "orders"
+    amazon_selling_partner_order_item_identifier: "order_item"
+    amazon_selling_partner_order_item_promotion_id_identifier: "order_item_promotion_id"
+    amazon_selling_partner_payment_method_detail_item_identifier: "payment_method_detail_item"
+    amazon_selling_partner_item_summary_identifier: "item_summary"
+    amazon_selling_partner_item_product_type_identifier: "item_product_type"
+    amazon_selling_partner_item_dimension_identifier: "item_dimension"
+    amazon_selling_partner_item_image_identifier: "item_image"
+    amazon_selling_partner_item_display_group_sales_rank_identifier: "item_display_group_sales_rank"
+    amazon_selling_partner_item_classification_sales_rank_identifier: "item_classification_sales_rank"
+    amazon_selling_partner_item_identifier_identifier: "item_identifier"
+    amazon_selling_partner_item_relationship_identifier: "item_relationship"
+    amazon_selling_partner_fba_inventory_summary_identifier: "fba_inventory_summary"
+    amazon_selling_partner_fba_inventory_researching_quantity_entry_identifier: "fba_inventory_researching_quantity_entry"
 
 models:
   +schema: "amazon_selling_partner_{{ var('directed_schema','dev') }}"

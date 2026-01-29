@@ -416,8 +416,10 @@ models:
         description: "{{ doc('total_researching_quantity') }}"
       - name: total_reserved_quantity
         description: "{{ doc('total_reserved_quantity') }}"
+      - name: fulfillable_quantity
+        description: "{{ doc('fulfillable_quantity') }}"
       - name: fullfillable_quantity
-        description: "{{ doc('fullfillable_quantity') }}"
+        description: "[DEPRECATED] Typo version of `fulfillable_quantity` kept for backward compatibility. Will be removed in March 2026"
       - name: total_unfulfillable_quantity
         description: "{{ doc('total_unfulfillable_quantity') }}"
       - name: pending_customer_order_quantity
@@ -427,7 +429,9 @@ models:
       - name: fc_processing_quantity
         description: "{{ doc('fc_processing_quantity') }}"
       - name: inblound_shipped_quantity
-        description: "{{ doc('inblound_shipped_quantity') }}"
+        description: "[DEPRECATED] Typo version of `inbound_shipped_quantity` kept for backward compatibility. Will be removed in March 2026"
+      - name: inbound_shipped_quantity
+        description: "{{ doc('inbound_shipped_quantity') }}"
       - name: inbound_receiving_quantity
         description: "{{ doc('inbound_receiving_quantity') }}"
       - name: inbound_working_quantity
