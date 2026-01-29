@@ -300,7 +300,7 @@ Type of relationship. [Possible values](https://developer-docs.amazon.com/sp-api
 {% docs expired_quantity %} The number of units in expired disposition.	 {% enddocs %}
 {% docs fc_processing_quantity %} The number of units that have been sidelined at the fulfillment center for additional processing. {% enddocs %}
 {% docs fn_sku %} Amazon's fulfillment network SKU identifier. {% enddocs %}
-{% docs fullfillable_quantity %} The item quantity that can be picked, packed, and shipped.	 {% enddocs %}
+{% docs fulfillable_quantity %} The item quantity that can be picked, packed, and shipped.	 {% enddocs %}
 {% docs inbound_shipped_quantity %} The number of units in an inbound shipment that you have notified Amazon about and have provided a tracking number. {% enddocs %}
 {% docs inbound_receiving_quantity %} The number of units that have not yet been received at an Amazon fulfillment center for processing, but are part of an inbound shipment with some units that have already been received and processed.	 {% enddocs %}
 {% docs inbound_working_quantity %} The number of units in an inbound shipment for which you have notified Amazon.	 {% enddocs %}

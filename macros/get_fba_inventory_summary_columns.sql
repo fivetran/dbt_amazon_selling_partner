@@ -11,7 +11,7 @@
     {"name": "expired_quantity", "datatype": dbt.type_int()},
     {"name": "fc_processing_quantity", "datatype": dbt.type_int()},
     {"name": "fn_sku", "datatype": dbt.type_string()},
-    {"name": "fullfillable_quantity", "datatype": dbt.type_int()},
+    {"name": "fulfillable_quantity", "datatype": dbt.type_int()},
     {"name": "granularity_id", "datatype": dbt.type_string()},
     {"name": "granularity_type", "datatype": dbt.type_string()},
     {"name": "inbound_shipped_quantity", "datatype": dbt.type_int()},

@@ -3,11 +3,14 @@
 [PR #12](https://github.com/fivetran/dbt_amazon_selling_partner/pull/12) includes the following updates:
 
 ## Schema/Data Change
-**1 total change • 1 possible breaking change**
+**4 total changes • 2 possible breaking changes**
 
 | Data Model(s) | Change type | Old | New | Notes |
 | ------------- | ----------- | ----| --- | ----- |
-| `amazon_selling_partner__item_inventory`<br>`stg_amazon_selling_partner__fba_inventory_summary` | Column rename | `inblound_shipped_quantity` | `inbound_shipped_quantity` | The typo column `inblound_shipped_quantity` will be retained until March 2026 for backwards compatibility, after which it will be officially sunset in favor of `inbound_shipped_quantity`. |
+| `amazon_selling_partner__item_inventory`<br>`stg_amazon_selling_partner__fba_inventory_summary` | New Column | | `inbound_shipped_quantity` | Fixes the spelling of the `inblound_shipped_quantity` column. |
+| `amazon_selling_partner__item_inventory`<br>`stg_amazon_selling_partner__fba_inventory_summary` | Deprecated Column | `inblound_shipped_quantity` | | The typo column `inblound_shipped_quantity` will be retained until March 2026 for backwards compatibility, after which it will be officially sunset in favor of `inbound_shipped_quantity`. |
+| `amazon_selling_partner__item_inventory`<br>`stg_amazon_selling_partner__fba_inventory_summary` | New Column | | `fulfillable_quantity` | Fixes the spelling of the `fullfillable_quantity` column. |
+| `amazon_selling_partner__item_inventory`<br>`stg_amazon_selling_partner__fba_inventory_summary` | Deprecated Column | `fullfillable_quantity` | | The typo column `fullfillable_quantity` will be retained until March 2026 for backwards compatibility, after which it will be officially sunset in favor of `fulfillable_quantity`. |
 
 ## Under the Hood
 - Removes unused seed files.

@@ -23,7 +23,7 @@ source as (
         sum(coalesce(total_quantity, 0)) as total_quantity,
         sum(coalesce(total_researching_quantity, 0)) as total_researching_quantity,
         sum(coalesce(total_reserved_quantity, 0)) as total_reserved_quantity,
-        sum(coalesce(fullfillable_quantity, 0)) as fullfillable_quantity,
+        sum(coalesce(fulfillable_quantity, 0)) as fulfillable_quantity,
         sum(coalesce(total_unfulfillable_quantity, 0)) as total_unfulfillable_quantity,
         sum(coalesce(pending_customer_order_quantity, 0)) as pending_customer_order_quantity,
         sum(coalesce(pending_transshipment_quantity, 0)) as pending_transshipment_quantity,
@@ -51,7 +51,7 @@ model as (
         sum(coalesce(total_quantity, 0)) as total_quantity,
         sum(coalesce(total_researching_quantity, 0)) as total_researching_quantity,
         sum(coalesce(total_reserved_quantity, 0)) as total_reserved_quantity,
-        sum(coalesce(fullfillable_quantity, 0)) as fullfillable_quantity,
+        sum(coalesce(fulfillable_quantity, 0)) as fulfillable_quantity,
         sum(coalesce(total_unfulfillable_quantity, 0)) as total_unfulfillable_quantity,
         sum(coalesce(pending_customer_order_quantity, 0)) as pending_customer_order_quantity,
         sum(coalesce(pending_transshipment_quantity, 0)) as pending_transshipment_quantity,
@@ -80,8 +80,8 @@ select
     source.total_researching_quantity as source_total_researching_quantity,
     model.total_reserved_quantity as model_total_reserved_quantity,
     source.total_reserved_quantity as source_total_reserved_quantity,
-    model.fullfillable_quantity as model_fullfillable_quantity,
-    source.fullfillable_quantity as source_fullfillable_quantity,
+    model.fulfillable_quantity as model_fulfillable_quantity,
+    source.fulfillable_quantity as source_fulfillable_quantity,
     model.total_unfulfillable_quantity as model_total_unfulfillable_quantity,
     source.total_unfulfillable_quantity as source_total_unfulfillable_quantity,
     model.pending_customer_order_quantity as model_pending_customer_order_quantity,
@@ -117,7 +117,7 @@ where
     model.total_quantity != source.total_quantity or
     model.total_researching_quantity != source.total_researching_quantity or
     model.total_reserved_quantity != source.total_reserved_quantity or
-    model.fullfillable_quantity != source.fullfillable_quantity or
+    model.fulfillable_quantity != source.fulfillable_quantity or
     model.total_unfulfillable_quantity != source.total_unfulfillable_quantity or
     model.pending_customer_order_quantity != source.pending_customer_order_quantity or
     model.pending_transshipment_quantity != source.pending_transshipment_quantity or
