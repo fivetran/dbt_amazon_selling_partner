@@ -249,7 +249,7 @@ Either `IOSS` (Import one stop shop. The item being purchased is not held in the
 A sub-payment method for a COD order. Possible values: COD (Cash on delivery), GC (Gift card), CVS (Convenience Store), PointsAccount (Amazon Points), Invoice, or Other.
 {% enddocs %}
 {% docs methods %}
-Comma-separated list of payment methods used for an order. Possible individual values: COD (Cash on delivery), GC (Gift card), CVS (Convenience Store), PointsAccount (Amazon Points), Invoice, or Other.
+Comma-separated list of payment methods used for an order. Each value may be COD (Cash on delivery) or GC (Gift card) or CVS (Convenience Store) or PointsAccount (Amazon Points) or Invoice or Other.
 {% enddocs %}
 {% docs payment_method_detail_item %} A list of payment methods for the order. {% enddocs %}
 
@@ -317,10 +317,10 @@ Type of relationship. [Possible values](https://developer-docs.amazon.com/sp-api
 {% docs fba_inventory_researching_quantity_entry %} The misplaced or warehouse damaged inventory that is actively being confirmed at Amazon fulfillment centers. {% enddocs %}
 {% docs name %} The duration of the research. [Possible values](https://developer-docs.amazon.com/sp-api/docs/fbainventory-api-v1-reference#name) are `researchingQuantityInShortTerm` (Short term for 1-10 days), `researchingQuantityInMidTerm` (Mid term for 11-20 days), and `researchingQuantityInLongTerm` (Long term for 21 days or longer) {% enddocs %}
 {% docs quantity %} The number of units. {% enddocs %}
-{% docs count_promotions_used %} The count of distinct promotions used. {% enddocs %}
+{% docs count_promotions_used %} The count of unique promotions used. {% enddocs %}
 
-{% docs parent_variation_asin %} Identifier (ASIN) of the item's variation parent. {% enddocs %}
-{% docs parent_package_container_asin %} Identifier (ASIN) of the item's package container parent. {% enddocs %}
+{% docs parent_variation_asin %} Identifier of the item's variation parent. {% enddocs %}
+{% docs parent_package_container_asin %} Identifier of the item's package container parent. {% enddocs %}
 {% docs sku %} Stock Keeping Unit, a seller-specified identifier for an Amazon listed item. {% enddocs %}
 {% docs ean %} European Article Number of the catalog item. {% enddocs %}
 {% docs gtin %} Global Trade Item Number of the catalog item. {% enddocs %}
