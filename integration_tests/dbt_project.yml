@@ -27,6 +27,9 @@ vars:
     amazon_selling_partner_fba_inventory_researching_quantity_entry_identifier: "fba_inventory_researching_quantity_entry"
 
 models:
+  +persist_docs:
+    relation: true
+    columns: "{{ false if target.type in ('databricks') else true }}"
   +schema: "amazon_selling_partner_{{ var('directed_schema','dev') }}"
 
 seeds:
