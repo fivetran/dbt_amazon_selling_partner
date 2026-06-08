@@ -95,7 +95,6 @@ vars:
         name: connection_2_source_name
 ```
 
-> Previous versions of this package employed two separate, mutually exclusive variables for unioning: `amazon_selling_partner_union_schemas` and `amazon_selling_partner_union_databases`. While these variables are still supported, `amazon_selling_partner_sources` is the recommended variable to configure.
 
 #### Optional: Incorporate unioned sources into DAG
 
