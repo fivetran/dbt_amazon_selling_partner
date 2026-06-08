@@ -16,7 +16,7 @@ fields as (
             )
         }}
         
-        {{ amazon_selling_partner_apply_source_relation() }}
+        {{ fivetran_utils.apply_source_relation() }}
         
     from base
 ),
