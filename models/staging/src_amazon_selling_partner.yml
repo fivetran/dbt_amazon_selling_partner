@@ -374,7 +374,7 @@ sources:
         identifier: '{{ var("amazon_selling_partner_item_summary_identifier", "item_summary") }}'
         description: '{{ doc("item_summary") }}'
         config:
-          enabled: "{{ var('amazon_selling_partner__using_catalog_module', true) and var('amazon_selling_partner_sources', []) == []}}"
+          enabled: "{{ var('amazon_selling_partner__using_catalog_module', true) and var('amazon_selling_partner_sources', []) == [] }}"
         columns:
           - name: asin
             description: '{{ doc("asin") }}'

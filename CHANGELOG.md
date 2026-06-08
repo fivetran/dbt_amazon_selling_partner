@@ -1,3 +1,11 @@
+# dbt_amazon_selling_partner v0.5.0
+
+[PR #16](https://github.com/fivetran/dbt_amazon_selling_partner/pull/16) includes the following updates:
+
+## Under the Hood
+- Migrates the `union_connections`, `apply_source_relation`, and `partition_by_source_relation` macros to the `dbt_fivetran_utils` package.
+- Adds the `fivetran_using_source_casing` variable for case-sensitive destination support. When enabled, downstream transformations respect source casing to ensure consistent results. See the [Additional Configurations](https://github.com/fivetran/dbt_amazon_selling_partner/#source-casing-for-case-sensitive-destinations) section of the README for details.
+
 # dbt_amazon_selling_partner v0.4.1
 
 [PR #12](https://github.com/fivetran/dbt_amazon_selling_partner/pull/12) includes the following updates:
