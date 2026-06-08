@@ -3,7 +3,7 @@
 
 {{
     fivetran_utils.union_connections(
-        connection_dictionary=var('amazon_selling_partner_sources'), 
+        connection_dictionary='amazon_selling_partner_sources', 
         single_source_name='amazon_selling_partner', 
         single_table_name='item_product_type'
     )
