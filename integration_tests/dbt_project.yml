@@ -1,5 +1,5 @@
 name: 'amazon_selling_partner_integration_tests'
-version: '0.4.1'
+version: '0.5.0'
 config-version: 2
 
 profile: 'integration_tests'
@@ -35,6 +35,7 @@ models:
 seeds:
   +docs:
     show: False
+  +quote_columns: "{{ target.type == 'redshift' or var('fivetran_using_source_casing', false) }}"
   amazon_selling_partner_integration_tests:
     item_identifier:
       +tags:
