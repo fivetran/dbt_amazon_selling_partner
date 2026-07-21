@@ -40,6 +40,7 @@ By default, this package materializes the following final tables:
 | [amazon_selling_partner__item_inventory](https://fivetran.github.io/dbt_amazon_selling_partner/#!/model/model.amazon_selling_partner.amazon_selling_partner__item_inventory) | Shows current inventory levels for all catalog items with product details, dimensions, and sales rankings to manage stock levels and optimize inventory across your Amazon catalog. <br></br>**Example Analytics Questions:**<ul><li>Which products have low inventory levels that need restocking soon?</li><li>How do current inventory levels correlate with sales rank trends?</li><li>What products consume the most warehouse space based on item dimensions?</li></ul>|
 
 ¹ Each Quickstart transformation job run materializes these models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
+
 ---
 
 ## Prerequisites
