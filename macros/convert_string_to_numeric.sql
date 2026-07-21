@@ -27,3 +27,7 @@ cast(REGEXP_SUBSTR(REPLACE({{ column }}, ',', ''),'(-?[0-9]+(\.[0-9]+)?)') as {{
 {%- macro spark__convert_string_to_numeric(column) -%}
 cast(regexp_extract(replace({{ column }}, ',', ''), '(-?\\d+(\\.\\d+)?)', 0) as {{ dbt.type_numeric() }})
 {%- endmacro -%}
+
+{%- macro duckdb__convert_string_to_numeric(column) -%}
+cast(regexp_extract(replace({{ column }}, ',', ''), '-?[0-9]+(\.[0-9]+)?') as {{ dbt.type_numeric() }})
+{%- endmacro -%}
