@@ -1,3 +1,11 @@
+# dbt_amazon_selling_partner v0.5.1
+
+[PR #19](https://github.com/fivetran/dbt_amazon_selling_partner/pull/19) includes the following updates:
+
+## Feature Updates
+- Adds DuckDB as a supported destination.
+
+
 # dbt_amazon_selling_partner v0.5.0
 
 [PR #16](https://github.com/fivetran/dbt_amazon_selling_partner/pull/16) includes the following updates:
