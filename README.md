@@ -63,7 +63,7 @@ Include the following Amazon Selling Partner package version in your `packages.y
 ```yml
 packages:
   - package: fivetran/amazon_selling_partner
-    version: [">=0.5.0", "<0.6.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=0.6.0", "<0.7.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 ### Define database and schema variables

@@ -1,3 +1,17 @@
+# dbt_amazon_selling_partner v0.6.0
+
+[PR #20](https://github.com/fivetran/dbt_amazon_selling_partner/pull/20) includes the following updates:
+
+## Schema/Data Change
+**1 total change • 1 possible breaking change**
+
+| Data Model(s) | Change type | Old | New | Notes |
+| ------------- | ----------- | ----| --- | ----- |
+| `stg_amazon_selling_partner__item_dimension`<br>`amazon_selling_partner__item_inventory`<br>**Possible Breaking Change** | Changed field | `bigint` | `double precision` | The `item_height_value`, `item_length_value`, `item_weight_value`, `item_width_value`, `package_height_value`, `package_length_value`, `package_weight_value`, and `package_width_value` fields now carry decimal precision. Review any downstream logic that assumes these fields are integers. |
+
+## Under the Hood
+- Updates the `item_dimension` seed file to use decimal values.
+
 # dbt_amazon_selling_partner v0.5.1
 
 [PR #19](https://github.com/fivetran/dbt_amazon_selling_partner/pull/19) includes the following updates:
