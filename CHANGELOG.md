@@ -9,8 +9,6 @@
 | ------------- | ----------- | ----| --- | ----- |
 | `stg_amazon_selling_partner__item_dimension`<br>`amazon_selling_partner__item_inventory`<br>**Possible Breaking Change** | Changed field | `bigint` | `double precision` | The `item_height_value`, `item_length_value`, `item_weight_value`, `item_width_value`, `package_height_value`, `package_length_value`, `package_weight_value`, and `package_width_value` fields now carry decimal precision. Review any downstream logic that assumes these fields are integers. |
 
-## Under the Hood
-- Updates the `item_dimension` seed file to use decimal values.
 
 # dbt_amazon_selling_partner v0.5.1
 
