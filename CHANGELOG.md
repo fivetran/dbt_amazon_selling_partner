@@ -7,7 +7,7 @@
 
 | Data Model(s) | Change type | Old | New | Notes |
 | ------------- | ----------- | ----| --- | ----- |
-| `stg_amazon_selling_partner__item_dimension`<br>`amazon_selling_partner__item_inventory`<br>**Possible Breaking Change** | Changed fields | `bigint` | `double precision` | The `item_height_value`, `item_length_value`, `item_weight_value`, `item_width_value`, `package_height_value`, `package_length_value`, `package_weight_value`, and `package_width_value` fields now carry decimal precision. Review any downstream logic that assumes these fields are integers. |
+| `amazon_selling_partner__item_inventory`<br> `stg_amazon_selling_partner__item_dimension`<br>**Possible Breaking Change** | Data Change | `int` | `float` | The `item_height_value`, `item_length_value`, `item_weight_value`, `item_width_value`, `package_height_value`, `package_length_value`, `package_weight_value`, and `package_width_value` fields now carry decimal precision. Review any downstream logic that assumes these fields are integers. |
 
 
 # dbt_amazon_selling_partner v0.5.1
