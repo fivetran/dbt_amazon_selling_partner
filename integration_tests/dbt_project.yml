@@ -1,5 +1,5 @@
 name: 'amazon_selling_partner_integration_tests'
-version: '0.5.1'
+version: '0.6.0'
 config-version: 2
 
 profile: 'integration_tests'
@@ -90,6 +90,15 @@ seeds:
     item_dimension:
       +tags:
         - "catalog"
+      +column_types:
+        item_height_value: "{{ 'float64' if target.type == 'bigquery' else 'double' if target.type in ('spark', 'databricks', 'duckdb') else 'float' }}"
+        item_length_value: "{{ 'float64' if target.type == 'bigquery' else 'double' if target.type in ('spark', 'databricks', 'duckdb') else 'float' }}"
+        item_weight_value: "{{ 'float64' if target.type == 'bigquery' else 'double' if target.type in ('spark', 'databricks', 'duckdb') else 'float' }}"
+        item_width_value: "{{ 'float64' if target.type == 'bigquery' else 'double' if target.type in ('spark', 'databricks', 'duckdb') else 'float' }}"
+        package_height_value: "{{ 'float64' if target.type == 'bigquery' else 'double' if target.type in ('spark', 'databricks', 'duckdb') else 'float' }}"
+        package_length_value: "{{ 'float64' if target.type == 'bigquery' else 'double' if target.type in ('spark', 'databricks', 'duckdb') else 'float' }}"
+        package_weight_value: "{{ 'float64' if target.type == 'bigquery' else 'double' if target.type in ('spark', 'databricks', 'duckdb') else 'float' }}"
+        package_width_value: "{{ 'float64' if target.type == 'bigquery' else 'double' if target.type in ('spark', 'databricks', 'duckdb') else 'float' }}"
     item_image:
       +tags:
         - "catalog"
