@@ -31,21 +31,21 @@ aggregate_order_items as (
         amazon_order_id,
         count(order_item_id) as count_order_items,
         sum(coalesce(item_price_amount, 0)) as total_item_price_amount,
-        {{ fivetran_utils.string_agg('distinct item_price_currency_code', "', '") }} as item_price_currency_code,
+        {{ dbt.listagg('distinct item_price_currency_code', "', '") }} as item_price_currency_code,
         sum(coalesce(item_tax_amount, 0)) as total_item_tax_amount,
-        {{ fivetran_utils.string_agg('distinct item_tax_currency_code', "', '") }} as item_tax_currency_code,
+        {{ dbt.listagg('distinct item_tax_currency_code', "', '") }} as item_tax_currency_code,
         sum(coalesce(shipping_discount_amount, 0)) as total_shipping_discount_amount,
-        {{ fivetran_utils.string_agg('distinct shipping_discount_currency_code', "', '") }} as shipping_discount_currency_code,
+        {{ dbt.listagg('distinct shipping_discount_currency_code', "', '") }} as shipping_discount_currency_code,
         sum(coalesce(shipping_discount_tax_amount, 0)) as total_shipping_discount_tax_amount,
-        {{ fivetran_utils.string_agg('distinct shipping_discount_tax_currency_code', "', '") }} as shipping_discount_tax_currency_code,
+        {{ dbt.listagg('distinct shipping_discount_tax_currency_code', "', '") }} as shipping_discount_tax_currency_code,
         sum(coalesce(shipping_price_amount, 0)) as total_shipping_price_amount,
-        {{ fivetran_utils.string_agg('distinct shipping_price_currency_code', "', '") }} as shipping_price_currency_code,
+        {{ dbt.listagg('distinct shipping_price_currency_code', "', '") }} as shipping_price_currency_code,
         sum(coalesce(shipping_tax_amount, 0)) as total_shipping_tax_amount,
-        {{ fivetran_utils.string_agg('distinct shipping_tax_currency_code', "', '") }} as shipping_tax_currency_code,
+        {{ dbt.listagg('distinct shipping_tax_currency_code', "', '") }} as shipping_tax_currency_code,
         sum(coalesce(promotion_discount_amount, 0)) as total_promotion_discount_amount,
-        {{ fivetran_utils.string_agg('distinct promotion_discount_currency_code', "', '") }} as promotion_discount_currency_code,
+        {{ dbt.listagg('distinct promotion_discount_currency_code', "', '") }} as promotion_discount_currency_code,
         sum(coalesce(promotion_discount_tax_amount, 0)) as total_promotion_discount_tax_amount,
-        {{ fivetran_utils.string_agg('distinct promotion_discount_tax_currency_code', "', '") }} as promotion_discount_tax_currency_code
+        {{ dbt.listagg('distinct promotion_discount_tax_currency_code', "', '") }} as promotion_discount_tax_currency_code
 
     from order_item
     group by 1,2
@@ -67,7 +67,7 @@ aggregate_payment_methods as (
     select
         source_relation,
         amazon_order_id,
-        {{ fivetran_utils.string_agg('distinct method', "', '") }} as methods
+        {{ dbt.listagg('distinct method', "', '") }} as methods
 
     from payment_method_detail_item
     group by 1,2
