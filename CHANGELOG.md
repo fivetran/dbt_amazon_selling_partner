@@ -1,3 +1,19 @@
+# dbt_amazon_selling_partner v0.6.1
+
+[PR #24](https://github.com/fivetran/dbt_amazon_selling_partner/pull/24) includes the following updates:
+
+## Under the Hood
+- **Column description corrections**: Corrects inaccurate and ambiguous column descriptions across the three end models. No model output changes.
+  - `total_researching_quantity` in `amazon_selling_partner__item_inventory` carried the definition of `total_reserved_quantity`. It now describes the misplaced or warehouse damaged units that are actively being researched.
+  - The eight currency code columns in `amazon_selling_partner__orders` referenced amount columns that exist only in `amazon_selling_partner__order_items`, where the amounts are not aggregated. They no longer name a specific column.
+  - `seller_order_id` described the request parameters of Amazon's getOrders operation rather than the column itself.
+  - `is_iba` and `is_sold_by_ab` had identical descriptions. Each now notes that Amazon publishes the same definition for the other field.
+  - `quantity_ordered` and `quantity_shipped` read as order-level counts. Both now state that the count applies to the individual order item.
+  - `classification_sales_rank` and `website_display_group_sales_rank` shared one generic description. Each now names the classification or website display group it ranks within.
+  - `display_name` now states that it is the display name of the classification associated with the item.
+  - The shared unit description used by the item and package measurement columns now covers weight as well as dimensions.
+  - Replaced Amazon API field names with the matching package column names, and removed references to the API payload date format from columns that land in your destination as timestamps.
+
 # dbt_amazon_selling_partner v0.6.0
 
 [PR #20](https://github.com/fivetran/dbt_amazon_selling_partner/pull/20) includes the following updates:

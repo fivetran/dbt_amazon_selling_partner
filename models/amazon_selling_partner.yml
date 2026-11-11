@@ -329,7 +329,7 @@ models:
       - name: classification_sales_rank_link
         description: "{{ doc('sales_rank_link') }}"
       - name: classification_sales_rank
-        description: "{{ doc('rank') }}"
+        description: "{{ doc('classification_sales_rank') }}"
       - name: website_display_group
         description: "{{ doc('website_display_group') }}"
       - name: website_display_group_name
@@ -337,7 +337,7 @@ models:
       - name: website_display_group_sales_rank_link
         description: "{{ doc('sales_rank_link') }}"
       - name: website_display_group_sales_rank
-        description: "{{ doc('rank') }}"
+        description: "{{ doc('website_display_group_sales_rank') }}"
       - name: is_memorabilia
         description: "{{ doc('memorabilia') }}"
       - name: is_adult_product
