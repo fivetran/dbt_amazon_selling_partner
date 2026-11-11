@@ -37,8 +37,8 @@ b. Phone is suppressed for the shipped MFN (fulfilled by seller) order when the 
 {% docs default_ship_from_location_postal_code %} Postal code of the recommended location for the seller to ship the items from. It is calculated at checkout. The seller may or may not choose to ship from this location. {% enddocs %}
 {% docs default_ship_from_location_state_or_region %} State or region of the recommended location for the seller to ship the items from. It is calculated at checkout. The seller may or may not choose to ship from this location. {% enddocs %}
 
-{% docs earliest_delivery_date %} The start of the time period within which you have committed to fulfill the order. In ISO 8601 date time format. Only returned for seller-fulfilled orders. {% enddocs %}
-{% docs earliest_ship_date %} The start of the time period within which you have committed to ship the order. In ISO 8601 date time format. Only returned for seller-fulfilled orders. Note: EarliestShipDate might not be returned for orders placed before February 1, 2013. {% enddocs %}
+{% docs earliest_delivery_date %} The start of the time period within which you have committed to fulfill the order. Only returned for seller-fulfilled orders. {% enddocs %}
+{% docs earliest_ship_date %} The start of the time period within which you have committed to ship the order. Only returned for seller-fulfilled orders. Note: `earliest_ship_date` might not be returned for orders placed before February 1, 2013. {% enddocs %}
 
 {% docs easy_ship_shipment_status %} The status of the Amazon Easy Ship order. This property is only included for Amazon Easy Ship orders. Possible values can be found [here](https://developer-docs.amazon.com/sp-api/docs/orders-api-v0-reference#easyshipshipmentstatus). {% enddocs %}
 {% docs electronic_invoice_status %} The status of the electronic invoice. Only available for Easy Ship orders and orders in the BR marketplace. Possible values can be found [here](https://developer-docs.amazon.com/sp-api/docs/orders-api-v0-reference#electronicinvoicestatus). {% enddocs %}
@@ -51,16 +51,16 @@ b. Phone is suppressed for the shipped MFN (fulfilled by seller) order when the 
 {% docs is_business_order %} When true, the order is an Amazon Business order. An Amazon Business order is an order where the buyer is a Verified Business Buyer. {% enddocs %}
 {% docs is_estimated_ship_date_set %} When true, the estimated ship date is set for the order. Only returned for Sourcing on Demand orders. {% enddocs %}
 {% docs is_global_express_enabled %} When true, the order is a GlobalExpress order. {% enddocs %}
-{% docs is_iba %} When true, the item within this order was bought and re-sold by Amazon Business EU SARL (ABEU). By buying and instantly re-selling your items, ABEU becomes the seller of record, making your inventory available for sale to customers who would not otherwise purchase from a third-party seller. {% enddocs %}
+{% docs is_iba %} When true, the item within this order was bought and re-sold by Amazon Business EU SARL (ABEU). By buying and instantly re-selling your items, ABEU becomes the seller of record, making your inventory available for sale to customers who would not otherwise purchase from a third-party seller. Note: Amazon publishes this same definition for `is_sold_by_ab`. {% enddocs %}
 {% docs is_ispu %} When true, this order is marked to be picked up from a store rather than delivered. {% enddocs %}
 {% docs is_premium_order %} When true, the order has a Premium Shipping Service Level Agreement. For more information about Premium Shipping orders, refer to "Premium Shipping Options" in the Seller Central Help for your marketplace.  {% enddocs %}
 {% docs is_prime %} When true, the order is a seller-fulfilled Amazon Prime order. {% enddocs %}
 {% docs is_replacement_order %} When true, this is a replacement order. {% enddocs %}
-{% docs is_sold_by_ab %} When true, the item within this order was bought and re-sold by Amazon Business EU SARL (ABEU). By buying and instantly re-selling your items, ABEU becomes the seller of record, making your inventory available for sale to customers who would not otherwise purchase from a third-party seller. {% enddocs %}
+{% docs is_sold_by_ab %} When true, the item within this order was bought and re-sold by Amazon Business EU SARL (ABEU). By buying and instantly re-selling your items, ABEU becomes the seller of record, making your inventory available for sale to customers who would not otherwise purchase from a third-party seller. Note: Amazon publishes this same definition for `is_iba`. {% enddocs %}
 
-{% docs last_update_date %} The date when the order was last updated. Note: LastUpdateDate is returned with an incorrect date for orders that were last updated before 2009-04-01. {% enddocs %}
-{% docs latest_delivery_date %} The end of the time period within which you have committed to fulfill the order. In ISO 8601 date time format. Only returned for seller-fulfilled orders that do not have a PendingAvailability, Pending, or Canceled status. {% enddocs %}
-{% docs latest_ship_date %} The end of the time period within which you have committed to ship the order. In ISO 8601 date time format. Only returned for seller-fulfilled orders. Note: LatestShipDate might not be returned for orders placed before February 1, 2013. {% enddocs %}
+{% docs last_update_date %} The date when the order was last updated. Note: `last_update_date` is returned with an incorrect date for orders that were last updated before 2009-04-01. {% enddocs %}
+{% docs latest_delivery_date %} The end of the time period within which you have committed to fulfill the order. Only returned for seller-fulfilled orders that do not have a PendingAvailability, Pending, or Canceled status. {% enddocs %}
+{% docs latest_ship_date %} The end of the time period within which you have committed to ship the order. Only returned for seller-fulfilled orders. Note: `latest_ship_date` might not be returned for orders placed before February 1, 2013. {% enddocs %}
 {% docs marketplace_id %} The unobfuscated marketplace identifier. Different marketplace values can be found [here](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids). {% enddocs %}
 
 {% docs number_of_items_shipped %} The number of items shipped for the order.	 {% enddocs %}
@@ -73,70 +73,70 @@ b. Phone is suppressed for the shipped MFN (fulfilled by seller) order when the 
 {% docs payment_method %} The payment method for the order. This property is limited to COD and CVS payment methods. Unless you need the specific COD payment information provided by the PaymentExecutionDetailItem object, Amazon recommends using the PaymentMethodDetails table to get payment method information. {% enddocs %}
 {% docs promise_response_due_date %} Indicates the date by which the seller must respond to the buyer with an estimated ship date. Only returned for Sourcing on Demand orders. {% enddocs %}
 {% docs purchase_date %} The date when the order was created.	 {% enddocs %}
-{% docs replaced_order_id %} The order ID value for the order that is being replaced. Returned only if IsReplacementOrder = true. {% enddocs %}
+{% docs replaced_order_id %} The order ID value for the order that is being replaced. Returned only if `is_replacement_order` is true. {% enddocs %}
 {% docs sales_channel %} The sales channel for the first item in the order.	 {% enddocs %}
 {% docs seller_display_name %} The seller’s friendly name registered in the marketplace where the sale took place. Sellers can use this data to issue electronic invoices for orders in Brazil. Note: This attribute is only available in the Brazil marketplace for the orders with Pending or Unshipped status.
 {% enddocs %}
-{% docs seller_order_id %} An order identifier that is specified by the seller. Used to select only the orders that match the order identifier. If SellerOrderId is specified, then FulfillmentChannels, OrderStatuses, PaymentMethod, LastUpdatedAfter, LastUpdatedBefore, and BuyerEmail cannot be specified. {% enddocs %}
+{% docs seller_order_id %} An order identifier that is specified by the seller. {% enddocs %}
 {% docs ship_service_level %} The order's shipment service level. {% enddocs %}
 {% docs shipment_service_level_category %} The shipment service level category for the order. Possible values: Expedited, FreeEconomy, NextDay, Priority, SameDay, SecondDay, Scheduled, and Standard. {% enddocs %}
 
 {% docs shipping_address_address_line_1 %} Street address of the shipping address for the order.
 
 Note:
-1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
-2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields.
+1. The shipping address is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
+2. The shipping address contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access it, including the name, address line, phone, and address type fields.
 {% enddocs %}
 {% docs shipping_address_address_line_2 %} Line 2 of the shipping address for the order.
 
 Note:
-1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
-2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields. {% enddocs %}
+1. The shipping address is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
+2. The shipping address contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access it, including the name, address line, phone, and address type fields. {% enddocs %}
 {% docs shipping_address_address_line_3 %} Line 3 of the shipping address for the order.
 
 Note:
-1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
-2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields. {% enddocs %}
+1. The shipping address is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
+2. The shipping address contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access it, including the name, address line, phone, and address type fields. {% enddocs %}
 {% docs shipping_address_address_type %} Address type of the shipping address for the order.
 
 Note:
-1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
-2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields. {% enddocs %}
+1. The shipping address is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
+2. The shipping address contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access it, including the name, address line, phone, and address type fields. {% enddocs %}
 {% docs shipping_address_city %} City of the shipping address for the order.
 
 Note:
-1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
-2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields. {% enddocs %}
+1. The shipping address is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
+2. The shipping address contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access it, including the name, address line, phone, and address type fields. {% enddocs %}
 {% docs shipping_address_country_code %} Country code (two-character country code, in ISO 3166-1 alpha-2 format) of the shipping address for the order.
 
 Note:
-1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
-2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields. {% enddocs %}
+1. The shipping address is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
+2. The shipping address contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access it, including the name, address line, phone, and address type fields. {% enddocs %}
 {% docs shipping_address_county %} County of the shipping address for the order.
 
 Note:
-1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
-2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields. {% enddocs %}
+1. The shipping address is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
+2. The shipping address contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access it, including the name, address line, phone, and address type fields. {% enddocs %}
 {% docs shipping_address_district %} District of the shipping address for the order.
 
 Note:
-1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
-2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields. {% enddocs %}
+1. The shipping address is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
+2. The shipping address contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access it, including the name, address line, phone, and address type fields. {% enddocs %}
 {% docs shipping_address_municipality %} Municipality of the shipping address for the order.
 
 Note:
-1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
-2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields. {% enddocs %}
+1. The shipping address is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
+2. The shipping address contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access it, including the name, address line, phone, and address type fields. {% enddocs %}
 {% docs shipping_address_name %} Name of the shipping address for the order.
 
 Note:
-1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
-2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields. {% enddocs %}
+1. The shipping address is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
+2. The shipping address contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access it, including the name, address line, phone, and address type fields. {% enddocs %}
 {% docs shipping_address_phone %} Phone number of the shipping address for the order.
 
 Note:
-1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
-2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields.
+1. The shipping address is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
+2. The shipping address contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access it, including the name, address line, phone, and address type fields.
 3. In some cases, the buyer phone number is suppressed:
   a. Phone is suppressed for all AFN (fulfilled by Amazon) orders.
   b. Phone is suppressed for the shipped MFN (fulfilled by seller) order when the current date is past the Latest Delivery Date.
@@ -144,13 +144,13 @@ Note:
 {% docs shipping_address_postal_code %} Postal code of the shipping address for the order.
 
 Note:
-1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
-2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields. {% enddocs %}
+1. The shipping address is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
+2. The shipping address contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access it, including the name, address line, phone, and address type fields. {% enddocs %}
 {% docs shipping_address_state_or_region %} State or region of the shipping address for the order.
 
 Note:
-1. ShippingAddress is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
-2. The ShippingAddress contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access the restricted data in ShippingAddress. For example, Name, AddressLine1, AddressLine2, AddressLine3, Phone, AddressType, and ExtendedFields. {% enddocs %}
+1. The shipping address is only available for orders with the following status values: Unshipped, PartiallyShipped, Shipped and InvoiceUnconfirmed.
+2. The shipping address contains restricted data. Use the Restricted Data Token (RDT) and restricted SPDS roles to access it, including the name, address line, phone, and address type fields. {% enddocs %}
 
 {% docs order_item %} A single order item. {% enddocs %}
 {% docs asin %} The item's Amazon Standard Identification Number (ASIN). {% enddocs %}
@@ -173,13 +173,13 @@ Either `IOSS` (Import one stop shop. The item being purchased is not held in the
 - QR code SN: Submit the URL that the QR code generates.
 {% enddocs %}
 
-{% docs total_item_price_amount %} The total selling price of the order's line items. Note that an individual order item is an item and a quantity. This means that the value of ItemPrice is equal to the selling price of the item multiplied by the quantity ordered. ItemPrice excludes ShippingPrice and GiftWrapPrice. {% enddocs %}
+{% docs total_item_price_amount %} The total selling price of the order's line items. Note that an individual order item is an item and a quantity. This means that the value is equal to the selling price of the item multiplied by the quantity ordered, and excludes shipping and gift wrap charges. {% enddocs %}
 
-{% docs item_price_amount %} The selling price of the order item. Note that an order item is an item and a quantity. This means that the value of ItemPrice is equal to the selling price of the item multiplied by the quantity ordered. ItemPrice excludes ShippingPrice and GiftWrapPrice.	{% enddocs %}
-{% docs item_price_currency_code %} The three-digit currency code that the `item_price_amount` is listed in. In ISO 4217 format. {% enddocs %}
+{% docs item_price_amount %} The selling price of the order item. Note that an order item is an item and a quantity. This means that the value is equal to the selling price of the item multiplied by the quantity ordered, and excludes shipping and gift wrap charges.	{% enddocs %}
+{% docs item_price_currency_code %} The three-digit currency code that the item price amount is listed in. In ISO 4217 format. {% enddocs %}
 {% docs item_tax_amount %} The tax on the item price. {% enddocs %}
 {% docs total_item_tax_amount %} The total tax on the order items' price. {% enddocs %}
-{% docs item_tax_currency_code %} The three-digit currency code that the `item_tax_amount` is listed in. In ISO 4217 format. {% enddocs %}
+{% docs item_tax_currency_code %} The three-digit currency code that the item tax amount is listed in. In ISO 4217 format. {% enddocs %}
 {% docs order_item_id %} An Amazon-defined item identifier for the associated item.	 {% enddocs %}
 {% docs points_granted_monetary_amount %} The monetary value of the Amazon Points granted. {% enddocs %}
 {% docs points_granted_monetary_currency_code %} The three-digit currency code that the `points_granted_monetary_amount` is listed in. In ISO 4217 format. {% enddocs %}
@@ -188,28 +188,28 @@ Either `IOSS` (Import one stop shop. The item being purchased is not held in the
 {% docs product_info_detail_number_of_items %} The total number of items that are included in the ASIN. {% enddocs %}
 {% docs promotion_discount_amount %} The total of all promotional discounts in the offer.	{% enddocs %}
 {% docs total_promotion_discount_amount %} The total of all promotional discounts in the offers associated with the order.	{% enddocs %}
-{% docs promotion_discount_currency_code %} The three-digit currency code that the `promotion_discount_amount` is listed in. In ISO 4217 format. {% enddocs %}
+{% docs promotion_discount_currency_code %} The three-digit currency code that the promotion discount amount is listed in. In ISO 4217 format. {% enddocs %}
 {% docs promotion_discount_tax_amount %} The tax on the total of all promotional discounts in the offer.	{% enddocs %}
 {% docs total_promotion_discount_tax_amount %} The total tax on all promotional discounts in the offers associated with the order.	{% enddocs %}
-{% docs promotion_discount_tax_currency_code %} The three-digit currency code that the `promotion_discount_tax_amount` is listed in. In ISO 4217 format.  {% enddocs %}
-{% docs quantity_ordered %} The number of items in the order. {% enddocs %}
-{% docs quantity_shipped %} The number of items shipped.	{% enddocs %}
-{% docs scheduled_delivery_end_date %} The end date of the scheduled delivery window in the time zone for the order destination. In ISO 8601 date time format. {% enddocs %}
-{% docs scheduled_delivery_start_date %} The start date of the scheduled delivery window in the time zone for the order destination. In ISO 8601 date time format.	{% enddocs %}
+{% docs promotion_discount_tax_currency_code %} The three-digit currency code that the promotion discount tax amount is listed in. In ISO 4217 format.  {% enddocs %}
+{% docs quantity_ordered %} The number of units ordered for this order item. {% enddocs %}
+{% docs quantity_shipped %} The number of units shipped for this order item. {% enddocs %}
+{% docs scheduled_delivery_end_date %} The end date of the scheduled delivery window in the time zone for the order destination. {% enddocs %}
+{% docs scheduled_delivery_start_date %} The start date of the scheduled delivery window in the time zone for the order destination. {% enddocs %}
 {% docs seller_sku %} The item's seller stock keeping unit (SKU).	 {% enddocs %}
 {% docs serial_number_required %} When true, the product type for this item has a serial number. Only returned for Amazon Easy Ship orders. {% enddocs %}
 {% docs shipping_discount_amount %} The discount on the shipping price. {% enddocs %}
 {% docs total_shipping_discount_amount %} The total discount on the order's shipping prices. {% enddocs %}
-{% docs shipping_discount_currency_code %} The three-digit currency code that the `shipping_discount_amount` is listed in. In ISO 4217 format.  {% enddocs %}
+{% docs shipping_discount_currency_code %} The three-digit currency code that the shipping discount amount is listed in. In ISO 4217 format.  {% enddocs %}
 {% docs shipping_discount_tax_amount %} The tax on the discount on the shipping price.	 {% enddocs %}
 {% docs total_shipping_discount_tax_amount %} The total tax on the discount on the order's shipping prices.	 {% enddocs %}
-{% docs shipping_discount_tax_currency_code %} The three-digit currency code that the `shipping_discount_tax_amount` is listed in. In ISO 4217 format. {% enddocs %}
+{% docs shipping_discount_tax_currency_code %} The three-digit currency code that the shipping discount tax amount is listed in. In ISO 4217 format. {% enddocs %}
 {% docs shipping_price_amount %} The item's shipping price. {% enddocs %}
 {% docs total_shipping_price_amount %} The total order's shipping price. {% enddocs %}
-{% docs shipping_price_currency_code %}  The three-digit currency code that the `shipping_price_amount` is listed in. In ISO 4217 format. {% enddocs %}
+{% docs shipping_price_currency_code %}  The three-digit currency code that the shipping price amount is listed in. In ISO 4217 format. {% enddocs %}
 {% docs shipping_tax_amount %} The tax on the shipping price.	 {% enddocs %}
 {% docs total_shipping_tax_amount %} The total tax on the order's shipping price.	 {% enddocs %}
-{% docs shipping_tax_currency_code %} The three-digit currency code that the `shipping_tax_amount` is listed in. In ISO 4217 format.  {% enddocs %}
+{% docs shipping_tax_currency_code %} The three-digit currency code that the shipping tax amount is listed in. In ISO 4217 format.  {% enddocs %}
 {% docs store_chain_store_id %} The store chain store identifier. Linked to a specific store in a store chain.	 {% enddocs %}
 {% docs tax_collection_model %} The tax collection model applied to the item. Possible value(s) can be found [here](https://developer-docs.amazon.com/sp-api/docs/orders-api-v0-reference#model). {% enddocs %}
 {% docs tax_collection_responsible_party %} The party responsible for withholding the taxes and remitting them to the taxing authority. Possible value(s) can be found [here](https://developer-docs.amazon.com/sp-api/docs/orders-api-v0-reference#responsibleparty). {% enddocs %}
@@ -230,7 +230,7 @@ Either `IOSS` (Import one stop shop. The item being purchased is not held in the
 {% docs classification_id %} Identifier of the classification associated with the sales rank.	{% enddocs %}
 {% docs color %} Name of the color associated with an Amazon catalog item.	{% enddocs %}
 {% docs contributors %} Individual contributors to the creation of an item, such as the authors or actors.	{% enddocs %}
-{% docs display_name %} Display name for the classification.	 {% enddocs %}
+{% docs display_name %} Display name of the classification associated with an Amazon catalog item. {% enddocs %}
 {% docs item_classification %} Classification type associated with the Amazon catalog item. Possible values can be found [here](https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2022-04-01-reference#itemclassification). {% enddocs %}
 {% docs item_name %} Name, or title, associated with an Amazon catalog item.	{% enddocs %}
 {% docs manufacturer %} Name of the manufacturer associated with an Amazon catalog item.	{% enddocs %}
@@ -262,6 +262,10 @@ Comma-separated list of payment methods used for an order. Possible individual v
 {% docs item_display_group_sales_rank %} Sales rank of an Amazon catalog item by website display group. {% enddocs %}
 {% docs sales_rank_link %} Corresponding Amazon retail website link, or URL, for the sales rank. {% enddocs %}
 {% docs rank %} Sales rank value.	{% enddocs %}
+{% docs classification_sales_rank %} Sales rank of the item within the classification identified by `classification_id`. {% enddocs %}
+{% docs classification_sales_rank_link %} Corresponding Amazon retail website link, or URL, for the item's sales rank within the classification identified by `classification_id`. {% enddocs %}
+{% docs website_display_group_sales_rank %} Sales rank of the item within the website display group identified by `website_display_group`. {% enddocs %}
+{% docs website_display_group_sales_rank_link %} Corresponding Amazon retail website link, or URL, for the item's sales rank within the website display group identified by `website_display_group`. {% enddocs %}
 {% docs item_classification_sales_rank %} Sales rank of an Amazon catalog item by classification. {% enddocs %}
 {% docs sales_rank_title %} Title, or name, of the sales rank. {% enddocs %}
 
@@ -270,7 +274,7 @@ Comma-separated list of payment methods used for an order. Possible individual v
 {% docs identifier_type %} Type of product identifiers to search the Amazon catalog for. Possible values can be found [here](https://developer-docs.amazon.com/sp-api/docs/catalog-items-api-v2022-04-01-reference#identifierstype) {% enddocs %}
 
 {% docs item_dimension %} Dimensions of an Amazon catalog item or item in its packaging. {% enddocs %}
-{% docs dimension_unit %} Measurement unit of the dimension value. {% enddocs %}
+{% docs dimension_unit %} Measurement unit of the corresponding dimension or weight value. {% enddocs %}
 {% docs item_height_value %} Height of an item. {% enddocs %}
 {% docs item_length_value %} Length of an item. {% enddocs %}
 {% docs item_weight_value %} Weight of an item. {% enddocs %}
@@ -309,7 +313,7 @@ Type of relationship. [Possible values](https://developer-docs.amazon.com/sp-api
 {% docs pending_transshipment_quantity %} The number of units being transferred from one fulfillment center to another.	 {% enddocs %}
 {% docs product_name %} The localized language product title of the item within the specific marketplace.	 {% enddocs %}
 {% docs total_quantity %} The total number of units in an inbound shipment or in Amazon fulfillment centers. {% enddocs %}
-{% docs total_researching_quantity %} The total number of units in Amazon's fulfillment network that are currently being picked, packed, and shipped; or are sidelined for measurement, sampling, or other internal processes. {% enddocs %}
+{% docs total_researching_quantity %} The total number of misplaced or warehouse damaged units that are actively being confirmed and researched at Amazon fulfillment centers. {% enddocs %}
 {% docs total_reserved_quantity %} The total number of units in Amazon's fulfillment network that are currently being picked, packed, and shipped; or are sidelined for measurement, sampling, or other internal processes. {% enddocs %}
 {% docs total_unfulfillable_quantity %}  The total number of units in Amazon's fulfillment network in unsellable condition.	{% enddocs %}
 {% docs warehouse_damaged_quantity %} The number of units in warehouse damaged disposition. {% enddocs %}
