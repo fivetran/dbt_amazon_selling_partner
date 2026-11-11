@@ -263,9 +263,7 @@ Comma-separated list of payment methods used for an order. Possible individual v
 {% docs sales_rank_link %} Corresponding Amazon retail website link, or URL, for the sales rank. {% enddocs %}
 {% docs rank %} Sales rank value.	{% enddocs %}
 {% docs classification_sales_rank %} Sales rank of the item within the classification identified by `classification_id`. {% enddocs %}
-{% docs classification_sales_rank_link %} Corresponding Amazon retail website link, or URL, for the item's sales rank within the classification identified by `classification_id`. {% enddocs %}
 {% docs website_display_group_sales_rank %} Sales rank of the item within the website display group identified by `website_display_group`. {% enddocs %}
-{% docs website_display_group_sales_rank_link %} Corresponding Amazon retail website link, or URL, for the item's sales rank within the website display group identified by `website_display_group`. {% enddocs %}
 {% docs item_classification_sales_rank %} Sales rank of an Amazon catalog item by classification. {% enddocs %}
 {% docs sales_rank_title %} Title, or name, of the sales rank. {% enddocs %}
 
