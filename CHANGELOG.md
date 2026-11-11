@@ -9,7 +9,7 @@
   - `seller_order_id` described the request parameters of Amazon's getOrders operation rather than the column itself.
   - `is_iba` and `is_sold_by_ab` had identical descriptions. Each now notes that Amazon publishes the same definition for the other field.
   - `quantity_ordered` and `quantity_shipped` read as order-level counts. Both now state that the count applies to the individual order item.
-  - `classification_sales_rank`, `website_display_group_sales_rank`, and their corresponding link columns shared one generic description. Each now names the classification or website display group it ranks within.
+  - `classification_sales_rank` and `website_display_group_sales_rank` shared one generic description. Each now names the classification or website display group it ranks within.
   - `display_name` now states that it is the display name of the classification associated with the item.
   - The shared unit description used by the item and package measurement columns now covers weight as well as dimensions.
   - Replaced Amazon API field names with the matching package column names, and removed references to the API payload date format from columns that land in your destination as timestamps.
