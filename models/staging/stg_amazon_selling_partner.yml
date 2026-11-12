@@ -3,6 +3,12 @@ version: 2
 models:
   - name: stg_amazon_selling_partner__orders
     description: '{{ doc("orders") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - amazon_order_id
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -133,6 +139,13 @@ models:
 
   - name: stg_amazon_selling_partner__order_item
     description: '{{ doc("order_item") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - amazon_order_id
+              - order_item_id
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -217,6 +230,14 @@ models:
 
   - name: stg_amazon_selling_partner__order_item_promotion_id
     description: '{{ doc("order_item_promotion_id") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - amazon_order_id
+              - promotion_id
+              - order_item_id
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -229,6 +250,13 @@ models:
 
   - name: stg_amazon_selling_partner__payment_method_detail_item
     description: '{{ doc("payment_method_detail_item") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - amazon_order_id
+              - method
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -239,6 +267,13 @@ models:
 
   - name: stg_amazon_selling_partner__item_product_type
     description: '{{ doc("item_product_type") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - asin
+              - marketplace_id
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -253,6 +288,13 @@ models:
 
   - name: stg_amazon_selling_partner__item_dimension
     description: '{{ doc("item_dimension") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - asin
+              - marketplace_id
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -297,6 +339,14 @@ models:
 
   - name: stg_amazon_selling_partner__item_image
     description: '{{ doc("item_image") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - asin
+              - marketplace_id
+              - variant
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -317,6 +367,13 @@ models:
 
   - name: stg_amazon_selling_partner__item_summary
     description: '{{ doc("item_summary") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - asin
+              - marketplace_id
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -369,6 +426,13 @@ models:
 
   - name: stg_amazon_selling_partner__item_display_group_sales_rank
     description: '{{ doc("item_display_group_sales_rank") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - asin
+              - website_display_group
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -387,6 +451,13 @@ models:
 
   - name: stg_amazon_selling_partner__item_classification_sales_rank
     description: '{{ doc("item_classification_sales_rank") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - asin
+              - classification_id
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -405,6 +476,14 @@ models:
 
   - name: stg_amazon_selling_partner__item_identifier
     description: '{{ doc("item_identifier") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - asin
+              - identifier_type
+              - marketplace_id
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -422,6 +501,14 @@ models:
 
   - name: stg_amazon_selling_partner__item_relationship
     description: '{{ doc("item_relationship") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - parent_asin
+              - child_asin
+              - type
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -436,6 +523,12 @@ models:
 
   - name: stg_amazon_selling_partner__fba_inventory_summary
     description: '{{ doc("fba_inventory_summary") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - inventory_summary_id
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -498,6 +591,13 @@ models:
 
   - name: stg_amazon_selling_partner__fba_inventory_researching
     description: '{{ doc("fba_inventory_researching_quantity_entry") }}'
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - inventory_summary_id
+              - name
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
