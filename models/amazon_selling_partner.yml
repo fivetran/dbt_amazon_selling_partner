@@ -3,6 +3,12 @@ version: 2
 models:
   - name: amazon_selling_partner__orders
     description: Table of orders placed in Amazon, enhanced with payment method information and order item aggregates.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - amazon_order_id
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -171,6 +177,13 @@ models:
 
   - name: amazon_selling_partner__order_items
     description: Table of single line items of Amazon orders, enhanced with order and catalog item information.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - amazon_order_id
+              - order_item_id
     columns:
       - name: source_relation
         description: '{{ doc("source_relation") }}'
@@ -289,6 +302,13 @@ models:
 
   - name: amazon_selling_partner__item_inventory
     description: Table containing current inventory levels pertaining to individual Amazon catalog items, enhanced with all product descriptors and identifiers, listing metadata, item dimensions, and sales ranks.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - asin
+              - marketplace_id
     columns: 
       - name: source_relation
         description: "{{ doc('source_relation') }}"
