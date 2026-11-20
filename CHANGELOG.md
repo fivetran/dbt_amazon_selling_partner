@@ -1,3 +1,11 @@
+# dbt_amazon_selling_partner v0.7.0
+
+[PR #26](https://github.com/fivetran/dbt_amazon_selling_partner/pull/26) includes the following updates:
+
+## Feature Update
+- **Breaking change**: Raises the minimum dbt version to 1.10.0.
+- Adds `dbt_utils.unique_combination_of_columns` tests to staging and end models. If a test fails, please [open an issue](https://github.com/fivetran/dbt_amazon_selling_partner/issues/new/choose).
+
 # dbt_amazon_selling_partner v0.6.0
 
 [PR #20](https://github.com/fivetran/dbt_amazon_selling_partner/pull/20) includes the following updates:
