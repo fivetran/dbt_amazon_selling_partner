@@ -135,6 +135,7 @@ joined as (
     left join fba_inventory_summary 
         on fba_inventory_summary.asin = item.asin
         and fba_inventory_summary.source_relation = item.source_relation
+        and fba_inventory_summary.granularity_id = item.marketplace_id
     left join pivot_researching_quantity
         on fba_inventory_summary.inventory_summary_id = pivot_researching_quantity.inventory_summary_id
         and fba_inventory_summary.source_relation = pivot_researching_quantity.source_relation

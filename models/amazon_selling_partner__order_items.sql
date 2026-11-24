@@ -64,14 +64,15 @@ joined as (
         {% endif %}
 
     from order_item 
+    left join orders
+        on order_item.amazon_order_id = orders.amazon_order_id
+        and order_item.source_relation = orders.source_relation
     {% if var('amazon_selling_partner__using_catalog_module', true) %}
     left join item 
         on order_item.asin = item.asin 
+        and orders.marketplace_id = item.marketplace_id
         and order_item.source_relation = item.source_relation
     {% endif %}
-    left join orders 
-        on order_item.amazon_order_id = orders.amazon_order_id
-        and order_item.source_relation = orders.source_relation
     left join aggregate_promotions
         on order_item.amazon_order_id = aggregate_promotions.amazon_order_id
         and order_item.order_item_id = aggregate_promotions.order_item_id
